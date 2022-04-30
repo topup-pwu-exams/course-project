@@ -1,6 +1,6 @@
 export default {
-  name: 'product',
-  title: 'Product',
+  name: 'course',
+  title: 'Course',
   type: 'document',
   fields: [
     {
@@ -18,20 +18,20 @@ export default {
       },
     },
     {
-      title: 'Default variant',
-      name: 'defaultProductVariant',
-      type: 'productVariant',
+      name: 'author',
+      title: 'Author',
+      type: 'reference',
+      to: { type: 'author' },
     },
+    // {
+    //   title: 'Default variant',
+    //   name: 'defaultCourseVariant',
+    //   type: 'courseVariant',
+    // },
     {
-      title: 'Variants',
-      name: 'variants',
-      type: 'array',
-      of: [
-        {
-          title: 'Variant',
-          type: 'productVariant',
-        },
-      ],
+      name: 'mainImage',
+      title: 'Main Image',
+      type: 'image',
     },
     {
       title: 'Tags',
@@ -47,39 +47,32 @@ export default {
       },
     },
     {
-      name: 'vendor',
-      title: 'Vendor',
-      type: 'reference',
-      to: {type: 'vendor'},
-    },
-    {
-      name: 'blurb',
-      title: 'Blurb',
-      type: 'localeString',
-    },
-    {
       name: 'categories',
       title: 'Categories',
       type: 'array',
       of: [
         {
           type: 'reference',
-          to: {type: 'category'},
+          to: { type: 'category' },
         },
       ],
     },
     {
+      name: 'description',
+      title: 'Description',
+      type: 'text',
+    },
+    {
       name: 'body',
       title: 'Body',
-      type: 'localeBlockContent',
+      type: 'blockContent',
     },
   ],
-
   preview: {
     select: {
       title: 'title',
       manufactor: 'manufactor.title',
-      media: 'defaultProductVariant.images[0]',
+      media: 'mainImage',
     },
   },
 }

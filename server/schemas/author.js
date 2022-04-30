@@ -1,11 +1,16 @@
 export default {
-  name: 'vendor',
-  title: 'Vendor',
+  name: 'author',
+  title: 'Author',
   type: 'document',
   fields: [
     {
-      name: 'title',
-      title: 'Title',
+      name: 'firstName',
+      title: 'First Name',
+      type: 'string',
+    },
+    {
+      name: 'lastName',
+      title: 'Last Name',
       type: 'string',
     },
     {
@@ -13,13 +18,13 @@ export default {
       title: 'Slug',
       type: 'slug',
       options: {
-        source: 'title',
+        source: 'firstName',
         maxLength: 96,
       },
     },
     {
-      name: 'logo',
-      title: 'logo',
+      name: 'avatar',
+      title: 'Avatar',
       type: 'image',
     },
     {
@@ -30,8 +35,8 @@ export default {
   ],
   preview: {
     select: {
-      title: 'title',
-      media: 'logo',
+      title: 'firstName',
+      media: 'avatar',
     },
   },
 }

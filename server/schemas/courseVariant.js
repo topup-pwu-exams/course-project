@@ -1,6 +1,6 @@
 export default {
-  title: 'Product variant',
-  name: 'productVariant',
+  title: 'Course variant',
+  name: 'courseVariant',
   type: 'object',
   fields: [
     {
@@ -9,24 +9,9 @@ export default {
       type: 'string',
     },
     {
-      title: 'Weight in grams',
-      name: 'grams',
-      type: 'number',
-    },
-    {
       title: 'Price',
       name: 'price',
       type: 'number',
-    },
-    {
-      title: 'SKU',
-      name: 'sku',
-      type: 'string',
-    },
-    {
-      title: 'Taxable',
-      name: 'taxable',
-      type: 'boolean',
     },
     {
       name: 'images',
@@ -40,11 +25,6 @@ export default {
           },
         },
       ],
-    },
-    {
-      title: 'Bar code',
-      name: 'barcode',
-      type: 'barcode',
     },
   ],
 }
