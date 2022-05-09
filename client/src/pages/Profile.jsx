@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useApi } from "../hooks/useApi";
+import { LoginIcon } from '@heroicons/react/outline'
 
 const Profile = () => {
-    const { user, isAuthenticated, isLoading, getAccessTokenSilently } = useAuth0();
+    const { user, isAuthenticated, isLoading, getAccessTokenSilently, loginWithRedirect } = useAuth0();
     // const [userMetadata, setUserMetadata] = useState(null);
 
     console.log('user', user);
@@ -16,14 +17,14 @@ const Profile = () => {
 
     const { login, getAccessTokenWithPopup } = useAuth0();
 
-    const { loading, error, refresh, data: userMetadata, } = useApi(`https://${domain}/api/v2/users/${user.sub}`, options);
+    const { loading, error, refresh, data: userMetadata, } = useApi(`https://${domain}/api/v2/users/${user?.sub}`, options);
 
     const getTokenAndTryAgain = async () => {
         await getAccessTokenWithPopup(options);
         refresh();
     };
 
-    console.log(userMetadata);
+    console.log('metadata', userMetadata);
 
     // useEffect(() => {
     //     const getUserMetadata = async () => {
@@ -58,7 +59,14 @@ const Profile = () => {
     }
     if (error) {
         if (error.error === 'login_required') {
-            return <button onClick={() => login(options)}>Login</button>;
+            return (
+                <div className="min-h-full flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+                    <h1 className='text-3xl mb-4'>Log in to see your profile</h1>
+                    <div onClick={() => loginWithRedirect()} className='ml-8 flex flex-row hover:border-purple-500 rounded-full border-2 border-transparent bg-purple-500 text-white hover:text-purple-500 hover:bg-white px-3 py-1 hover:cursor-pointer'>
+                        <h3 >Log in </h3> <LoginIcon className='h-5 w-auto ml-2 mt-0.5' />
+                    </div>
+                </div>
+            )
         }
         if (error.error === 'consent_required') {
             return (

@@ -6,8 +6,7 @@ import { LoginIcon, LogoutIcon } from '@heroicons/react/outline'
 
 
 const Navigation = () => {
-    const { user, isAuthenticated, isLoading } = useAuth0();
-    const { loginWithRedirect } = useAuth0();
+    const { user, isAuthenticated, isLoading, loginWithRedirect } = useAuth0();
     const { logout } = useAuth0();
 
     const pages = [
