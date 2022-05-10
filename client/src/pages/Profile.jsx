@@ -4,26 +4,23 @@ import { useApi } from "../hooks/useApi";
 import { LoginIcon } from '@heroicons/react/outline'
 
 const Profile = () => {
-    const { user, isAuthenticated, isLoading, getAccessTokenSilently, loginWithRedirect } = useAuth0();
+    const { user, isAuthenticated, isLoading, getAccessTokenSilently, loginWithRedirect, getAccessTokenWithPopup } = useAuth0();
     // const [userMetadata, setUserMetadata] = useState(null);
 
-    console.log('user', user);
-
+    
     const domain = process.env.REACT_APP_AUTH0_DOMAIN;
     const options = {
         audience: `https://${domain}/api/v2/`,
         scope: "read:current_user",
     }
-
-    const { login, getAccessTokenWithPopup } = useAuth0();
-
     const { loading, error, refresh, data: userMetadata, } = useApi(`https://${domain}/api/v2/users/${user?.sub}`, options);
 
     const getTokenAndTryAgain = async () => {
         await getAccessTokenWithPopup(options);
         refresh();
     };
-
+    
+    console.log('user', user);
     console.log('metadata', userMetadata);
 
     // useEffect(() => {
