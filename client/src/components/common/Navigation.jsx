@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import logo from '../assets/Images/logo_darker.png';
+import logo from '../../assets/Images/logo_darker.png';
 import { LoginIcon, LogoutIcon } from '@heroicons/react/outline'
 import jsCookie from 'js-cookie'
-import { Store } from '../utils/Store';
+import { Store } from '../../utils/Store';
 
 const Navigation = () => {
     const navigate = useNavigate();
@@ -29,7 +29,7 @@ const Navigation = () => {
     };
 
     return (
-        <header className='flex justify-between p-5 max-w-7xl mx-auto'>
+        <header className='flex justify-between p-5 max-w-7xl mx-auto bg-red-300'>
             <div className='flex items-center space-x-5'>
                 <Link to='/'>
                     <img src={logo} alt="logo" className='w-16 object-contain cursor-pointer' />

@@ -1,6 +1,6 @@
 import { Route, Routes, Outlet } from "react-router-dom";
 import './App.css';
-import Navigation from './components/Navigation';
+import Navigation from './components/common/Navigation';
 
 // Pages
 import About from './pages/About';
@@ -12,8 +12,8 @@ import Profile from "./pages/Profile";
 
 const AppLayout = () => (
   <>
+    <div className='p-5 pt-0 max-w-7xl mx-auto'>
     <Navigation />
-    <div className='p-5 max-w-7xl mx-auto'>
       <Outlet /> {/* <-- nested routes rendered here */}
     </div>
 
