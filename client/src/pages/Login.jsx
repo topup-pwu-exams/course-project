@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import logo from '../assets/Images/logo_darker.png';
 import { NavLink, useNavigate } from 'react-router-dom';
 // import { LockClosedIcon } from '@heroicons/react/solid'
@@ -6,29 +6,48 @@ import { ArrowLeftIcon } from '@heroicons/react/outline'
 import { GoogleLogin } from '@react-oauth/google';
 import { client } from '../client'
 import jwt_decode from "jwt-decode";
+import jsCookie from 'js-cookie';
+import { Store } from '../utils/Store';
 
 function Login() {
     const navigate = useNavigate();
 
-    const responseGoogle = (response) => {
+    const { state, dispatch } = useContext(Store);
+    const { userInfo } = state;
+
+    useEffect(() => {
+        if (userInfo) {
+            navigate('/');
+        }
+    }, [navigate, userInfo]);
+
+    const responseGoogle = async (response) => {
         console.log(response);
-        const decoded = jwt_decode(response.credential);
-        console.log(decoded);
+        try {
+            const data = jwt_decode(response.credential);
+            console.log(data);
 
-        localStorage.setItem('user', JSON.stringify(decoded));
-        const { sub, given_name, family_name, picture } = decoded;
+            dispatch({ type: 'USER_LOGIN', payload: data });
 
-        const doc = {
-            _id: sub,
-            _type: 'user',
-            firstName: given_name,
-            lastName: family_name,
-            // slug: '', TODO: ??? autogenerate or assign some value
-            avatar: picture,
-        };
-        client.createIfNotExists(doc).then(() => {
-            navigate('/', { replace: true });
-        });
+            jsCookie.set('userInfo', JSON.stringify(data));
+            // localStorage.setItem('user', JSON.stringify(data));
+            const { sub, given_name, family_name, picture } = data;
+
+            const doc = {
+                _id: sub,
+                _type: 'user',
+                firstName: given_name,
+                lastName: family_name,
+                // slug: '', TODO: ??? autogenerate or assign some value
+                avatar: picture,
+            };
+            client.createIfNotExists(doc).then(() => {
+                navigate('/', { replace: true });
+            });
+        } catch (error) {
+            console.log(error);
+        }
+
     };
     return (
         <>
@@ -43,7 +62,7 @@ function Login() {
                         <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Sign in or create an account</h2>
                         <div className="mt-3 flex flex-col justify-center items-center">
                             <NavLink to={-1}>
-                                <div className='rounded-full my-5 border-2 border-gray-500 py-0.5 px-5 w-48 hover:bg-slate-100 text-center'><ArrowLeftIcon className='w-5 mb-1 inline-block'/> Go Back</div>
+                                <div className='rounded-full my-5 border-2 border-gray-500 py-0.5 px-5 w-48 hover:bg-slate-100 text-center'><ArrowLeftIcon className='w-5 mb-1 inline-block' /> Go Back</div>
                             </NavLink>
                             <GoogleLogin
                                 onSuccess={responseGoogle}
