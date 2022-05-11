@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Outlet } from "react-router-dom";
 import './App.css';
 import Navigation from './components/Navigation';
 
@@ -10,23 +10,45 @@ import Home from './pages/Home';
 import Login from "./pages/Login";
 import Profile from "./pages/Profile";
 
+const AppLayout = () => (
+  <>
+    <Navigation />
+    <div className='p-5 max-w-7xl mx-auto'>
+      <Outlet /> {/* <-- nested routes rendered here */}
+    </div>
+
+  </>
+);
+
+const EmptyLayout = () => (
+  <>
+    <div className='p-10 mt-10 max-w-7xl mx-auto'>
+      <Outlet /> {/* <-- nested routes rendered here */}
+    </div>
+
+  </>
+);
+
 function App() {
   return (
-    <div className=''>
-        <Navigation />
+    <>
+      <Routes>
+        {/* Empty layout */}
+        <Route element={<EmptyLayout />} >
+          <Route path="login" element={<Login />} />
+        </Route>
 
-        {/* main content */}
-        <div className='p-5 max-w-7xl mx-auto'>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="about" element={<About />} />
-            <Route path="contact" element={<Contact />} />
-            <Route path="blog" element={<Blog />} />
-            <Route path="login" element={<Login />} />
-            <Route path="profile" element={<Profile />} />
-          </Routes>
-        </div>
-    </div>
+        {/* main content inside app layout*/}
+        <Route element={<AppLayout />} >
+          <Route path="/" element={<Home />} />
+          <Route path="about" element={<About />} />
+          <Route path="contact" element={<Contact />} />
+          <Route path="blog" element={<Blog />} />
+          <Route path="profile" element={<Profile />} />
+          {/* <Route path="*" element={<NotFound />} /> */}
+        </Route>
+      </Routes>
+    </>
   );
 }
 
