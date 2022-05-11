@@ -8,6 +8,7 @@ Technology stack used in project consists of:
 - React.js
 - TailwindCSS
 - Sanity.io
+- Google Login
 <!-- - Docker
 - Deployed on Vercel -->
 
