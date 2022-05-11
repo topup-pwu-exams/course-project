@@ -1,14 +1,10 @@
 import React from 'react';
 import { Link, NavLink } from "react-router-dom";
 import logo from '../assets/Images/logo_darker.png';
-// import { useAuth0 } from "@auth0/auth0-react";
 import { LoginIcon, LogoutIcon } from '@heroicons/react/outline'
 
 
 const Navigation = () => {
-    // const { user, isAuthenticated, isLoading, loginWithRedirect } = useAuth0();
-    // const { logout } = useAuth0();
-
     const pages = [
         // { name: 'Explore', url: 'explore', id: 1 },
         { name: 'About', url: 'about', id: 2 },

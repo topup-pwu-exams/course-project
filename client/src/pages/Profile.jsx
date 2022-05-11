@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Routes, Route, useNavigate } from 'react-router-dom';
-// import { useAuth0 } from "@auth0/auth0-react";
-// import { useApi } from "../hooks/useApi";
 import { LoginIcon } from '@heroicons/react/outline'
 
 const Profile = () => {
