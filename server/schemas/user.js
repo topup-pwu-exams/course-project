@@ -1,6 +1,6 @@
 export default {
-  name: 'author',
-  title: 'Author',
+  name: 'user',
+  title: 'User',
   type: 'document',
   fields: [
     {
@@ -25,7 +25,7 @@ export default {
     {
       name: 'avatar',
       title: 'Avatar',
-      type: 'image',
+      type: 'string',
     },
     {
       name: 'description',

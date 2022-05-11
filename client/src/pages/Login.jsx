@@ -1,39 +1,72 @@
 import React from 'react'
 import logo from '../assets/Images/logo_darker.png';
-import { LockClosedIcon } from '@heroicons/react/solid'
-import { useAuth0 } from "@auth0/auth0-react";
-
+import { NavLink, useNavigate } from 'react-router-dom';
+// import { LockClosedIcon } from '@heroicons/react/solid'
+import { ArrowLeftIcon } from '@heroicons/react/outline'
+import { GoogleLogin } from '@react-oauth/google';
+import { client } from '../client'
+import jwt_decode from "jwt-decode";
 
 function Login() {
-    const { loginWithRedirect } = useAuth0();
+    const navigate = useNavigate();
 
+    const responseGoogle = (response) => {
+        console.log(response);
+        const decoded = jwt_decode(response.credential);
+        console.log(decoded);
+
+        localStorage.setItem('user', JSON.stringify(decoded));
+        const { sub, given_name, family_name, picture } = decoded;
+
+        const doc = {
+            _id: sub,
+            _type: 'user',
+            firstName: given_name,
+            lastName: family_name,
+            // slug: '', TODO: ??? autogenerate or assign some value
+            avatar: picture,
+        };
+        client.createIfNotExists(doc).then(() => {
+            navigate('/', { replace: true });
+        });
+    };
     return (
         <>
-            {/*
-        This example requires updating your template:
-
-        ```
-        <html class="h-full bg-gray-50">
-        <body class="h-full">
-        ```
-      */}
             <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
                 <div className="max-w-md w-full space-y-8">
-                    <div>
+                    <div className=''>
                         <img
                             className="mx-auto h-16 w-auto"
                             src={logo}
                             alt="Workflow"
                         />
-                        <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Log in to your account</h2>
-                        <p className="mt-2 text-center text-sm text-gray-600">
+                        <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Sign in or create an account</h2>
+                        <div className="mt-3 flex flex-col justify-center items-center">
+                            <NavLink to={-1}>
+                                <div className='rounded-full my-5 border-2 border-gray-500 py-0.5 px-5 w-48 hover:bg-slate-100 text-center'><ArrowLeftIcon className='w-5 mb-1 inline-block'/> Go Back</div>
+                            </NavLink>
+                            <GoogleLogin
+                                onSuccess={responseGoogle}
+                                onError={() => { alert('Login Failed') }}
+                                theme='filled_blue'
+                                text='continue_with'
+                                shape='pill'
+                                type='standard'
+                                logo_alignment='left'
+                                size='medium'
+                                width='200px'
+                                cancel_on_tap_outside={true}
+                            />
+
+                        </div>
+                        {/* <p className="mt-2 text-center text-sm text-gray-600">
                             Or{' '}
                             <a href="#" className="font-medium text-purple-500 hover:text-purple-600">
                                 start your 14-day free trial
                             </a>
-                        </p>
+                        </p> */}
                     </div>
-                    <form className="mt-8 space-y-6" action="#" method="POST">
+                    {/* <form className="mt-8 space-y-6" action="#" method="POST">
                         <input type="hidden" name="remember" defaultValue="true" />
                         <div className="rounded-md shadow-sm -space-y-px">
                             <div>
@@ -88,7 +121,7 @@ function Login() {
 
                         <div>
                             <button
-                                onClick={() => loginWithRedirect()}
+                                // onClick={() => loginWithRedirect()}
                                 type="submit"
                                 className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500"
                             >
@@ -98,7 +131,7 @@ function Login() {
                                 Sign in
                             </button>
                         </div>
-                    </form>
+                    </form> */}
                 </div>
             </div>
         </>
