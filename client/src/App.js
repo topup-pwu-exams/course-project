@@ -13,7 +13,7 @@ import Profile from "./pages/Profile";
 const AppLayout = () => (
   <>
     <div className='p-5 pt-0 max-w-7xl mx-auto'>
-    <Navigation />
+      <Navigation />
       <Outlet /> {/* <-- nested routes rendered here */}
     </div>
 

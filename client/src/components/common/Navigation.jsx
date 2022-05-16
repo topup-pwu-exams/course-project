@@ -29,7 +29,7 @@ const Navigation = () => {
     };
 
     return (
-        <header className='flex justify-between p-5 max-w-7xl mx-auto bg-red-300'>
+        <header className='custom-layout flex justify-between bg-red-300'>
             <div className='flex items-center space-x-5'>
                 <Link to='/'>
                     <img src={logo} alt="logo" className='w-16 object-contain cursor-pointer' />
