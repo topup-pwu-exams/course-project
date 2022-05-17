@@ -4,7 +4,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 // import { LockClosedIcon } from '@heroicons/react/solid'
 import { ArrowLeftIcon } from '@heroicons/react/outline'
 import { GoogleLogin } from '@react-oauth/google';
-import { client } from '../client'
+import { client } from '../utils/client'
 import jwt_decode from "jwt-decode";
 import jsCookie from 'js-cookie';
 import { Store } from '../utils/Store';
@@ -22,10 +22,10 @@ function Login() {
     }, [navigate, userInfo]);
 
     const responseGoogle = async (response) => {
-        console.log(response);
+        // console.log(response);
         try {
             const data = jwt_decode(response.credential);
-            console.log(data);
+            // console.log(data);
 
             dispatch({ type: 'USER_LOGIN', payload: data });
 

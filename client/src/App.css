@@ -2,6 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
-.App {
-  text-align: center;
+.custom-layout {
+  padding: 1.25rem;
+  /* padding-top: 0px; */
+  max-width: 80rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+h1 {
+  font-size: 2.25rem /* 36px */;
+  line-height: 2.5rem /* 40px */;
+  font-weight: bold;
+  --tw-text-opacity: 1;
+  color: rgb(55 65 81 / var(--tw-text-opacity));
+}
+
+h2 {
+  font-size: 1.5rem /* 24px */;
+  line-height: 2rem /* 32px */;
+  font-weight: bold;
+  --tw-text-opacity: 1;
+  color: rgb(55 65 81 / var(--tw-text-opacity));
 }
