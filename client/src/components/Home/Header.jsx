@@ -5,7 +5,7 @@ import banner_image from '../../assets/Images/banner_image.svg'
 export default function Header() {
     return (
         <>
-            <div className='custom-layout flex flex-row bg-purple-100'>
+            <div className='custom-layout flex flex-row'>
                 <div>
                     <div className='mt-20 mb-10'>
                     <h1 className=''>Learn at your <span className='text-purple-500'> own </span> pace</h1>
