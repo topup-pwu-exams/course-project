@@ -1,6 +1,7 @@
 import React from 'react'
+import { DesktopComputerIcon } from '@heroicons/react/outline'
 
-function BlogCard({text}) {
+function BlogPreview({text}) {
   return (
     <div className='border-2 border-white hover:border-p-color shadow-md w-1/4 rounded-2xl hover:text-white hover:bg-pshade-color'>
         <div className='p-5'>
@@ -16,4 +17,4 @@ function BlogCard({text}) {
   )
 }
 
-export default BlogCard
+export default BlogPreview
