@@ -76,6 +76,12 @@ export default {
       title: 'Body',
       type: 'blockContent',
     },
+    {
+      name:'review',
+      title: 'Review',
+      type: 'array',
+      of:  [{type: 'review'}],
+    }
   ],
   preview: {
     select: {
