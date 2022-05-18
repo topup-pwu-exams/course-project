@@ -8,7 +8,7 @@ function Footer() {
             <div className='flex flex-row justify-around w-full '>
                 <div className='flex flex-col justify-start bg-white'>
                 <div className='text-2xl no-underline hover:bg-sky-700 text-purple-500'>About Us</div>
-                    <div href="#" className='mb-5 text-lg no-underline cursor-pointer text-purple-800'>Story</div>
+                    <div href="#" className='mb-5 text-lg no-underline cursor-pointer text-purple-800'>Storyy</div>
                     <div href="#" className='mb-5 text-lg no-underline cursor-pointer text-purple-800'>Clients</div>
                     <div href="#" className='mb-5 text-lg no-underline cursor-pointer text-purple-800'>Testimonials</div>
                 </div>
