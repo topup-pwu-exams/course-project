@@ -68,6 +68,7 @@ function CourseSection() {
                                         users='3432'
                                         tags={course.tags}
                                         categories={course.categories}
+                                        slug={course.slug.current}
                                     />
                                 )
                             })}
@@ -92,6 +93,7 @@ function CourseSection() {
                                         users='3432'
                                         tags={course.tags}
                                         categories={course.categories}
+                                        slug={course.slug.current}
                                     />
                                 )
                             })}
