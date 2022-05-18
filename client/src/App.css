@@ -98,3 +98,7 @@ h2 {
   --tw-shadow-color: #bcb4ea;
   --tw-shadow: var(--tw-shadow-colored);
 }
+
+.min-h-blog {
+  min-height: 450px;
+}
