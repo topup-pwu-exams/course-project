@@ -11,9 +11,9 @@ const CourseCard = ({ title, author, mainImage, hours, lessons, price, likes, us
         <div className='border rounded-lg group cursor-pointer overflow-hidden shadow-md hover:shadow-p-color'>
             {mainImage && <img src={urlFor(mainImage).width(250).url()} alt="Post img" className='h-40 object-cover w-full group-hover:scale-105 transition-transform duration-200 ease-in-out' />}
             <div className='flex flex-col justify-between p-5 bg-white '>
-                <div className='flex  flex-row justify-center items-start mb-2'>
-                    <p className='text-base font-bold p-color leading-5'>{title}</p>
-                    <img className='h-12 w-12 rounded-full' src={author?.avatar} alt="Author img" />
+                <div className='flex  flex-row justify-between items-start mb-2'>
+                    <p className='text-base text-left font-bold p-color leading-5'>{title}</p>
+                    <img className='ml-2 h-12 w-12 rounded-full' src={author?.avatar} alt="Author img" />
                 </div>
                 <p className='text-xs'>by <span className='p-color'> {author?.firstName} {author?.lastName} </span></p>
                 <div className='flex flex-row mt-2 space-x-5'>

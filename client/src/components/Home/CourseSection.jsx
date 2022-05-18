@@ -18,13 +18,13 @@ function CourseSection() {
           lastName,
           avatar,
        },
-       tags[]{
-          _id,
-          name
-       },
-        categories[]{
-          _id,
-          title,
+       tags[]->{
+        _id,
+        name
+        },
+        categories[]->{
+        _id,
+        title,
         }
     }`
 
