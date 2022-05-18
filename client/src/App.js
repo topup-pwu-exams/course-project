@@ -5,6 +5,7 @@ import Navigation from './components/common/Navigation';
 // Pages
 import About from './pages/About';
 import Blog from './pages/Blog';
+import Category from "./pages/Category";
 import Contact from './pages/Contact';
 import Home from './pages/Home';
 import Login from "./pages/Login";
@@ -45,6 +46,7 @@ function App() {
           <Route path="contact" element={<Contact />} />
           <Route path="blog" element={<Blog />} />
           <Route path="profile" element={<Profile />} />
+          <Route path="categories/:slug" element={<Category />} />
           {/* <Route path="*" element={<NotFound />} /> */}
         </Route>
       </Routes>

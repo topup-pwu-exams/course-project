@@ -2,10 +2,12 @@ import React, { useEffect, useRef, useState } from 'react'
 import { client } from '../../utils/client';
 import CategoryCard from '../common/CategoryCard'
 import { motion } from "framer-motion"
+import { NavLink, useNavigate } from 'react-router-dom';
 
 function CategoriesSection() {
   const [state, setState] = useState({ categories: [], error: '', loading: true });
   const [width, setWidth] = useState(0)
+  // const navigate = useNavigate()
 
   const carousel = useRef()
 
@@ -36,10 +38,6 @@ function CategoriesSection() {
     }
   }, [categories, window.innerWidth, window.innerHeight])
 
-  // if (loading) {
-  //   return <div>Loading ...</div>;
-  // }
-
   return (
     // TODO: create skeleton loader
     <div className='custom-layout mb-10'>
@@ -50,18 +48,21 @@ function CategoriesSection() {
             <motion.div drag='x' dragConstraints={{ right: 0, left: -width }} className='flex'>
               {categories && categories.map(category => {
                 return (
-                  <motion.div className='max-h-max p-3' key={category._id}>
-                    <CategoryCard
-                      title={category.title}
-                    />
-                  </motion.div>
+                  <NavLink to={`categories/${category?.slug.current}`}>
+                    <motion.div className='max-h-max p-3' key={category._id}>
+                      <CategoryCard
+                        title={category.title}
+                      />
+                    </motion.div>
+                  </NavLink>
                 )
               })}
             </motion.div>
           </motion.div>
         </div>
-      )}
-    </div>
+      )
+      }
+    </div >
   )
 }
 
