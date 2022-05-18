@@ -1,19 +1,34 @@
 import React from 'react'
-import { DesktopComputerIcon } from '@heroicons/react/outline'
+import { urlFor } from '../../utils/client'
 
-function BlogPreview({text}) {
+
+function BlogPreview({mainImage, title, author, description, date}) {
+
+
   return (
-    <div className='border-2 border-white hover:border-p-color shadow-md w-1/4 rounded-2xl hover:text-white hover:bg-pshade-color'>
-        <div className='p-5'>
-          <div className='flex flex-col justify-center items-center text-center my-10 mx-5'>
-            <div className='w-16 h-16 rounded-full hover:bg-white flex items-center justify-center'>
-              <DesktopComputerIcon className='w-10 h-10 p-color mx-auto overflow-hidden '/>
-            </div>
-            <p className='text-md font-bold mt-5 '>{text}</p>
-            <p className=''>Explore a variety of fresh courses</p>
-          </div>
-        </div>
-    </div>
+
+         <div className="flex flex-wrap justify-between -mx-6">
+
+					<div className="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
+						<div className="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow-lg">
+							<div className="flex flex-wrap no-underline hover:no-underline">
+								<img src={urlFor(mainImage).width(250).url()} alt="blog img" className="h-64 w-full rounded-t pb-6"/>
+								<p className="w-full text-gray-600 text-xs md:text-sm px-6">add date</p>
+								<a href='#' className="w-full font-bold text-xl text-gray-900 px-6 p-color">{title}</a>
+								<p className="text-gray-800 font-serif text-base px-6 mb-5">
+									{description} 
+								</p>
+							</div>
+						</div>
+						<div className="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow-lg p-6">
+							<div className="flex items-center justify-between">
+								<img className="w-8 h-8 rounded-full mr-4 avatar" data-tippy-content="Author Name" src={author?.avatar} alt="Avatar of Author"/>
+								<p className="text-gray-600 text-xs md:text-sm p-color">{author?.firstName} {author?.lastName}</p>
+							</div>
+						</div>
+					</div>
+      </div> 
+
   )
 }
 
