@@ -9,7 +9,7 @@ import { NavLink } from 'react-router-dom'
 
 const CourseCard = ({ title, author, mainImage, hours, lessons, price, likes, users, tags, categories, slug }) => {
     return (
-        <NavLink to={`course/${slug}`}>
+        <NavLink to={`/course/${slug}`}>
             <div className='border rounded-lg group cursor-pointer overflow-hidden shadow-md hover:shadow-p-color'>
                 {mainImage && <img src={urlFor(mainImage).width(250).url()} alt="Post img" className='h-40 object-cover w-full group-hover:scale-105 transition-transform duration-200 ease-in-out' />}
                 <div className='flex flex-col justify-between p-5 bg-white '>
