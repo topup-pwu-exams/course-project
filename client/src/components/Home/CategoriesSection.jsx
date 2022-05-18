@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { client } from '../../utils/client';
-import Carousel from '../Carousel';
 import CategoryCard from '../common/CategoryCard'
+import { motion } from "framer-motion"
 
 function CategoriesSection() {
   const [state, setState] = useState({ categories: [], error: '', loading: true });
+  const [width, setWidth] = useState(0)
+
+  const carousel = useRef()
 
   const { loading, error, categories } = state;
   const query = `*[_type == "category"]{
@@ -27,25 +30,37 @@ function CategoriesSection() {
     fetchCategories();
   }, []);
 
+  useEffect(() => {
+    if (categories.length) {
+      setWidth(carousel.current.scrollWidth - carousel.current.offsetWidth)
+    }
+  }, [categories, window.innerWidth, window.innerHeight])
+
+  // if (loading) {
+  //   return <div>Loading ...</div>;
+  // }
+
   return (
     // TODO: create skeleton loader
     <div className='custom-layout mb-10'>
-      <h2 className=''>Categories</h2>
-      {/* <div className='grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-10 p-2 md:p-6 mt-5'> */}
-        {/* {categories.length && categories.map(category => {
-          // console.log('category', category);
-          return (
-            <CategoryCard
-              key={category._id}
-              title={category.title}
-            />
-          )
-        })} */}
-        <div className="2xl:container 2xl:mx-auto 2xl:px-0 py-3 px-10">
-          <Carousel />
+      {loading ? (<div>Loading ...</div>) : error ? (<div>error...</div>) : (
+        <div>
+          <h2 className=''>Categories</h2>
+          <motion.div ref={carousel} whileTap={{ cursor: 'grabbing' }} className='cursor-grab overflow-y-hidden'>
+            <motion.div drag='x' dragConstraints={{ right: 0, left: -width }} className='flex'>
+              {categories && categories.map(category => {
+                return (
+                  <motion.div className='max-h-72 p-3' key={category._id}>
+                    <CategoryCard
+                      title={category.title}
+                    />
+                  </motion.div>
+                )
+              })}
+            </motion.div>
+          </motion.div>
         </div>
-        {/* <CategoryCard /> */}
-      {/* </div> */}
+      )}
     </div>
   )
 }
