@@ -50,7 +50,7 @@ function CategoriesSection() {
             <motion.div drag='x' dragConstraints={{ right: 0, left: -width }} className='flex'>
               {categories && categories.map(category => {
                 return (
-                  <motion.div className='max-h-72 p-3' key={category._id}>
+                  <motion.div className='max-h-max p-3' key={category._id}>
                     <CategoryCard
                       title={category.title}
                     />

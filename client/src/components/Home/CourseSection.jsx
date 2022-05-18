@@ -52,7 +52,7 @@ function CourseSection() {
                 <section>
                     <section className='mb-5'>
                         <h2>Explore Courses</h2>
-                        <div className='grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6 p-2 md:p-6'>
+                        <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6 p-2 md:p-6'>
                             {courses.length && courses.map(course => {
                                 // console.log('Course', course);
                                 return (
