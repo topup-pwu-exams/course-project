@@ -1,7 +1,7 @@
 import React from 'react'
 import { DesktopComputerIcon } from '@heroicons/react/outline'
 
-function InfoCard() {
+function InfoCard({text}) {
   return (
     <div className='border-2 border-white hover:border-p-color shadow-md w-1/4 rounded-2xl hover:text-white hover:bg-pshade-color'>
         <div className='p-5'>
@@ -9,7 +9,7 @@ function InfoCard() {
             <div className='w-16 h-16 rounded-full hover:bg-white flex items-center justify-center'>
               <DesktopComputerIcon className='w-10 h-10 p-color mx-auto overflow-hidden '/>
             </div>
-            <p className='text-md font-bold mt-5 '>14 online courses</p>
+            <p className='text-md font-bold mt-5 '>{text}</p>
             <p className=''>Explore a variety of fresh courses</p>
           </div>
         </div>
