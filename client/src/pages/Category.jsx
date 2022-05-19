@@ -3,7 +3,7 @@ import { NavLink, useParams } from 'react-router-dom';
 import capitalize from '../utils/capitalize'
 import { ChevronRightIcon } from '@heroicons/react/outline'
 import { client } from '../utils/client';
-import CourseCard from '../components/common/CourseCard';
+import CourseCard from '../components/CourseCard';
 
 const Category = () => {
     const { slug } = useParams();
@@ -54,7 +54,7 @@ const Category = () => {
                 <div>
 
                     <div className='font-medium text-gray-400 flex'>
-                        <NavLink to={-1} className='hover:text-black'>Category </NavLink>
+                        <NavLink to={-1} className='hover:text-black'>Categories </NavLink>
                         <ChevronRightIcon className='w-5 mx-1' />
                         <span className='text-black'> {capitalize(slug)}</span>
                     </div>

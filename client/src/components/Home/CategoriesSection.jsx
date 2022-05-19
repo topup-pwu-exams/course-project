@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { client } from '../../utils/client';
-import CategoryCard from '../common/CategoryCard'
+import CategoryCard from '../CategoryCard'
 import { motion } from "framer-motion"
 import { NavLink, useNavigate } from 'react-router-dom';
 

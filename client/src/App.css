@@ -26,6 +26,22 @@ h2 {
   color: rgb(55 65 81 / var(--tw-text-opacity));
 }
 
+h3 {
+  font-size: 1.3rem /* 24px */;
+  line-height: 1.8rem /* 32px */;
+  font-weight: bold;
+  --tw-text-opacity: 1;
+  color: rgb(55 65 81 / var(--tw-text-opacity));
+}
+
+h4 {
+  font-size: 1.2rem /* 24px */;
+  line-height: 1.6rem /* 32px */;
+  font-weight: bold;
+  --tw-text-opacity: 1;
+  color: rgb(55 65 81 / var(--tw-text-opacity));
+}
+
 .p-color {
   color: #E43535;
 }

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { client } from '../../utils/client';
-import CourseCard from '../common/CourseCard'
+import CourseCard from '../CourseCard'
 
 function CourseSection() {
 

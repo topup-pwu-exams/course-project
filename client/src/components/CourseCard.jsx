@@ -1,10 +1,9 @@
 import React from 'react'
-import banner_image from '../../assets/Images/banner_image.svg'
 import { ClockIcon } from '@heroicons/react/outline'
 import { CollectionIcon } from '@heroicons/react/outline'
 import { HeartIcon } from '@heroicons/react/outline'
 import { UsersIcon } from '@heroicons/react/outline'
-import { urlFor } from '../../utils/client'
+import { urlFor } from '../utils/client'
 import { NavLink } from 'react-router-dom'
 
 const CourseCard = ({ title, author, mainImage, hours, lessons, price, likes, users, tags, categories, slug }) => {

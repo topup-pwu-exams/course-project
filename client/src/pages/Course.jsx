@@ -1,9 +1,10 @@
 import { ChevronRightIcon } from '@heroicons/react/outline';
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
+import CourseOverviewHeader from '../components/CourseOverview/CourseOverviewHeader';
+import CourseOverviewCard from '../components/CourseOverview/CourseOverviewCard';
 import capitalize from '../utils/capitalize';
 import { client } from '../utils/client';
-import dayjs from 'dayjs'
 
 const Course = () => {
     const { slug } = useParams();
@@ -53,22 +54,35 @@ const Course = () => {
         <div>
             {loading ? (<div>Loading ...</div>) : error ? (<div>error...</div>) : (
                 <div className='bg-gray-400 custom-layout'>
-                {/* {course && */}
-                        <div className='font-medium text-white flex'>
-                            <NavLink to={-1} className='hover:text-black'>{course.category.title} </NavLink>
-                            <ChevronRightIcon className='w-5 mx-1' />
-                            <span className='text-black'> {course.title}</span>
-                        </div>
-                    {/* Details */}
-                    <div className='mt-10'>
-                        <h1 className='mb-3'>{course.title}</h1>
-                        <p>{course?.description}</p>
-                        <p>Created by: {course.author.firstName} {course.author.lastName}</p>
-                        <p>Created at: {dayjs(course._createdAt).format('MMM D, YYYY')}</p> 
-                        <p>Last updated at: {dayjs(course._updatedAt).format('MMM D, YYYY')}</p> 
-                        <p>Tags: {}</p>
+                    <div className='font-medium text-white flex'>
+                        <NavLink to={-1} className='hover:text-black'>{capitalize(course.category.title)} </NavLink>
+                        <ChevronRightIcon className='w-5 mx-1' />
+                        <span className='text-black'> {course.title}</span>
                     </div>
-            {/* } */}
+
+                    {/* <div className='grid grid-cols-3 sm:grid-cols-1 gap-3'> */}
+                    <div className='flex flex-row justify-between'>
+                        <CourseOverviewHeader
+                            title={course.title}
+                            description={course.description}
+                            authorFirstName={course.author.firstName}
+                            authorLastName={course.author.lastName}
+                            createdAt={course._createdAt}
+                            updatedAt={course._updatedAt}
+                            // tags={course.tags}
+                        />
+
+                        <CourseOverviewCard
+                            title={course.title}
+                            image={course.mainImage}
+                            authorFirstName={course.author.firstName}
+                            authorLastName={course.author.lastName}
+                            createdAt={course._createdAt}
+                            updatedAt={course._updatedAt}
+                            price={'123'}
+                            // tags={course.tags}
+                        />
+                    </div>
                 </div>
             )}
         </div>
