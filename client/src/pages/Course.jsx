@@ -55,7 +55,7 @@ const Course = () => {
                 <div className='bg-gray-400 custom-layout'>
                 {/* {course && */}
                         <div className='font-medium text-white flex'>
-                            <NavLink to={-1} className='hover:text-black'> </NavLink>
+                            <NavLink to={-1} className='hover:text-black'>{course.category.title} </NavLink>
                             <ChevronRightIcon className='w-5 mx-1' />
                             <span className='text-black'> {course.title}</span>
                         </div>

@@ -11,7 +11,8 @@ const Category = () => {
     const [state, setState] = useState({ courses: [], error: '', loading: true });
 
     const { loading, error, courses } = state;
-    const query = `*[_type == "course" && "${slug}" in categories[]->slug.current]{
+    // const query = `*[_type == "course" && "${slug}" in category->slug.current]{
+    const query = `*[_type == "course" && "${slug}" == category->slug.current]{
         _id,
         title,
         price,
@@ -26,9 +27,9 @@ const Category = () => {
         _id,
         name
         },
-        categories[]->{
-        _id,
-        title,
+        category->{
+            title,
+            slug
         }
     }`
 
@@ -69,7 +70,7 @@ const Category = () => {
                     <div className='mt-10'>
                         <h2>Featured courses</h2>
                         <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6 p-2 md:p-6'>
-                            {courses.length && courses.map(course => {
+                            {courses && courses.map(course => {
                                 // console.log('Course', course);
                                 return (
                                     <CourseCard
@@ -95,7 +96,7 @@ const Category = () => {
                     <div className='mt-10'>
                         <h2>Courses to get your started</h2>
                         <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6 p-2 md:p-6'>
-                            {courses.length && courses.map(course => {
+                            {courses && courses.map(course => {
                                 // console.log('Course', course);
                                 return (
                                     <CourseCard
