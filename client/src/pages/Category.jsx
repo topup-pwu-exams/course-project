@@ -1,13 +1,18 @@
-import React, { useEffect, useState } from 'react'
-import { client } from '../../utils/client';
-import CourseCard from '../common/CourseCard'
+import React, { useEffect, useState } from 'react';
+import { NavLink, useParams } from 'react-router-dom';
+import capitalize from '../utils/capitalize'
+import { ChevronRightIcon } from '@heroicons/react/outline'
+import { client } from '../utils/client';
+import CourseCard from '../components/common/CourseCard';
 
-function CourseSection() {
+const Category = () => {
+    const { slug } = useParams();
 
     const [state, setState] = useState({ courses: [], error: '', loading: true });
 
     const { loading, error, courses } = state;
-    const query = `*[_type == "course"][0...5]{
+    // const query = `*[_type == "course" && "${slug}" in category->slug.current]{
+    const query = `*[_type == "course" && "${slug}" == category->slug.current]{
         _id,
         title,
         price,
@@ -37,48 +42,35 @@ function CourseSection() {
                 setState({ courses, loading: false });
             } catch (err) {
                 setState({ loading: false, error: err.message });
+                console.log(err);
             }
         };
         fetchCourses();
     }, []);
 
-    // if (loading) {
-    //     return <div>Loading ...</div>;
-    // }
-
     return (
-        <div className='custom-layout mb-10'>
+        <div className='custom-layout'>
             {loading ? (<div>Loading ...</div>) : error ? (<div>error...</div>) : (
-                <section>
-                    <section className='mb-5'>
-                        <h2>Explore Courses</h2>
-                        <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6 p-2 '>
-                            {courses.length && courses.map(course => {
-                                // console.log('Course', course);
-                                return (
-                                    <CourseCard
-                                        key={course._id}
-                                        title={course.title}
-                                        mainImage={course.mainImage}
-                                        price={course.price}
-                                        author={course.author}
-                                        hours='64'
-                                        lessons='445'
-                                        likes='423'
-                                        users='3432'
-                                        tags={course.tags}
-                                        categories={course.categories}
-                                        slug={course.slug.current}
-                                    />
-                                )
-                            })}
-                        </div>
-                    </section>
+                <div>
 
-                    <section>
-                        <h2>Top 10 Latest Courses</h2>
-                        <div className='grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6 p-2 '>
-                        {courses.length && courses.map(course => {
+                    <div className='font-medium text-gray-400 flex'>
+                        <NavLink to={-1} className='hover:text-black'>Category </NavLink>
+                        <ChevronRightIcon className='w-5 mx-1' />
+                        <span className='text-black'> {capitalize(slug)}</span>
+                    </div>
+
+                    {/* Intro */}
+                    <div className='mt-10'>
+                        <h1>{capitalize(slug)} Courses</h1>
+                        {/* TODO: Add description */}
+                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. At velit pariatur vero provident cupiditate, voluptas quaerat doloribus aliquam dolore optio harum ut illo, consequatur ab! Sapiente tempore, molestias ipsam, saepe, et quos ea ratione odio eum reprehenderit optio ex officiis corrupti beatae modi sunt excepturi.</p>
+                    </div>
+
+                    {/* Featured */}
+                    <div className='mt-10'>
+                        <h2>Featured courses</h2>
+                        <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6 p-2 md:p-6'>
+                            {courses && courses.map(course => {
                                 // console.log('Course', course);
                                 return (
                                     <CourseCard
@@ -98,11 +90,37 @@ function CourseSection() {
                                 )
                             })}
                         </div>
-                    </section>
-                </section>
+                    </div>
+
+                    {/* Other */}
+                    <div className='mt-10'>
+                        <h2>Courses to get your started</h2>
+                        <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6 p-2 md:p-6'>
+                            {courses && courses.map(course => {
+                                // console.log('Course', course);
+                                return (
+                                    <CourseCard
+                                        key={course._id}
+                                        title={course.title}
+                                        mainImage={course.mainImage}
+                                        price={course.price}
+                                        author={course.author}
+                                        hours='64'
+                                        lessons='445'
+                                        likes='423'
+                                        users='3432'
+                                        tags={course.tags}
+                                        categories={course.categories}
+                                        slug={course.slug.current}
+                                    />
+                                )
+                            })}
+                        </div>
+                    </div>
+                </div>
             )}
         </div>
     )
 }
 
-export default CourseSection
+export default Category

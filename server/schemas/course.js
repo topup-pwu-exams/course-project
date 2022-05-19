@@ -56,15 +56,16 @@ export default {
       },
     },
     {
-      name: 'categories',
-      title: 'Categories',
-      type: 'array',
-      of: [
-        {
-          type: 'reference',
-          to: { type: 'category' },
-        },
-      ],
+      name: 'category',
+      title: 'Category',
+      type: 'reference',
+      to: { type: 'category' },
+      // of: [
+        //   {
+          // to: { type: 'category' },
+          // type: 'reference',
+      //   },
+      // ],
     },
     {
       name: 'description',
@@ -76,6 +77,12 @@ export default {
       title: 'Body',
       type: 'blockContent',
     },
+    {
+      name:'review',
+      title: 'Review',
+      type: 'array',
+      of:  [{type: 'review'}],
+    }
   ],
   preview: {
     select: {

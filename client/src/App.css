@@ -25,3 +25,80 @@ h2 {
   --tw-text-opacity: 1;
   color: rgb(55 65 81 / var(--tw-text-opacity));
 }
+
+.p-color {
+  color: #E43535;
+}
+
+.pshade-color {
+  color: #FD7575;
+}
+
+.s-color {
+  color: #8D81D2;
+}
+
+.sshade-color {
+  color: #AEA3ED;
+}
+
+.pbg-color {
+  background-color: #E43535;
+}
+
+.pbgshade-color {
+  background-color: #fdaeae;
+}
+
+.sbg-color {
+  background-color: #8D81D2;
+}
+
+.sbgshade-color {
+  background-color: #bcb4ea;
+}
+
+.hover\:bg-p-color:hover {
+  background-color: #E43535;
+}
+
+.hover\:bg-pshade-color:hover {
+  background-color: #fdaeae;
+}
+
+.hover\:bg-s-color:hover {
+  background-color: #8D81D2;
+}
+
+.hover\:bg-sshade-color:hover {
+  background-color: #bcb4ea;
+}
+
+.hover\:border-p-color:hover {
+  --tw-border-opacity: 4;
+    border-color: rgb(253 174 174 / var(--tw-border-opacity));
+}
+
+.hover\:shadow-p-color:hover {
+  --tw-shadow-color: #E43535;
+  --tw-shadow: var(--tw-shadow-colored);
+}
+
+.hover\:shadow-s-color:hover {
+  --tw-shadow-color: #8D81D2;
+  --tw-shadow: var(--tw-shadow-colored);
+}
+
+.hover\:shadow-pp-color:hover {
+  --tw-shadow-color: #fdaeae;
+  --tw-shadow: var(--tw-shadow-colored);
+}
+
+.hover\:shadow-ss-color:hover {
+  --tw-shadow-color: #bcb4ea;
+  --tw-shadow: var(--tw-shadow-colored);
+}
+
+.min-h-blog {
+  min-height: 450px;
+}

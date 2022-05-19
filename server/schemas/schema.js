@@ -10,6 +10,9 @@ import course from './course'
 import user from './user'
 import courseVariant from './courseVariant'
 import tags from './tags'
+import review from './review'
+import reviewer from './reviewer'
+import blog from './blog'
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -24,6 +27,9 @@ export default createSchema({
     user,
     category,
     tags,
+    review,
+    reviewer,
+    blog,
     // When added to this list, object types can be used as
     // { type: 'typename' } in other document schemas
     blockContent,
