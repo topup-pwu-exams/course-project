@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import BlogPreview from '../common/BlogPreview'
+import BlogPreview from '../BlogPreview'
 import { client } from '../../utils/client';
-
-
-
 
 function BlogSection() {
 
@@ -21,7 +18,6 @@ function BlogSection() {
         lastName,
         avatar,
      },
-
   }`
 
   useEffect(() => {

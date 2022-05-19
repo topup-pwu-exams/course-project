@@ -1,5 +1,5 @@
 import React from 'react'
-import InfoCard from '../common/InfoCard'
+import InfoCard from '../InfoCard'
 
 function InfoSection() {
   return (
