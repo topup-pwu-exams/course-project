@@ -48,10 +48,11 @@ function CategoriesSection() {
             <motion.div drag='x' dragConstraints={{ right: 0, left: -width }} className='flex'>
               {categories && categories.map(category => {
                 return (
-                  <NavLink to={`categories/${category?.slug.current}`}>
+                  <NavLink to={`categories/${category?.slug.current}`} key={category._id}>
                     <motion.div className='max-h-max p-3' key={category._id}>
                       <CategoryCard
                         title={category.title}
+                        key={category._id}
                       />
                     </motion.div>
                   </NavLink>

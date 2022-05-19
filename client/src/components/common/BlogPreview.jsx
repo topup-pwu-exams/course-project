@@ -14,7 +14,7 @@ function BlogPreview({mainImage, title, author, description, date}) {
 							<div className="flex flex-wrap no-underline hover:no-underline">
 								<img src={urlFor(mainImage).width(250).url()} alt="blog img" className="h-64 w-full rounded-t pb-6"/>
 								<p className="w-full text-gray-600 text-xs md:text-sm px-6">add date</p>
-								<a href='#' className="w-full font-bold text-xl text-gray-900 px-6 p-color">{title}</a>
+								<p href='#' className="w-full font-bold text-xl text-gray-900 px-6 p-color">{title}</p>
 								<p className="text-gray-800 font-serif text-base px-6 mb-5">
 									{description} 
 								</p>

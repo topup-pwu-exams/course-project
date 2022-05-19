@@ -39,7 +39,7 @@ function BlogSection() {
   }, []);
 
   return (
-    <div className=''>
+    <div>
     {loading ? (<div>Loading ...</div>) : error ? (<div>error...</div>) : (
         <section>
             <section className='custom-layout mb-10'>
