@@ -7,6 +7,7 @@ import About from './pages/About';
 import Blog from './pages/Blog';
 import Category from "./pages/Category";
 import Contact from './pages/Contact';
+import Course from "./pages/Course";
 import Home from './pages/Home';
 import Login from "./pages/Login";
 import Profile from "./pages/Profile";
@@ -47,6 +48,7 @@ function App() {
           <Route path="blog" element={<Blog />} />
           <Route path="profile" element={<Profile />} />
           <Route path="categories/:slug" element={<Category />} />
+          <Route path="course/:slug" element={<Course />} />
           {/* <Route path="*" element={<NotFound />} /> */}
         </Route>
       </Routes>

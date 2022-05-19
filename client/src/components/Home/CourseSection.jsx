@@ -18,13 +18,13 @@ function CourseSection() {
           lastName,
           avatar,
        },
-       tags[]{
-          _id,
-          name
-       },
-        categories[]{
-          _id,
-          title,
+       tags[]->{
+        _id,
+        name
+        },
+        categories[]->{
+        _id,
+        title,
         }
     }`
 
@@ -68,6 +68,7 @@ function CourseSection() {
                                         users='3432'
                                         tags={course.tags}
                                         categories={course.categories}
+                                        slug={course.slug.current}
                                     />
                                 )
                             })}
@@ -92,6 +93,7 @@ function CourseSection() {
                                         users='3432'
                                         tags={course.tags}
                                         categories={course.categories}
+                                        slug={course.slug.current}
                                     />
                                 )
                             })}
