@@ -1,5 +1,4 @@
 import React from 'react'
-import banner_image from '../assets/Images/banner_image.svg'
 import { ClockIcon } from '@heroicons/react/outline'
 import { CollectionIcon } from '@heroicons/react/outline'
 import { HeartIcon } from '@heroicons/react/outline'

@@ -39,7 +39,7 @@ const Navigation = () => {
                     {pages.map(page => {
                         return (
                             <NavLink to={page.url} key={page.id} className={({ isActive }) => isActive ? activeLink : ''}>
-                                <h3 className='hover:text-purple-500 hover:cursor-pointer'>{page.name}</h3>
+                                <p className='hover:text-purple-500 hover:cursor-pointer'>{page.name}</p>
                             </NavLink>
                         )
                     })}
@@ -51,7 +51,7 @@ const Navigation = () => {
                 {!userInfo ?
                     <NavLink to='/login'>
                         <div className='ml-8 flex flex-row hover:border-purple-500 rounded-full border-2 border-transparent bg-purple-500 text-white hover:text-purple-500 hover:bg-white px-3 py-1 hover:cursor-pointer'>
-                            <h3 >Log in </h3> <LoginIcon className='h-5 w-auto ml-2 mt-0.5' />
+                            <p >Log in </p> <LoginIcon className='h-5 w-auto ml-2 mt-0.5' />
                         </div>
                     </NavLink> :
                     <>
@@ -60,7 +60,7 @@ const Navigation = () => {
                         </NavLink>
 
                         <div onClick={logoutClickHandler} className='ml-8 flex flex-row hover:border-transparent rounded-full border-2 border-purple-500 bg-white text-purple-500 hover:text-white hover:bg-purple-500 px-3 py-1 hover:cursor-pointer'>
-                            <h3 >Log out </h3> <LogoutIcon className='h-5 w-auto ml-2 mt-0.5' />
+                            <p >Log out </p> <LogoutIcon className='h-5 w-auto ml-2 mt-0.5' />
                         </div>
                     </>
                 }

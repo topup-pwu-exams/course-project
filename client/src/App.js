@@ -11,6 +11,7 @@ import Course from "./pages/Course";
 import Home from './pages/Home';
 import Login from "./pages/Login";
 import Profile from "./pages/Profile";
+import Cart from "./pages/Cart";
 
 const AppLayout = () => (
   <>
@@ -43,12 +44,13 @@ function App() {
         {/* main content inside app layout*/}
         <Route element={<AppLayout />} >
           <Route path="/" element={<Home />} />
-          <Route path="about" element={<About />} />
-          <Route path="contact" element={<Contact />} />
-          <Route path="blog" element={<Blog />} />
-          <Route path="profile" element={<Profile />} />
-          <Route path="categories/:slug" element={<Category />} />
-          <Route path="course/:slug" element={<Course />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/categories/:slug" element={<Category />} />
+          <Route path="/course/:slug" element={<Course />} />
+          <Route path="/cart" element={<Cart />} />
           {/* <Route path="*" element={<NotFound />} /> */}
         </Route>
       </Routes>
