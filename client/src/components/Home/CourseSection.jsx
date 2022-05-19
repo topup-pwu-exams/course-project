@@ -7,7 +7,7 @@ function CourseSection() {
     const [state, setState] = useState({ courses: [], error: '', loading: true });
 
     const { loading, error, courses } = state;
-    const query = `*[_type == "course"][0..5]{
+    const query = `*[_type == "course"]{
         _id,
         title,
         price,
@@ -22,9 +22,9 @@ function CourseSection() {
         _id,
         name
         },
-        categories[]->{
-        _id,
-        title,
+        category->{
+            title,
+            slug
         }
     }`
 

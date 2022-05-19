@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { NavLink, useParams } from 'react-router-dom';
 import capitalize from '../utils/capitalize';
 import { client } from '../utils/client';
+import dayjs from 'dayjs'
 
 const Course = () => {
     const { slug } = useParams();
@@ -27,9 +28,9 @@ const Course = () => {
         _id,
         name
         },
-        categories[]->{
-        _id,
-        title,
+        category->{
+            title,
+            slug
         }
     }`
 
@@ -63,8 +64,8 @@ const Course = () => {
                         <h1 className='mb-3'>{course.title}</h1>
                         <p>{course?.description}</p>
                         <p>Created by: {course.author.firstName} {course.author.lastName}</p>
-                        <p>Created at: {course._createdAt}</p> 
-                        <p>Last updated at: {course._updatedAt}</p> 
+                        <p>Created at: {dayjs(course._createdAt).format('MMM D, YYYY')}</p> 
+                        <p>Last updated at: {dayjs(course._updatedAt).format('MMM D, YYYY')}</p> 
                         <p>Tags: {}</p>
                     </div>
             {/* } */}
