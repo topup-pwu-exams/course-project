@@ -8,11 +8,11 @@ export default {
         title: 'User',
         type: 'postedBy',
       },
-      // {
-      //   name: 'userId',
-      //   title: 'UserId',
-      //   type: 'string',
-      // },
+      {
+        name: 'userId',
+        title: 'UserId',
+        type: 'string',
+      },
     ],
   };
   

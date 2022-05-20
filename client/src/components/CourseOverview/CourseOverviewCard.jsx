@@ -30,13 +30,9 @@ const CourseOverviewCard = ({ title, price, likes, image, id, authorFirstName, a
     console.log(id);
 
     if (!alreadyLiked) {
-
-      client
-        .patch(id)
-        .setIfMissing({ likes: [] })
-        .insert('after', 'likes[-1]', [{
+      client.patch(id).setIfMissing({ likes: [] }).insert('after', 'likes[-1]', [{
           _key: uuidv4(),
-          // userId: userInfo?.googleId,
+          userId: userInfo?.sub,
           postedBy: {
             _type: 'postedBy',
             _ref: userInfo?.sub,
@@ -50,7 +46,9 @@ const CourseOverviewCard = ({ title, price, likes, image, id, authorFirstName, a
   };
 
   const unLikeCourse = () => {
-    console.log('unlike');
+    client.delete(id).then(() => {
+      window.location.reload();
+    });
   }
 
   return (
@@ -65,7 +63,7 @@ const CourseOverviewCard = ({ title, price, likes, image, id, authorFirstName, a
           <NavLink to={'/cart'} className='w-full'>
             <BaseButton text='Add to cart' />
           </NavLink>
-          {alreadyLiked ? <HeartIconSolid className='w-11 mb-5 hover:text-purple-500 cursor-pointer' onClick={unLikeCourse}/> : <HeartIcon className='w-11 mb-5 hover:text-purple-500 cursor-pointer' onClick={(e) => {e.preventDefault(); likeCourse(id)}}/>}
+          {alreadyLiked ? <HeartIconSolid className='w-11 mb-5 text-purple-500 cursor-pointer' onClick={(e) => {e.preventDefault(); unLikeCourse(id)}}/> : <HeartIcon className='w-11 mb-5 hover:text-purple-500 cursor-pointer' onClick={(e) => {e.preventDefault(); likeCourse(id)}}/>}
         </div>
         <p className='text-center text-sm text-gray-500'>30 day money back guarantee </p>
         <div className='mt-4'>

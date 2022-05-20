@@ -36,50 +36,47 @@ const Course = () => {
             {loading ? (<div>Loading ...</div>) : error ? (<div>error...</div>) : (
                 <div className=' bgcourse custom-layout'>
                     <div className='font-medium p-color flex'>
-                        <NavLink to={-1} className='hover:text-black'>{capitalize(course.category.title)} </NavLink>
+                        <NavLink to={-1} className='hover:text-white'>{capitalize(course?.category.title)} </NavLink>
                         <ChevronRightIcon className='w-5 mx-1 text-white' />
-                        <NavLink to='/' className='hover:text-black'>{capitalize(course.title)} </NavLink>
-                        
+                        <span className='text-white'> {capitalize(course?.title)}</span>
                     </div>
 
                     {/* <div className='grid grid-cols-3 sm:grid-cols-1 gap-3'> */}
                     <div className='flex flex-row justify-between'>
-                        <div>
+                        <div className='w-5/6'>
+                            <div className='mx-10'>
+                                <CourseOverviewHeader
+                                    title={course.title}
+                                    description={course.description}
+                                    authorFirstName={course.author.firstName}
+                                    authorLastName={course.author.lastName}
+                                    createdAt={course._createdAt}
+                                    updatedAt={course._updatedAt}
+                                    likes={course.likes}
+                                //tags={course.tags}
+                                />
+                            </div>
 
-                        <div className='mx-10'>
-                        <CourseOverviewHeader
-                            title={course.title}
-                            description={course.description}
-                            authorFirstName={course.author.firstName}
-                            authorLastName={course.author.lastName}
-                            createdAt={course._createdAt}
-                            updatedAt={course._updatedAt}
-                            likes={course.likes}
-                            //tags={course.tags}
-                            />
-                        </div>
-                        <CourseOverviewLearn
-                            title={course.title}
-                            description={course.description}
-                            authorFirstName={course.author.firstName}
-                        />
-                        <div>
-                            <CourseOverviewReviews
+                            <CourseOverviewLearn
                                 title={course.title}
+                                description={course.description}
+                                authorFirstName={course.author.firstName}
                             />
-                        </div>
+                                <CourseOverviewReviews
+                                    title={course.title}
+                                />
                         </div>
                         <div>
-                        <CourseOverviewCard
-                            title={course.title}
-                            image={course.mainImage}
-                            authorFirstName={course.author.firstName}
-                            authorLastName={course.author.lastName}
-                            createdAt={course._createdAt}
-                            updatedAt={course._updatedAt}
-                            price={course.price}
-                            likes={course.likes}
-                            id={course._id}
+                            <CourseOverviewCard
+                                title={course.title}
+                                image={course.mainImage}
+                                authorFirstName={course.author.firstName}
+                                authorLastName={course.author.lastName}
+                                createdAt={course._createdAt}
+                                updatedAt={course._updatedAt}
+                                price={course.price}
+                                likes={course.likes}
+                                id={course._id}
                             //tags={course.tags}
                             />
                         </div>

@@ -57,6 +57,7 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           {/* <Route path="/my-courses" element={<MyCourses />} /> */}
           <Route path="my-courses" element={<MyCourses />}>
+            {/* TODO: set link active on page load */}
             <Route index element={<OwnedCourses />} />
             <Route path="owned" element={<OwnedCourses />} />
             <Route path="liked" element={<LikedCourses />} />
