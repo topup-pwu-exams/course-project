@@ -5,35 +5,16 @@ import CourseOverviewHeader from '../components/CourseOverview/CourseOverviewHea
 import CourseOverviewCard from '../components/CourseOverview/CourseOverviewCard';
 import capitalize from '../utils/capitalize';
 import { client } from '../utils/client';
+import { getCourse } from '../api/queries/course';
+import CourseOverviewLearn from '../components/CourseOverview/CourseOverviewLearn';
+import CourseOverviewReviews from '../components/CourseOverview/CourseOverviewReviews';
 
 const Course = () => {
     const { slug } = useParams();
     const [state, setState] = useState({ course: [], error: '', loading: true });
 
     const { loading, error, course } = state;
-    const query = `*[_type == "course" && slug.current == "${slug}" ]{
-        _id,
-        title,
-        price,
-        slug, 
-        mainImage,
-        description,
-        _updatedAt,
-        _createdAt,
-        author -> {
-          firstName,
-          lastName,
-          avatar,
-       },
-       tags[]->{
-        _id,
-        name
-        },
-        category->{
-            title,
-            slug
-        }
-    }`
+    const query = getCourse(slug)
 
     useEffect(() => {
         const fetchCourse = async () => {
@@ -53,35 +34,52 @@ const Course = () => {
     return (
         <div>
             {loading ? (<div>Loading ...</div>) : error ? (<div>error...</div>) : (
-                <div className='bg-gray-400 custom-layout'>
-                    <div className='font-medium text-white flex'>
-                        <NavLink to={-1} className='hover:text-black'>{capitalize(course.category.title)} </NavLink>
-                        <ChevronRightIcon className='w-5 mx-1' />
-                        <span className='text-black'> {course.title}</span>
+                <div className=' bgcourse custom-layout'>
+                    <div className='font-medium p-color flex'>
+                        <NavLink to={-1} className='hover:text-white'>{capitalize(course?.category.title)} </NavLink>
+                        <ChevronRightIcon className='w-5 mx-1 text-white' />
+                        <span className='text-white'> {capitalize(course?.title)}</span>
                     </div>
 
                     {/* <div className='grid grid-cols-3 sm:grid-cols-1 gap-3'> */}
                     <div className='flex flex-row justify-between'>
-                        <CourseOverviewHeader
-                            title={course.title}
-                            description={course.description}
-                            authorFirstName={course.author.firstName}
-                            authorLastName={course.author.lastName}
-                            createdAt={course._createdAt}
-                            updatedAt={course._updatedAt}
-                            // tags={course.tags}
-                        />
+                        <div className='w-5/6'>
+                            <div className='mx-10'>
+                                <CourseOverviewHeader
+                                    title={course.title}
+                                    description={course.description}
+                                    authorFirstName={course.author.firstName}
+                                    authorLastName={course.author.lastName}
+                                    createdAt={course._createdAt}
+                                    updatedAt={course._updatedAt}
+                                    likes={course.likes}
+                                //tags={course.tags}
+                                />
+                            </div>
 
-                        <CourseOverviewCard
-                            title={course.title}
-                            image={course.mainImage}
-                            authorFirstName={course.author.firstName}
-                            authorLastName={course.author.lastName}
-                            createdAt={course._createdAt}
-                            updatedAt={course._updatedAt}
-                            price={'123'}
-                            // tags={course.tags}
-                        />
+                            <CourseOverviewLearn
+                                title={course.title}
+                                description={course.description}
+                                authorFirstName={course.author.firstName}
+                            />
+                                <CourseOverviewReviews
+                                    title={course.title}
+                                />
+                        </div>
+                        <div>
+                            <CourseOverviewCard
+                                title={course.title}
+                                image={course.mainImage}
+                                authorFirstName={course.author.firstName}
+                                authorLastName={course.author.lastName}
+                                createdAt={course._createdAt}
+                                updatedAt={course._updatedAt}
+                                price={course.price}
+                                likes={course.likes}
+                                id={course._id}
+                            //tags={course.tags}
+                            />
+                        </div>
                     </div>
                 </div>
             )}

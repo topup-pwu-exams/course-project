@@ -1,24 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import BlogPreview from '../BlogPreview'
 import { client } from '../../utils/client';
+import { getBlogs } from '../../api/queries/blog';
 
 function BlogSection() {
 
   const [state, setState] = useState({ blogs: [], error: '', loading: true });
 
   const { loading, error, blogs } = state;
-  const query = `*[_type == "blog"]{
-      _id,
-      title,
-      slug, 
-      mainImage,
-      description,
-      author -> {
-        firstName,
-        lastName,
-        avatar,
-     },
-  }`
+  const query = getBlogs()
 
   useEffect(() => {
       const fetchCourses = async () => {

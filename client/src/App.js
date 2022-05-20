@@ -12,6 +12,10 @@ import Home from './pages/Home';
 import Login from "./pages/Login";
 import Profile from "./pages/Profile";
 import Cart from "./pages/Cart";
+import MyCourses from "./pages/MyCourses";
+import NotFound from "./pages/NotFound";
+import OwnedCourses from "./pages/MyCourses/OwnedCourses";
+import LikedCourses from "./pages/MyCourses/LikedCourses";
 
 const AppLayout = () => (
   <>
@@ -51,7 +55,16 @@ function App() {
           <Route path="/categories/:slug" element={<Category />} />
           <Route path="/course/:slug" element={<Course />} />
           <Route path="/cart" element={<Cart />} />
-          {/* <Route path="*" element={<NotFound />} /> */}
+          {/* <Route path="/my-courses" element={<MyCourses />} /> */}
+          <Route path="my-courses" element={<MyCourses />}>
+            {/* TODO: set link active on page load */}
+            <Route index element={<OwnedCourses />} />
+            <Route path="owned" element={<OwnedCourses />} />
+            <Route path="liked" element={<LikedCourses />} />
+            <Route path="*" element={<NotFound />} />
+          </Route>
+
+          <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
     </>

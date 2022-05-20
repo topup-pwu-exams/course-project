@@ -14,6 +14,16 @@ export default {
       type: 'number',
     },
     {
+      name: 'language',
+      title: 'Language',
+      type: 'string',
+    },
+    {
+      name: 'courseDuration',
+      title: 'Course Duration (hours)',
+      type: 'number',
+    },
+    {
       name: 'slug',
       title: 'Slug',
       type: 'slug',
@@ -22,17 +32,18 @@ export default {
         maxLength: 96,
       },
     },
+    // {
+    //   name: 'author',
+    //   title: 'Author',
+    //   type: 'reference',
+    //   to: { type: 'user' },
+    // },
     {
       name: 'author',
       title: 'Author',
-      type: 'reference',
-      to: { type: 'user' },
+      type: 'postedBy',
+      // to: { type: 'user' },
     },
-    // {
-    //   title: 'Default variant',
-    //   name: 'defaultCourseVariant',
-    //   type: 'courseVariant',
-    // },
     {
       name: 'mainImage',
       title: 'Main image',
@@ -40,6 +51,12 @@ export default {
       options: {
         hotspot: true,
       },
+    },
+    {
+      name: 'likes',
+      title: 'Liked By',
+      type: 'array',
+      of: [{ type: 'likes' }],
     },
     {
       title: 'Tags',

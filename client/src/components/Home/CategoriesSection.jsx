@@ -3,6 +3,7 @@ import { client } from '../../utils/client';
 import CategoryCard from '../CategoryCard'
 import { motion } from "framer-motion"
 import { NavLink, useNavigate } from 'react-router-dom';
+import { getCategories } from '../../api/queries/categories';
 
 function CategoriesSection() {
   const [state, setState] = useState({ categories: [], error: '', loading: true });
@@ -12,11 +13,7 @@ function CategoriesSection() {
   const carousel = useRef()
 
   const { loading, error, categories } = state;
-  const query = `*[_type == "category"]{
-        _id,
-        title,
-        slug
-    }`
+  const query = getCategories()
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -39,13 +36,15 @@ function CategoriesSection() {
   }, [categories, window.innerWidth, window.innerHeight])
 
   return (
-    // TODO: create skeleton loader
+    // TODO: create skeleton loader ??
     <div className='custom-layout mb-10'>
       {loading ? (<div>Loading ...</div>) : error ? (<div>error...</div>) : (
         <div>
           <h2 className=''>Categories</h2>
           <motion.div ref={carousel} whileTap={{ cursor: 'grabbing' }} className='cursor-grab overflow-y-hidden'>
             <motion.div drag='x' dragConstraints={{ right: 0, left: -width }} className='flex'>
+
+              {/* TODO: add smth if there are no courses in this category */}
               {categories && categories.map(category => {
                 return (
                   <NavLink to={`categories/${category?.slug.current}`} key={category._id}>

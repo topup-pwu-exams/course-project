@@ -13,6 +13,8 @@ import tags from './tags'
 import review from './review'
 import reviewer from './reviewer'
 import blog from './blog'
+import postedBy from './postedBy'
+import likes from './likes'
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -34,5 +36,7 @@ export default createSchema({
     // { type: 'typename' } in other document schemas
     blockContent,
     courseVariant,
+    postedBy,
+    likes
   ]),
 })
