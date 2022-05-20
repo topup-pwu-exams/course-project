@@ -118,3 +118,18 @@ h4 {
 .min-h-blog {
   min-height: 450px;
 }
+
+.bgcourse{
+  height: 100%;
+  background: linear-gradient(0deg, #fff 72%, #1c1d1f 28%);
+}
+
+@media (min-width: 640px) {
+  .sm\:max-w-xxs {
+      max-width: 16rem/* 384px */;
+  }
+}
+
+.min-w-300 {
+  min-width: 300px;
+}

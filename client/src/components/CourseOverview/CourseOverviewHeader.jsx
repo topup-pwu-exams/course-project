@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 const CourseOverviewHeader = ({title, description, authorFirstName, authorLastName, createdAt, updatedAt, tags}) => {
     return (
-        <div>
+        <div className='mb-28'>
             <div className='mt-10 flex flex-col gap-1 text-white'>
                 <h1 className='mb-3 text-white'>{title}</h1>
                 <p>{description}</p>
@@ -34,7 +34,7 @@ const CourseOverviewHeader = ({title, description, authorFirstName, authorLastNa
                 </div>
                 <p>Created at: {dayjs(createdAt).format('MMM D, YYYY')}</p>
                 <p>Last updated at: {dayjs(updatedAt).format('MMM D, YYYY')}</p>             
-                <div className='flex flex-row'>
+                <div className='flex flex-wrap mt-4'>
                 <Link 
                         to='/'
                         className='px-5 py-1 mr-2 rounded-full border border-gray-300 text-gray-500 font-semibold text-sm flex align-center w-max cursor-pointer active:bg-gray-300 transition duration-300 ease'>

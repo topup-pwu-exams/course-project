@@ -17,7 +17,7 @@ import { FaExternalLinkAlt } from 'react-icons/fa';
 
 const CourseOverviewCard = ({ title, price, image, authorFirstName, authorLastName, createdAt, updatedAt }) => {
   return (
-    <div className='bg-white h-max rounded-md'>
+    <div className='bg-white h-max rounded-md '>
       <img src={urlFor(image).width(350).url()} alt="Post img" className='rounded-t-md object-cover w-full h-60 group-hover:scale-105 transition-transform duration-200 ease-in-out' />
       <div className='p-5'>
 
