@@ -1,6 +1,6 @@
 import { ChevronRightIcon } from '@heroicons/react/outline';
 import React, { useEffect, useState } from 'react';
-import { NavLink, useParams } from 'react-router-dom';
+import { Link, NavLink, useParams } from 'react-router-dom';
 import CourseOverviewHeader from '../components/CourseOverview/CourseOverviewHeader';
 import CourseOverviewCard from '../components/CourseOverview/CourseOverviewCard';
 import capitalize from '../utils/capitalize';
@@ -54,14 +54,20 @@ const Course = () => {
         <div>
             {loading ? (<div>Loading ...</div>) : error ? (<div>error...</div>) : (
                 <div className='bg-gray-400 custom-layout'>
-                    <div className='font-medium text-white flex'>
+                    <div className='font-medium p-color flex'>
                         <NavLink to={-1} className='hover:text-black'>{capitalize(course.category.title)} </NavLink>
-                        <ChevronRightIcon className='w-5 mx-1' />
-                        <span className='text-black'> {course.title}</span>
+                        <ChevronRightIcon className='w-5 mx-1 text-white' />
+                        <Link 
+                            to='/' 
+                            className="cursor-pointer ml-2 p-color font-bold hover:text-black"> 
+                            {course.title}
+                        </Link>
+                        
                     </div>
 
                     {/* <div className='grid grid-cols-3 sm:grid-cols-1 gap-3'> */}
                     <div className='flex flex-row justify-between'>
+                        <div className='mx-10'>
                         <CourseOverviewHeader
                             title={course.title}
                             description={course.description}
@@ -69,9 +75,10 @@ const Course = () => {
                             authorLastName={course.author.lastName}
                             createdAt={course._createdAt}
                             updatedAt={course._updatedAt}
-                            // tags={course.tags}
-                        />
-
+                            //tags={course.tags}
+                            />
+                        </div>
+                        <div>
                         <CourseOverviewCard
                             title={course.title}
                             image={course.mainImage}
@@ -80,8 +87,9 @@ const Course = () => {
                             createdAt={course._createdAt}
                             updatedAt={course._updatedAt}
                             price={'123'}
-                            // tags={course.tags}
-                        />
+                            //tags={course.tags}
+                            />
+                            </div>
                     </div>
                 </div>
             )}
