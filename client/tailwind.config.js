@@ -5,7 +5,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        pale: {
+        primary: {
           100: '#F2FAFA',
           200: '#DFE6E6',
           300: '#EBF2F2',
@@ -13,7 +13,7 @@ module.exports = {
           500: '#F3FBfB', // main
           600: '#636666',
         },
-        aqua: {
+        secondary: {
           100: '#DCF3F5',
           200: '#C4F5F5',
           300: '#C8FAFA',
@@ -21,7 +21,7 @@ module.exports = {
           500: '#BAE8E8', // main
           600: '#627A7A'
         },
-        yellow: {
+        accent: {
           100: '#FEEEA3',
           200: '#FFE96B',
           300: '#E6C302',
@@ -29,7 +29,7 @@ module.exports = {
           500: '#FFD803', // main
           600: '#E6C302',
         },
-        navy: {
+        neutral: {
           100: '#7A788F',
           200: '#B0AECF',
           300: '#3A3944',
