@@ -57,13 +57,13 @@ const CourseOverviewCard = ({ title, price, likes, image, id, authorFirstName, a
       <div className='p-5'>
 
         <h3>{title}</h3>
-        <h1 className='text-purple-500 mt-7'>{price}$</h1>
+        <h1 className='text-yellow-500 mt-7'>{price}$</h1>
         <div className='flex mt-5 justify-center space-x-2'>
           {/* TODO: add icon */}
           <NavLink to={'/cart'} className='w-full'>
             <BaseButton text='Add to cart' />
           </NavLink>
-          {alreadyLiked ? <HeartIconSolid className='w-11 mb-5 text-purple-500 cursor-pointer' onClick={(e) => {e.preventDefault(); unLikeCourse(id)}}/> : <HeartIcon className='w-11 mb-5 hover:text-purple-500 cursor-pointer' onClick={(e) => {e.preventDefault(); likeCourse(id)}}/>}
+          {alreadyLiked ? <HeartIconSolid className='w-11 mb-5 text-yellow-500 cursor-pointer' onClick={(e) => {e.preventDefault(); unLikeCourse(id)}}/> : <HeartIcon className='w-11 mb-5 hover:text-yellow-500 cursor-pointer' onClick={(e) => {e.preventDefault(); likeCourse(id)}}/>}
         </div>
         <p className='text-center text-sm text-gray-500'>30 day money back guarantee </p>
         <div className='mt-4'>
