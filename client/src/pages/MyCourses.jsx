@@ -1,18 +1,20 @@
 import React from 'react'
-import { Link, Outlet } from 'react-router-dom'
+import { NavLink, Outlet } from 'react-router-dom'
 
 const MyCourses = () => {
-    return (
-        <div className='bg-gray-400 custom-layout'>
-            <h1>MyCourses Page</h1>
-            <div className='flex space-x-10 mt-10'>
-                <Link to='owned'>
-                    <p>Owned courses</p>
-                </Link>
+    const tabActive = 'text-purple-500 font-bold border-b-4 border-purple-500'
 
-                <Link to='liked'>
-                    <p>Liked courses</p>
-                </Link>
+    return (
+        <div className='bg-gray-200 custom-layout'>
+            <h1>My Courses</h1>
+            <div className='flex space-x-10 my-10'>
+                <NavLink to='owned' className={({ isActive }) => isActive ? tabActive : 'hover:text-purple-500'}>
+                    <p className=''>Owned courses</p>
+                </NavLink>
+
+                <NavLink to='liked' className={({ isActive }) => isActive ? tabActive : 'hover:text-purple-500'}>
+                    <p className=''>Liked courses</p>
+                </NavLink>
             </div>
 
             {/* Rendering children routes */}

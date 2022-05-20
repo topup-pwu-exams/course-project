@@ -32,17 +32,18 @@ export default {
         maxLength: 96,
       },
     },
+    // {
+    //   name: 'author',
+    //   title: 'Author',
+    //   type: 'reference',
+    //   to: { type: 'user' },
+    // },
     {
       name: 'author',
       title: 'Author',
-      type: 'reference',
-      to: { type: 'user' },
+      type: 'postedBy',
+      // to: { type: 'user' },
     },
-    // {
-    //   title: 'Default variant',
-    //   name: 'defaultCourseVariant',
-    //   type: 'courseVariant',
-    // },
     {
       name: 'mainImage',
       title: 'Main image',
@@ -50,6 +51,12 @@ export default {
       options: {
         hotspot: true,
       },
+    },
+    {
+      name: 'like',
+      title: 'Liked By',
+      type: 'array',
+      of: [{ type: 'like' }],
     },
     {
       title: 'Tags',
