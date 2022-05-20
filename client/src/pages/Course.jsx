@@ -49,6 +49,7 @@ const Course = () => {
                             authorLastName={course.author.lastName}
                             createdAt={course._createdAt}
                             updatedAt={course._updatedAt}
+                            likes={course.likes}
                             //tags={course.tags}
                             />
                         </div>
@@ -60,7 +61,9 @@ const Course = () => {
                             authorLastName={course.author.lastName}
                             createdAt={course._createdAt}
                             updatedAt={course._updatedAt}
-                            price={'123'}
+                            price={course.price}
+                            likes={course.likes}
+                            id={course._id}
                             //tags={course.tags}
                             />
                             </div>

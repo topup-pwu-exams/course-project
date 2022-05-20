@@ -14,7 +14,7 @@ import review from './review'
 import reviewer from './reviewer'
 import blog from './blog'
 import postedBy from './postedBy'
-import like from './like'
+import likes from './likes'
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -37,6 +37,6 @@ export default createSchema({
     blockContent,
     courseVariant,
     postedBy,
-    like
+    likes
   ]),
 })

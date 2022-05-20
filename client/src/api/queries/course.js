@@ -20,6 +20,13 @@ export const getCourse = (slug) => {
         category->{
             title,
             slug
+        },
+        likes[]{
+            postedBy->{
+            _id, 
+            firstName,
+            lastName
+          }
         }
     }`
     return query

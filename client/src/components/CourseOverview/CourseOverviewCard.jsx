@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { HeartIcon } from '@heroicons/react/outline'
+import { HeartIcon as HeartIconSolid } from '@heroicons/react/solid'
 import { VideoCameraIcon } from '@heroicons/react/outline'
 import { DocumentDuplicateIcon } from '@heroicons/react/outline'
 import { DownloadIcon } from '@heroicons/react/outline'
@@ -9,13 +10,49 @@ import { ShoppingCartIcon } from '@heroicons/react/outline'
 import { NavLink } from 'react-router-dom'
 import dayjs from 'dayjs'
 import capitalize from '../../utils/capitalize'
-import { urlFor } from '../../utils/client'
+import { client, urlFor } from '../../utils/client'
 import BaseButton from '../common/BaseButton/BaseButton'
 import { FaTwitter } from 'react-icons/fa';
 import { FaEnvelope } from 'react-icons/fa';
 import { FaExternalLinkAlt } from 'react-icons/fa';
+import { Store } from '../../utils/Store'
+import { v4 as uuidv4 } from 'uuid';
 
-const CourseOverviewCard = ({ title, price, image, authorFirstName, authorLastName, createdAt, updatedAt }) => {
+const CourseOverviewCard = ({ title, price, likes, image, id, authorFirstName, authorLastName, createdAt, updatedAt }) => {
+  const { state, dispatch } = useContext(Store);
+
+  const { userInfo } = state;
+
+  const  alreadyLiked = !!(likes?.filter((like) => like?.postedBy?._id === userInfo?.sub))?.length;
+  console.log(alreadyLiked);
+  
+  const likeCourse = (id) => {
+    console.log(id);
+
+    if (!alreadyLiked) {
+
+      client
+        .patch(id)
+        .setIfMissing({ likes: [] })
+        .insert('after', 'likes[-1]', [{
+          _key: uuidv4(),
+          // userId: userInfo?.googleId,
+          postedBy: {
+            _type: 'postedBy',
+            _ref: userInfo?.sub,
+          },
+        }])
+        .commit()
+        .then(() => {
+          window.location.reload();
+        });
+    }
+  };
+
+  const unLikeCourse = () => {
+    console.log('unlike');
+  }
+
   return (
     <div className='bg-white h-max rounded-md'>
       <img src={urlFor(image).width(350).url()} alt="Post img" className='rounded-t-md object-cover w-full h-60 group-hover:scale-105 transition-transform duration-200 ease-in-out' />
@@ -28,7 +65,7 @@ const CourseOverviewCard = ({ title, price, image, authorFirstName, authorLastNa
           <NavLink to={'/cart'} className='w-full'>
             <BaseButton text='Add to cart' />
           </NavLink>
-          <HeartIcon className='w-11 mb-5 hover:text-purple-500 cursor-pointer' />
+          {alreadyLiked ? <HeartIconSolid className='w-11 mb-5 hover:text-purple-500 cursor-pointer' onClick={unLikeCourse}/> : <HeartIcon className='w-11 mb-5 hover:text-purple-500 cursor-pointer' onClick={(e) => {e.preventDefault(); likeCourse(id)}}/>}
         </div>
         <p className='text-center text-sm text-gray-500'>30 day money back guarantee </p>
         <div className='mt-4'>
