@@ -3,6 +3,7 @@ import { client } from '../../utils/client';
 import CategoryCard from '../CategoryCard'
 import { motion } from "framer-motion"
 import { NavLink, useNavigate } from 'react-router-dom';
+import { getCategories } from '../../api/queries/categories';
 
 function CategoriesSection() {
   const [state, setState] = useState({ categories: [], error: '', loading: true });
@@ -12,11 +13,7 @@ function CategoriesSection() {
   const carousel = useRef()
 
   const { loading, error, categories } = state;
-  const query = `*[_type == "category"]{
-        _id,
-        title,
-        slug
-    }`
+  const query = getCategories()
 
   useEffect(() => {
     const fetchCategories = async () => {

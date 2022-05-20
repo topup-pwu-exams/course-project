@@ -4,6 +4,7 @@ import capitalize from '../utils/capitalize'
 import { ChevronRightIcon } from '@heroicons/react/outline'
 import { client } from '../utils/client';
 import CourseCard from '../components/CourseCard';
+import { getCategory } from '../api/queries/categories';
 
 const Category = () => {
     const { slug } = useParams();
@@ -12,26 +13,7 @@ const Category = () => {
 
     const { loading, error, courses } = state;
     // const query = `*[_type == "course" && "${slug}" in category->slug.current]{
-    const query = `*[_type == "course" && "${slug}" == category->slug.current]{
-        _id,
-        title,
-        price,
-        slug, 
-        mainImage,
-        author -> {
-          firstName,
-          lastName,
-          avatar,
-       },
-       tags[]->{
-        _id,
-        name
-        },
-        category->{
-            title,
-            slug
-        }
-    }`
+    const query = getCategory(slug)
 
     useEffect(() => {
         const fetchCourses = async () => {

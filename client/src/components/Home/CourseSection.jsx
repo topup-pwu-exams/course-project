@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { getCourses } from '../../api/queries/course';
 import { client } from '../../utils/client';
 import CourseCard from '../CourseCard'
 
@@ -7,26 +8,7 @@ function CourseSection() {
     const [state, setState] = useState({ courses: [], error: '', loading: true });
 
     const { loading, error, courses } = state;
-    const query = `*[_type == "course"][0...5]{
-        _id,
-        title,
-        price,
-        slug, 
-        mainImage,
-        author -> {
-          firstName,
-          lastName,
-          avatar,
-       },
-       tags[]->{
-        _id,
-        name
-        },
-        category->{
-            title,
-            slug
-        }
-    }`
+    const query = getCourses()
 
     useEffect(() => {
         const fetchCourses = async () => {

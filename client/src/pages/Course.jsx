@@ -5,35 +5,14 @@ import CourseOverviewHeader from '../components/CourseOverview/CourseOverviewHea
 import CourseOverviewCard from '../components/CourseOverview/CourseOverviewCard';
 import capitalize from '../utils/capitalize';
 import { client } from '../utils/client';
+import { getCourse } from '../api/queries/course';
 
 const Course = () => {
     const { slug } = useParams();
     const [state, setState] = useState({ course: [], error: '', loading: true });
 
     const { loading, error, course } = state;
-    const query = `*[_type == "course" && slug.current == "${slug}" ]{
-        _id,
-        title,
-        price,
-        slug, 
-        mainImage,
-        description,
-        _updatedAt,
-        _createdAt,
-        author -> {
-          firstName,
-          lastName,
-          avatar,
-       },
-       tags[]->{
-        _id,
-        name
-        },
-        category->{
-            title,
-            slug
-        }
-    }`
+    const query = getCourse(slug)
 
     useEffect(() => {
         const fetchCourse = async () => {
