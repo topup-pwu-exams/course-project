@@ -14,6 +14,16 @@ export default {
       type: 'number',
     },
     {
+      name: 'language',
+      title: 'Language',
+      type: 'string',
+    },
+    {
+      name: 'courseDuration',
+      title: 'Course Duration (hours)',
+      type: 'number',
+    },
+    {
       name: 'slug',
       title: 'Slug',
       type: 'slug',
