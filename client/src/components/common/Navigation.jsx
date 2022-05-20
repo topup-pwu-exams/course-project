@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import logo from '../../assets/Images/logo_darker.png';
-import { LoginIcon, LogoutIcon } from '@heroicons/react/outline'
+import { HeartIcon, LoginIcon, LogoutIcon } from '@heroicons/react/outline'
 import jsCookie from 'js-cookie'
 import { Store } from '../../utils/Store';
 
@@ -46,7 +46,7 @@ const Navigation = () => {
                 </div>
             </div>
 
-            <div className='flex items-center space-x-8 border-l-2 border-gray-300 m-2 text-gray-500'>
+            <div className='flex items-center justify-around border-l-2 border-gray-300 m-2 text-gray-500'>
 
                 {!userInfo ?
                     <NavLink to='/login'>
@@ -55,7 +55,11 @@ const Navigation = () => {
                         </div>
                     </NavLink> :
                     <>
-                        <NavLink to='/profile' className={({ isActive }) => isActive ? profileActive : 'rounded-full border-2 hover:border-purple-500'} style={{ marginLeft: '2rem' }}>
+                        <NavLink to='/my-courses' className='mx-2'>
+                            <HeartIcon className='w-10 hover:text-purple-500 cursor-pointer mx-4 ' />
+                        </NavLink>
+
+                        <NavLink to='/profile' className={({ isActive }) => isActive ? profileActive : 'rounded-full border-2 hover:border-purple-500'}>
                             <img src={userInfo.picture} alt={userInfo.given_name} className='h-9 w-auto object-fill rounded-full' />
                         </NavLink>
 
