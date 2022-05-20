@@ -57,12 +57,7 @@ const Course = () => {
                     <div className='font-medium p-color flex'>
                         <NavLink to={-1} className='hover:text-black'>{capitalize(course.category.title)} </NavLink>
                         <ChevronRightIcon className='w-5 mx-1 text-white' />
-                        <Link 
-                            to='/' 
-                            className="cursor-pointer ml-2 p-color font-bold hover:text-black"> 
-                            {course.title}
-                        </Link>
-                        
+                        <span className='text-black'> {course.title}</span>
                     </div>
 
                     {/* <div className='grid grid-cols-3 sm:grid-cols-1 gap-3'> */}
