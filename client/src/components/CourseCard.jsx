@@ -1,20 +1,21 @@
 import React from 'react'
-import { ClockIcon } from '@heroicons/react/outline'
-import { CollectionIcon } from '@heroicons/react/outline'
-import { HeartIcon } from '@heroicons/react/outline'
-import { UsersIcon } from '@heroicons/react/outline'
+import { HeartIcon, UsersIcon,  CollectionIcon, ClockIcon, UserCircleIcon } from '@heroicons/react/outline'
 import { urlFor } from '../utils/client'
 import { NavLink } from 'react-router-dom'
+import fakeImage from '../assets/Images/blank_image.png'
 
 const CourseCard = ({ title, author, mainImage, hours, lessons, price, likes, users, tags, categories, slug }) => {
     return (
         <NavLink to={`/course/${slug}`}>
             <div className='border rounded-lg group cursor-pointer overflow-hidden shadow-md hover:shadow-accent-500'>
-                {mainImage && <img src={urlFor(mainImage).width(250).url()} alt="Post img" className='h-40 object-cover w-full group-hover:scale-105 transition-transform duration-200 ease-in-out' />}
+                {mainImage ? <img src={urlFor(mainImage).width(250).url()} alt="Post img" className='h-40 object-cover w-full group-hover:scale-105 transition-transform duration-200 ease-in-out' /> 
+                : <img src={fakeImage} alt="Fake post image" className='h-40 object-cover w-full group-hover:scale-105 transition-transform duration-200 ease-in-out' />}
                 <div className='flex flex-col justify-between p-5 bg-primary-500 '>
                     <div className='flex  flex-row justify-between items-start mb-2'>
                         <p className='text-base text-left font-bold text-neutral-500 leading-5'>{title}</p>
-                        <img className='ml-2 h-12 w-12 rounded-full' src={author?.avatar} alt="Author img" />
+                        {author?.avatar ? <img className='ml-2 h-12 w-12 rounded-full' src={author?.avatar} alt="Author img" /> : 
+                            <UserCircleIcon className='w-10'/>
+                        }
                     </div>
                     <p className='text-xs'>by <span className='text-neutral-500'> {author?.firstName} {author?.lastName} </span></p>
                     <div className='flex flex-row mt-2 space-x-5'>
@@ -61,6 +62,24 @@ const CourseCard = ({ title, author, mainImage, hours, lessons, price, likes, us
             </div>
         </NavLink>
     )
+}
+
+CourseCard.defaultProps = {
+    title: "Test course",
+    author: {
+        firstName: 'John',
+        lastName: 'Doe',
+        avatar: ''
+    },
+    // fakeImage: "../assets/Images/blank_image.png",
+    hours: "25",
+    lessons: "11",
+    price: "9.99",
+    likes: "12",
+    users: "100",
+    tags: "UI, IT",
+    categories: "Productivity",
+    slug: "test-course",
 }
 
 export default CourseCard

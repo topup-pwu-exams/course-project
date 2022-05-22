@@ -5,13 +5,13 @@ import App from './App';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { StoreProvider } from "./utils/Store";
 
-ReactDOM.render(
-  <Router>
-    <StoreProvider>
-      <GoogleOAuthProvider clientId={`${process.env.REACT_APP_GOOGLE_API_TOKEN}`}>
-        <App />
-      </GoogleOAuthProvider>
-    </StoreProvider>
-  </Router>,
-  document.getElementById('root'),
-);
+  ReactDOM.render(
+    <Router>
+      <StoreProvider>
+        <GoogleOAuthProvider clientId={`${process.env.REACT_APP_GOOGLE_API_TOKEN}`}>
+            <App />
+        </GoogleOAuthProvider>
+      </StoreProvider>
+    </Router>,
+    document.getElementById('root'),
+  );
