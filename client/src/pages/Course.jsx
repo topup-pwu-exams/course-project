@@ -19,6 +19,8 @@ const Course = () => {
 
     const { loading, error, course } = state;
     const query = getCourse(slug)
+    
+    const existItem = cart.cartItems.find((x) => x._id === course._id);
 
     useEffect(() => {
         const fetchCourse = async () => {
@@ -36,10 +38,10 @@ const Course = () => {
     }, []);
     
     const addToCartHandler = () => {
-        const existItem = cart.cartItems.find((x) => x._id === course._id);
         console.log(course._id);
         if (existItem) {
-            toast("Item already added!");
+            // toast("Item already added!");
+            navigate('/cart');
             return
         } else {
             dispatch({
@@ -55,7 +57,6 @@ const Course = () => {
             });
             toast("Added to cart!");
         }
-        // navigate('/cart');
     }
 
     return (
@@ -104,6 +105,7 @@ const Course = () => {
                                 likes={course.likes}
                                 id={course._id}
                                 onClick={addToCartHandler}
+                                buttonText={existItem ? 'Go to cart' : 'Add to cart'}
                             //tags={course.tags}
                             />
                         </div>

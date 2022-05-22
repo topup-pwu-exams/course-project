@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import logo from '../../assets/Images/logo_darker.png';
-import { HeartIcon, LoginIcon, LogoutIcon } from '@heroicons/react/outline'
+import { HeartIcon, LoginIcon, LogoutIcon, ShoppingCartIcon } from '@heroicons/react/outline'
 import jsCookie from 'js-cookie'
 import { Store } from '../../utils/Store';
 
@@ -10,6 +10,9 @@ const Navigation = () => {
     const { state, dispatch } = useContext(Store);
 
     const { userInfo } = state;
+    const { cart } = state;
+
+    console.log(cart.cartItems?.length)
 
     const pages = [
         // { name: 'Explore', url: 'explore', id: 1 },
@@ -39,7 +42,7 @@ const Navigation = () => {
                     {pages.map(page => {
                         return (
                             <NavLink to={page.url} key={page.id} className={({ isActive }) => isActive ? activeLink : ''}>
-                                <p className='hover:text-neutral-500 hover:cursor-pointer'>{page.name}</p>
+                                <p className='text-lg hover:text-neutral-500 hover:cursor-pointer'>{page.name}</p>
                             </NavLink>
                         )
                     })}
@@ -54,9 +57,16 @@ const Navigation = () => {
                             <p >Log in </p> <LoginIcon className='h-5 w-auto ml-2 mt-0.5' />
                         </div>
                     </NavLink> :
-                    <>
+                    <div className='flex space-x-6'>
+                        <NavLink to='/cart' className='mx-2'>
+                            {/* <ShoppingCartIcon className='w-10 hover:text-neutral-500 cursor-pointer ' /> */}
+                            <button type="button" class="inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-yellow-500 rounded-lg hover:bg-yellow-400">Cart
+                                <span class="inline-flex items-center justify-center w-4 h-4 ml-2 text-xs font-semibold text-yellow-800 bg-yellow-200 rounded-full">{cart.cartItems?.length}</span>
+                            </button>
+                        </NavLink>
+
                         <NavLink to='/my-courses' className='mx-2'>
-                            <HeartIcon className='w-10 hover:text-neutral-500 cursor-pointer mx-4 ' />
+                            <HeartIcon className='w-10 hover:text-neutral-500 cursor-pointer ' />
                         </NavLink>
 
                         <NavLink to='/profile' className={({ isActive }) => isActive ? profileActive : 'rounded-full border-2 hover:border-neutral-500'}>
@@ -66,7 +76,7 @@ const Navigation = () => {
                         <div onClick={logoutClickHandler} className='ml-8 flex flex-row hover:border-transparent rounded-full border-2 border-neutral-500 bg-white text-neutral-500 hover:text-white hover:bg-neutral-500 px-3 py-1 hover:cursor-pointer'>
                             <p >Log out </p> <LogoutIcon className='h-5 w-auto ml-2 mt-0.5' />
                         </div>
-                    </>
+                    </div>
                 }
             </div>
         </header>
