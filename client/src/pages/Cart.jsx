@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import CartList from '../components/Cart/CartList'
-import CheckoutBox from '../components/Cart/CheckoutBox'
+import CartSummary from '../components/Cart/CartSummary'
 import LikedCourseList from '../components/Cart/LikedCourseList'
 import RelevantCourseList from '../components/Cart/RelevantCourseList'
 import { Store } from '../utils/Store'
@@ -38,7 +38,7 @@ const Cart = () => {
           </div> :
             <div className='flex md:flex-row md:space-x-10 flex-col space-x-0 chuj'>
               <CartList />
-              <CheckoutBox />
+              <CartSummary />
             </div>}
         </div>
         <LikedCourseList />
