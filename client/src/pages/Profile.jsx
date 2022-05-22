@@ -11,7 +11,6 @@ const Profile = () => {
     const { state, dispatch } = useContext(Store);
     const { userInfo } = state;
 
-
     useEffect(() => {
         if (!userInfo) {
             navigate('/login');

@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react'
 import logo from '../assets/Images/logo_darker.png';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate, useSearchParams } from 'react-router-dom';
 // import { LockClosedIcon } from '@heroicons/react/solid'
 import { ArrowLeftIcon } from '@heroicons/react/outline'
 import { GoogleLogin } from '@react-oauth/google';
@@ -8,18 +8,21 @@ import { client } from '../utils/client'
 import jwt_decode from "jwt-decode";
 import jsCookie from 'js-cookie';
 import { Store } from '../utils/Store';
+import { toast } from 'react-toastify';
 
 function Login() {
     const navigate = useNavigate();
 
     const { state, dispatch } = useContext(Store);
     const { userInfo } = state;
+    const [ params ] = useSearchParams();
+    const redirect = params.get('redirect')
 
     useEffect(() => {
         if (userInfo) {
-            navigate('/');
+            navigate(redirect || '/');
         }
-    }, [navigate, userInfo]);
+    }, [navigate, userInfo, params]);
 
     const responseGoogle = async (response) => {
         // console.log(response);
@@ -42,7 +45,8 @@ function Login() {
                 avatar: picture,
             };
             client.createIfNotExists(doc).then(() => {
-                navigate('/', { replace: true });
+                // navigate('/', { replace: true });
+                toast("Welcome!");
             });
         } catch (error) {
             console.log(error);

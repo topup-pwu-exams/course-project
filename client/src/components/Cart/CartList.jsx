@@ -1,37 +1,15 @@
-import React, { useContext } from 'react'
-import { useNavigate } from 'react-router-dom';
+import React, { useContext } from 'react';
 import { Store } from '../../utils/Store';
-import BaseButton from '../common/BaseButton/BaseButton';
-import empty_cart from '../../assets/Images/empty_cart.svg'
 import CartListItem from './CartListItem';
 
 const CartList = () => {
-  const navigate = useNavigate();
-  const { state, dispatch } = useContext(Store);
-
-  // const { userInfo } = state;
+  
+  const { state } = useContext(Store);
   const { cart } = state;
   const cartItems = cart.cartItems
 
-  const handleClick = () => {
-    navigate('/')
-  }
-
   return (
     <div>
-      <p className='text-lg mt-10 mb-2'>{cartItems.length} Courses in Cart</p>
-
-      {!cartItems.length ? <div className='flex mx-auto flex-col justify-center items-center border-4 border-primary-500 p-5 mt-2'>
-        <img src={empty_cart} alt="Course App" className='w-1/4 mb-5' />
-        <p className='mb-5'>Your cart is empty. Explore the shop to find a course and add it to cart! </p>
-        <div className='w-max'>
-          <BaseButton
-            text='Explore'
-            onClick={handleClick}
-          />
-        </div>
-      </div> :
-        <div>
           {cartItems.map(item => {
             return (
               <CartListItem
@@ -51,9 +29,6 @@ const CartList = () => {
               />
             )
           })
-
-          }
-        </div>
       }
     </div>
   )
