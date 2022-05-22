@@ -8,25 +8,11 @@ export const getCategories = () => {
 }
 
 export const getCategory = (slug) => {
-    const query = `*[_type == "course" && "${slug}" == category->slug.current]{
+    const query = `*[_type == "category" && slug.current == "${slug}"]{
         _id,
         title,
-        price,
-        slug, 
-        mainImage,
-        author -> {
-          firstName,
-          lastName,
-          avatar,
-       },
-       tags[]->{
-        _id,
-        name
-        },
-        category->{
-            title,
-            slug
-        }
+        description,
+        slug
     }`
     return query;
 }

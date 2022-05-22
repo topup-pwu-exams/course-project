@@ -5,15 +5,19 @@ import { ChevronRightIcon } from '@heroicons/react/outline'
 import { client } from '../utils/client';
 import CourseCard from '../components/CourseCard';
 import { getCategory } from '../api/queries/categories';
+import { getCoursesByCategory } from '../api/queries/course';
+
 
 const Category = () => {
     const { slug } = useParams();
 
     const [state, setState] = useState({ courses: [], error: '', loading: true });
+    const [category, setCategory] = useState({})
 
     const { loading, error, courses } = state;
     // const query = `*[_type == "course" && "${slug}" in category->slug.current]{
-    const query = getCategory(slug)
+    const query = getCoursesByCategory(slug)
+    const categoryQuery = getCategory(slug)
 
     useEffect(() => {
         const fetchCourses = async () => {
@@ -27,6 +31,18 @@ const Category = () => {
                 console.log(err);
             }
         };
+        
+        const fetchCategoryDetails = async () => {
+            try {
+                const category = await client.fetch(categoryQuery);
+                console.log(category);
+                setCategory(category);
+            } catch (err) {
+                setState({ loading: false, error: err.message });
+                console.log(err);
+            }
+        };
+        fetchCategoryDetails();
         fetchCourses();
     }, []);
 
@@ -44,8 +60,7 @@ const Category = () => {
                     {/* Intro */}
                     <div className='mt-10'>
                         <h1>{capitalize(slug)} Courses</h1>
-                        {/* TODO: Add description */}
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. At velit pariatur vero provident cupiditate, voluptas quaerat doloribus aliquam dolore optio harum ut illo, consequatur ab! Sapiente tempore, molestias ipsam, saepe, et quos ea ratione odio eum reprehenderit optio ex officiis corrupti beatae modi sunt excepturi.</p>
+                        <p className='mt-3'>{category[0].description}</p>
                     </div>
 
                     {/* Featured */}
@@ -61,7 +76,7 @@ const Category = () => {
                                         mainImage={course.mainImage}
                                         price={course.price}
                                         author={course.author}
-                                        hours='64'
+                                        duration={course.courseDuration}
                                         lessons='445'
                                         likes='423'
                                         users='3432'
