@@ -35,7 +35,7 @@ const CartList = () => {
           {cartItems.map(item => {
             return (
               <CartListItem
-                key={item.slug}
+                key={item._id}
                 title={item.title}
                 mainImage={item.mainImage}
                 author={item.author}
@@ -43,6 +43,7 @@ const CartList = () => {
                 lessons={item.lessons}
                 price={item.price}
                 likes={item.likes}
+                id={item._id}
                 // users={item.users}
                 // tags={ }
                 category={item.category}

@@ -1,19 +1,32 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { urlFor } from '../../utils/client'
 import fakeImage from '../../assets/Images/blank_image.png'
 import { ClockIcon, CollectionIcon, UserCircleIcon } from '@heroicons/react/outline'
 import { useNavigate } from 'react-router-dom'
+import { Store } from '../../utils/Store'
 
 const CartListItem = ({ title, mainImage, author, hours, lessons, price, id, likes, users, tags, category, slug }) => {
     const navigate = useNavigate()
+    const { state: { cart }, dispatch } = useContext(Store);
 
     const goToCourse = (slug) => {
         navigate(`/course/${slug}`)
     }
+    
+    const removeItem = (id) => {
+        console.log(id)
+        dispatch({
+            type: 'CART_REMOVE_ITEM',
+            payload: {
+                _id: id,
+            },
+        });
+    }
+
 
     return (
         <div className='border group overflow-hidden flex w-2/3 my-3'>
-            {mainImage ? <img src={urlFor(mainImage).url()} alt="Post img" className='h-30 w-1/4 object-cover cursor-pointer ' onClick={()=>goToCourse(slug)}/> :
+            {mainImage ? <img src={urlFor(mainImage).url()} alt="Post img" className='w-1/4 object-cover cursor-pointer ' onClick={()=>goToCourse(slug)}/> :
                 <img src={fakeImage} alt="Fake post image" className='h-30 w-1/4 object-cover cursor-pointer'/>
             }
             <div className='flex justify-between w-full p-3 bg-primary-500'>
@@ -40,7 +53,7 @@ const CartListItem = ({ title, mainImage, author, hours, lessons, price, id, lik
                     </div>
                 </div>
                 <div className='flex space-x-20'>
-                    <p className='text-accent-500 hover:underline h-max cursor-pointer'>Remove</p>
+                    <p onClick={() => removeItem(id)} className='text-accent-500 hover:underline h-max cursor-pointer'>Remove</p>
                     <p className='text-md text-accent-500 font-bold'>${price}</p>
                 </div>
             </div>

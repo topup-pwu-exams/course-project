@@ -60,7 +60,7 @@ const Category = () => {
                     {/* Intro */}
                     <div className='mt-10'>
                         <h1>{capitalize(slug)} Courses</h1>
-                        <p className='mt-3'>{category[0].description}</p>
+                        <p className='mt-3'>{category[0]?.description}</p>
                     </div>
 
                     {/* Featured */}
