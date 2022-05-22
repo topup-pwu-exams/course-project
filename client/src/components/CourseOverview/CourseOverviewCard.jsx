@@ -18,7 +18,7 @@ import { FaExternalLinkAlt } from 'react-icons/fa';
 import { Store } from '../../utils/Store'
 import { v4 as uuidv4 } from 'uuid';
 
-const CourseOverviewCard = ({ title, price, likes, image, id, onClick, buttonText, authorFirstName, authorLastName, createdAt, updatedAt }) => {
+const CourseOverviewCard = ({ title, price, likes, image, id, onClick, buttonText, duration }) => {
   const { state, dispatch } = useContext(Store);
 
   const { userInfo } = state;
@@ -67,7 +67,7 @@ const CourseOverviewCard = ({ title, price, likes, image, id, onClick, buttonTex
         <div className='mt-4'>
           <h4>In this course you will get:</h4>
           <ul className='mt-4'>
-            <li className='flex mb-2'> <span><VideoCameraIcon className='w-6 mr-2' /></span> 45 hours of content</li>
+            <li className='flex mb-2'> <span><VideoCameraIcon className='w-6 mr-2' /></span> {duration} hours of content</li>
             <li className='flex mb-2'> <span><DocumentDuplicateIcon className='w-6 mr-2' /></span> Full access to course materials</li>
             <li className='flex mb-2'> <span><DownloadIcon className='w-6 mr-2' /></span> Downloadable resources</li>
             <li className='flex mb-2'> <span><FolderRemoveIcon className='w-6 mr-2' /></span> Lifetime access</li>

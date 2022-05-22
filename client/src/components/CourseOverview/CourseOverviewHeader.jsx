@@ -26,7 +26,7 @@ const CourseOverviewHeader = ({title, description, authorFirstName, authorLastNa
                     <Link 
                         to='/'
                         className='ml-2 p-color underline font-medium'>
-                        (nr.ratings)
+                        (nr. ratings)
                     </Link>
                     <div className='ml-2'>
                         211 students

@@ -64,6 +64,7 @@ export const getCoursesByCategory = (slug) => {
         price,
         slug, 
         mainImage,
+        courseDuration,
         author -> {
           firstName,
           lastName,

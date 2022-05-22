@@ -44,7 +44,7 @@ function CourseSection() {
                                         mainImage={course.mainImage}
                                         price={course.price}
                                         author={course.author}
-                                        hours='64'
+                                        duration={course.courseDuration}
                                         lessons='445'
                                         likes='423'
                                         users='3432'
@@ -69,7 +69,7 @@ function CourseSection() {
                                         mainImage={course.mainImage}
                                         price={course.price}
                                         author={course.author}
-                                        hours='64'
+                                        duration={course.courseDuration}
                                         lessons='445'
                                         likes='423'
                                         users='3432'

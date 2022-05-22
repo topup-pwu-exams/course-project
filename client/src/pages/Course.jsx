@@ -52,7 +52,11 @@ const Course = () => {
                     category: course.category.title,
                     slug: course.slug.current,
                     price: course.price,
-                    image: course.mainImage,
+                    mainImage: course.mainImage,
+                    lessons: course.lessons,
+                    duration: course.courseDuration,
+                    author: course.author,
+                    description: course.description
                 },
             });
             toast("Added to cart!");
@@ -103,6 +107,7 @@ const Course = () => {
                                 updatedAt={course._updatedAt}
                                 price={course.price}
                                 likes={course.likes}
+                                duration={course.courseDuration}
                                 id={course._id}
                                 onClick={addToCartHandler}
                                 buttonText={existItem ? 'Go to cart' : 'Add to cart'}
