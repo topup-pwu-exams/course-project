@@ -1,6 +1,8 @@
 import { Route, Routes, Outlet } from "react-router-dom";
 import './App.css';
 import Navigation from './components/common/Navigation';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 // Pages
 import About from './pages/About';
@@ -39,6 +41,7 @@ const EmptyLayout = () => (
 function App() {
   return (
     <>
+      <ToastContainer />
       <Routes>
         {/* Empty layout */}
         <Route element={<EmptyLayout />} >

@@ -18,26 +18,26 @@ import { FaExternalLinkAlt } from 'react-icons/fa';
 import { Store } from '../../utils/Store'
 import { v4 as uuidv4 } from 'uuid';
 
-const CourseOverviewCard = ({ title, price, likes, image, id, authorFirstName, authorLastName, createdAt, updatedAt }) => {
+const CourseOverviewCard = ({ title, price, likes, image, id, onClick, authorFirstName, authorLastName, createdAt, updatedAt }) => {
   const { state, dispatch } = useContext(Store);
 
   const { userInfo } = state;
 
-  const  alreadyLiked = !!(likes?.filter((like) => like?.postedBy?._id === userInfo?.sub))?.length;
+  const alreadyLiked = !!(likes?.filter((like) => like?.postedBy?._id === userInfo?.sub))?.length;
   console.log(alreadyLiked);
-  
+
   const likeCourse = (id) => {
     console.log(id);
 
     if (!alreadyLiked) {
       client.patch(id).setIfMissing({ likes: [] }).insert('after', 'likes[-1]', [{
-          _key: uuidv4(),
-          userId: userInfo?.sub,
-          postedBy: {
-            _type: 'postedBy',
-            _ref: userInfo?.sub,
-          },
-        }])
+        _key: uuidv4(),
+        userId: userInfo?.sub,
+        postedBy: {
+          _type: 'postedBy',
+          _ref: userInfo?.sub,
+        },
+      }])
         .commit()
         .then(() => {
           window.location.reload();
@@ -60,10 +60,8 @@ const CourseOverviewCard = ({ title, price, likes, image, id, authorFirstName, a
         <h1 className='text-accent-500 mt-7'>{price}$</h1>
         <div className='flex mt-5 justify-center space-x-2'>
           {/* TODO: add icon */}
-          <NavLink to={'/cart'} className='w-full'>
-            <BaseButton text='Add to cart' />
-          </NavLink>
-          {alreadyLiked ? <HeartIconSolid className='w-11 mb-5 text-accent-500 cursor-pointer' onClick={(e) => {e.preventDefault(); unLikeCourse(id)}}/> : <HeartIcon className='w-11 mb-5 hover:text-accent-500 cursor-pointer' onClick={(e) => {e.preventDefault(); likeCourse(id)}}/>}
+          <BaseButton text='Add to cart' onClick={onClick} />
+          {alreadyLiked ? <HeartIconSolid className='w-11 mb-5 text-accent-500 cursor-pointer' onClick={(e) => { e.preventDefault(); unLikeCourse(id) }} /> : <HeartIcon className='w-11 mb-5 hover:text-accent-500 cursor-pointer' onClick={(e) => { e.preventDefault(); likeCourse(id) }} />}
         </div>
         <p className='text-center text-sm text-gray-500'>30 day money back guarantee </p>
         <div className='mt-4'>
