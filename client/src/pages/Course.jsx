@@ -52,7 +52,11 @@ const Course = () => {
                     category: course.category.title,
                     slug: course.slug.current,
                     price: course.price,
-                    image: course.mainImage,
+                    mainImage: course.mainImage,
+                    lessons: course.lessons,
+                    duration: course.courseDuration,
+                    author: course.author,
+                    description: course.description
                 },
             });
             toast("Added to cart!");
@@ -63,8 +67,8 @@ const Course = () => {
         <div>
             {loading ? (<div>Loading ...</div>) : error ? (<div>error...</div>) : (
                 <div className='bgcourse custom-layout'>
-                    <div className='font-medium p-color flex'>
-                        <NavLink to={-1} className='hover:text-white'>{capitalize(course?.category.title)} </NavLink>
+                    <div className='font-medium flex'>
+                        <NavLink to={'/'} className='text-accent-500 hover:text-white'>{capitalize(course?.category.title)} </NavLink>
                         <ChevronRightIcon className='w-5 mx-1 text-white' />
                         <span className='text-white'> {capitalize(course?.title)}</span>
                     </div>
@@ -103,6 +107,7 @@ const Course = () => {
                                 updatedAt={course._updatedAt}
                                 price={course.price}
                                 likes={course.likes}
+                                duration={course.courseDuration}
                                 id={course._id}
                                 onClick={addToCartHandler}
                                 buttonText={existItem ? 'Go to cart' : 'Add to cart'}

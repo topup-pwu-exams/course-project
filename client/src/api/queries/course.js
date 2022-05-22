@@ -8,6 +8,7 @@ export const getCourse = (slug) => {
         description,
         _updatedAt,
         _createdAt,
+        courseDuration,
         author -> {
           firstName,
           lastName,
@@ -54,4 +55,30 @@ export const getCourses = () => {
         }
     }`
     return query
+}
+
+export const getCoursesByCategory = (slug) => {
+    const query = `*[_type == "course" && "${slug}" == category->slug.current]{
+        _id,
+        title,
+        price,
+        slug, 
+        mainImage,
+        courseDuration,
+        author -> {
+          firstName,
+          lastName,
+          avatar,
+       },
+       tags[]->{
+        _id,
+        name
+        },
+        category->{
+            title,
+            slug,
+            description
+        }
+    }`
+    return query;
 }
