@@ -11,7 +11,7 @@ const CourseOverviewHeader = ({title, description, authorFirstName, authorLastNa
                 <p>Created by: 
                     <Link 
                         to='/' 
-                        className="cursor-pointer underline ml-2 p-color font-bold"> 
+                        className="cursor-pointer underline ml-2 text-accent-500 font-bold"> 
                         {authorFirstName} {authorLastName}
                     </Link>
                 </p>
@@ -25,7 +25,7 @@ const CourseOverviewHeader = ({title, description, authorFirstName, authorLastNa
                     </div>
                     <Link 
                         to='/'
-                        className='ml-2 p-color underline font-medium'>
+                        className='ml-2 text-accent-500 underline font-medium'>
                         (nr. ratings)
                     </Link>
                     <div className='ml-2'>

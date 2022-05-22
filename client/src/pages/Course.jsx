@@ -67,8 +67,8 @@ const Course = () => {
         <div>
             {loading ? (<div>Loading ...</div>) : error ? (<div>error...</div>) : (
                 <div className='bgcourse custom-layout'>
-                    <div className='font-medium p-color flex'>
-                        <NavLink to={-1} className='hover:text-white'>{capitalize(course?.category.title)} </NavLink>
+                    <div className='font-medium flex'>
+                        <NavLink to={'/'} className='text-accent-500 hover:text-white'>{capitalize(course?.category.title)} </NavLink>
                         <ChevronRightIcon className='w-5 mx-1 text-white' />
                         <span className='text-white'> {capitalize(course?.title)}</span>
                     </div>

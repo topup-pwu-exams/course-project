@@ -23,7 +23,6 @@ const CartListItem = ({ title, mainImage, author, hours, lessons, price, id, lik
         });
     }
 
-
     return (
         <div className='border group overflow-hidden flex w-2/3 my-3'>
             {mainImage ? <img src={urlFor(mainImage).url()} alt="Post img" className='w-1/4 object-cover cursor-pointer ' onClick={()=>goToCourse(slug)}/> :
