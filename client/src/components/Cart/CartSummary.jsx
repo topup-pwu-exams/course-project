@@ -15,7 +15,7 @@ const CartSummary = () => {
     }
 
     return (
-        <div className='border-2 border-primary-500 p-5 w-full md:mt-3 mt-10 flex flex-col justify-between h-fit '>
+        <div className='border-2 rounded-md border-primary-500 p-5 w-full md:mt-3 mt-10 flex flex-col justify-between h-fit '>
             <div>
                 <h4>Total:</h4>
                 <p className='text-3xl text-accent-500 font-bold'>${itemsPrice.toFixed(2)}</p>

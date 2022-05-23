@@ -21,7 +21,7 @@ const CheckoutSummary = () => {
     }
 
     return (
-        <div className='border-2 border-primary-500 p-5 max-w-md md:mt-3 mt-10 flex flex-col justify-between h-fit '>
+        <div className='border-2 rounded-md border-primary-500 p-5 max-w-md md:mt-3 mt-10 flex flex-col justify-between h-fit '>
             <h2 className='mb-2'>Summary</h2>
             <div className='flex flex-col'>
                 {cartItems.map(item => {
@@ -44,7 +44,7 @@ const CheckoutSummary = () => {
             </div>
             {/* TODO: list items */}
             <div className='w-fit mx-auto mt-10'>
-                <BaseButton text="Checkout" onClick={finishOrder} />
+                <BaseButton text="Complete Payment" onClick={finishOrder} />
             </div>
         </div>
     )

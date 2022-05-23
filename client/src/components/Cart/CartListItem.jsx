@@ -24,7 +24,7 @@ const CartListItem = ({ title, mainImage, author, hours, lessons, price, id, lik
     }
 
     return (
-        <div className='border group overflow-hidden w-full flex my-3 '>
+        <div className='border group overflow-hidden w-full flex my-3 rounded-md'>
             {mainImage ? <img src={urlFor(mainImage).url()} alt="Post img" className='w-1/4 object-cover cursor-pointer ' onClick={()=>goToCourse(slug)}/> :
                 <img src={fakeImage} alt="Fake post image" className='h-30 w-1/4 object-cover cursor-pointer'/>
             }
