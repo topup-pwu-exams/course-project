@@ -24,16 +24,21 @@ const CourseOverviewLearn = ({title, description, authorFirstName, authorLastNam
                         <p className='mr-2'>22h length</p> 
                     </div>
                     <div>
-                        <p className='border-2 border-black py-4 px-8 font-extrabold'>Introduction</p>
-                        <p className='border-2 border-black py-4 px-8 font-extrabold'>Introduction</p>
-                        <p className='border-2 border-black py-4 px-8 font-extrabold'>Introduction</p>
-                        <p className='border-2 border-black py-4 px-8 font-extrabold'>Introduction</p>
+                        <p className='border-2 border-black py-4 px-8 font-extrabold mt-1'>Chapter 1</p>
+                        <p className='border-2 border-black py-4 px-8 font-extrabold mt-1'>Chapter 2</p>
+                        <p className='border-2 border-black py-4 px-8 font-extrabold mt-1'>Chapter 3</p>
+                        <p className='border-2 border-black py-4 px-8 font-extrabold mt-1'>Chapter 4</p>
                     </div>
                 </div>
                 <div className='mx-10 mt-8'>
                     <h2 className='mb-4 lg:text-left'>Description</h2>
                     <div className='flex flex-row mb-4'>
-                        <p className='mr-2'>Description that breaks card on right side if there is too much text</p> 
+                        <p className='mr-2'>Social media management training for social media managers, executives and entry-level employees from the top-rated social media training provider. Learn on your desktop, smart phone or tablet.
+                            Learn the rules of social media engagement and the disruptive impact
+                            Intro to YouTube, SoundCloud, Blogger, Google Analytics, Flickr, Ustream and more
+                            Social media strategy for leveraging Facebook, Twitter and Linkedin
+                            Best practices 
+                        </p> 
                     </div>
                 </div>
                 <div className='mx-10 mt-8'>

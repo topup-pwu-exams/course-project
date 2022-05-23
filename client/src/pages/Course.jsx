@@ -89,11 +89,12 @@ const Course = () => {
             size={50} />
             </div>
             ) 
+            //timeout not working
             : 
             error 
             
             ?
-            (<div>error...</div>) 
+            (<div>error message and btn to go back</div>) 
             :
             (
                 <div className='bgcourse custom-layout'>
