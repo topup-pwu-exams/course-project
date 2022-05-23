@@ -1,7 +1,21 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom';
+import { Store } from '../../utils/Store';
 import BaseButton from '../common/BaseButton/BaseButton'
 
 const CheckoutSummary = () => {
+    const { state, dispatch } = useContext(Store);
+    const navigate = useNavigate()
+    const { userInfo, cart: { cartItems, shippingAddress, paymentMethod }} = state;
+
+    const itemsPrice = cartItems.reduce((a, b) => a + b.price, 0)
+
+    useEffect(() => {
+        if (cartItems.length === 0) {
+          navigate('/cart');
+        }
+      }, [cartItems]);
+
     const finishOrder = () => {
         console.log('object');
     }
@@ -10,19 +24,19 @@ const CheckoutSummary = () => {
         <div className='border-2 border-primary-500 p-5 max-w-md md:mt-3 mt-10 flex flex-col justify-between h-fit '>
             <h2 className='mb-2'>Summary</h2>
             <div className='flex flex-col'>
-                <div className='flex justify-between space-x-10'>
-                    <div>Item 1 price:</div>
-                    <div>$13.99</div>
-                </div>
-                <div className='flex justify-between space-x-10'>
-                    <div>Item 2 price:</div>
-                    <div>$11.99</div>
-                </div>
+                {cartItems.map(item => {
+                    return (
+                        <div key={item._id} className='flex justify-between space-x-10'>
+                            <div className='truncate'>{item.title}</div>
+                            <div>${(item.price).toFixed(2)}</div>
+                        </div>
+                    )
+                })}
             </div>
             <hr className='my-5 border border-gray-300' />
             <div className='flex justify-between space-x-10'>
                 <h4>Total:</h4>
-                <p className='text-2xl font-bold'>$12.99</p>
+                <p className='text-2xl font-bold'>${itemsPrice.toFixed(2)}</p>
             </div>
             <div className='mt-2'>
                 <p>Lrnr is required by law to collect applicable transaction taxes for purchases made in certain tax jurisdictions.</p>
