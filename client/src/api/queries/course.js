@@ -40,6 +40,7 @@ export const getCourses = () => {
         price,
         slug, 
         mainImage,
+        courseDuration,
         author -> {
           firstName,
           lastName,
