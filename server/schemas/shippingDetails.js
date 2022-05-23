@@ -4,16 +4,6 @@ export default {
     type: 'object',
     fields: [
         {
-            title: 'fullName',
-            name: 'fullName',
-            type: 'string',
-        },
-        {
-            title: 'details',
-            name: 'details',
-            type: 'string',
-        },
-        {
             title: 'city',
             name: 'city',
             type: 'string',

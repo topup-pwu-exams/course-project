@@ -9,13 +9,13 @@ export default {
             type: 'string',
         },
         {
-            title: 'status',
+            title: 'Status',
             name: 'status',
             type: 'string',
         },
         {
-            title: 'email_address',
-            name: 'email_address',
+            title: 'Email Address',
+            name: 'emailAddress',
             type: 'string',
         },
     ],

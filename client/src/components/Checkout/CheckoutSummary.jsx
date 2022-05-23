@@ -1,23 +1,73 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { Store } from '../../utils/Store';
 import BaseButton from '../common/BaseButton/BaseButton'
+import jsCookie from 'js-cookie'
+import { client } from '../../utils/client';
+import { toast } from 'react-toastify';
+import { v4 as uuidv4 } from 'uuid';
 
 const CheckoutSummary = () => {
     const { state, dispatch } = useContext(Store);
     const navigate = useNavigate()
-    const { userInfo, cart: { cartItems, shippingAddress, paymentMethod }} = state;
+    const { userInfo, cart: { cartItems, shippingAddress, paymentMethod } } = state;
+    const [loading, setLoading] = useState(false)
 
     const itemsPrice = cartItems.reduce((a, b) => a + b.price, 0)
 
     useEffect(() => {
         if (cartItems.length === 0) {
-          navigate('/cart');
+            navigate('/cart');
         }
-      }, [cartItems]);
+        console.log(userInfo);
+    }, [cartItems]);
 
-    const finishOrder = () => {
-        console.log('object');
+    const finishOrder = async () => {
+        try {
+            setLoading(true);
+
+            const { family_name, given_name, sub } = userInfo;
+
+            const cartDetails = {
+                itemsPrice,
+                totalPrice: itemsPrice,
+                paymentMethod: 'PayPal',
+                shippingDetails: {
+                    postalCode: '9000',
+                    country: 'Denmark',
+                    city: 'Aalborg'
+                },
+                orderItems: cartItems.map((x) => ({
+                    ...x,
+                    _key: uuidv4(),
+                    slug: undefined,
+                })),
+            };
+
+            await client.create({
+                _type: 'order',
+                user: {
+                    _type: 'reference',
+                    _ref: sub
+                },
+                firstName: given_name,
+                lastName: family_name,
+                ...cartDetails
+            }).then((res) => {
+                console.log(res);
+            });
+
+            dispatch({ type: 'CART_CLEAR' });
+            jsCookie.remove('cartItems');
+            setLoading(false);
+            toast("Order Placed!");
+
+            // navigate(`/order/${data}`);
+        } catch (err) {
+            setLoading(false);
+            console.log(err);
+            toast("Error!");
+        }
     }
 
     return (
