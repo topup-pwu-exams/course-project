@@ -8,7 +8,7 @@ import { client } from '../utils/client'
 import jwt_decode from "jwt-decode";
 import jsCookie from 'js-cookie';
 import { Store } from '../utils/Store';
-import { toast } from 'react-toastify';
+import { toast, Zoom } from 'react-toastify';
 
 function Login() {
     const navigate = useNavigate();
@@ -46,7 +46,16 @@ function Login() {
             };
             client.createIfNotExists(doc).then(() => {
                 // navigate('/', { replace: true });
-                toast("Welcome!");
+                toast("Welcome", {
+                    icon: '👋',
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    transition: Zoom,
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                    progress: undefined,
+                });
             });
         } catch (error) {
             console.log(error);
@@ -63,11 +72,8 @@ function Login() {
                             src={logo}
                             alt="Workflow"
                         />
-                        <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Sign in or create an account</h2>
+                        <h2 className="text-xl md:text-2xl font-bold leading-tight mt-12 text-center">Log in to your account</h2>
                         <div className="mt-3 flex flex-col justify-center items-center">
-                            <NavLink to={-1}>
-                                <div className='rounded-full my-5 border-2 border-gray-500 py-0.5 px-5 w-48 hover:bg-slate-100 text-center'><ArrowLeftIcon className='w-5 mb-1 inline-block' /> Go Back</div>
-                            </NavLink>
                             <GoogleLogin
                                 onSuccess={responseGoogle}
                                 onError={() => { alert('Login Failed') }}
@@ -80,6 +86,9 @@ function Login() {
                                 width='200px'
                                 cancel_on_tap_outside={true}
                             />
+                            <NavLink to={-1}>
+                                <div className='rounded-full my-5 border-2 border-gray-500 py-0.5 px-5 w-48 hover:bg-slate-100 text-center'><ArrowLeftIcon className='w-5 mb-1 inline-block' /> Go Back</div>
+                            </NavLink>
 
                         </div>
                         {/* <p className="mt-2 text-center text-sm text-gray-600">
@@ -89,6 +98,7 @@ function Login() {
                             </a>
                         </p> */}
                     </div>
+                    
                 </div>
             </div>
         </>

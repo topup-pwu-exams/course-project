@@ -9,7 +9,8 @@ import { getCourse } from '../api/queries/course';
 import CourseOverviewLearn from '../components/CourseOverview/CourseOverviewLearn';
 import CourseOverviewReviews from '../components/CourseOverview/CourseOverviewReviews';
 import { Store } from '../utils/Store';
-import { toast } from 'react-toastify';
+import { toast, Zoom } from 'react-toastify';
+import ClipLoader from "react-spinners/ClipLoader";
 
 const Course = () => {
     const { slug } = useParams();
@@ -59,13 +60,42 @@ const Course = () => {
                     description: course.description
                 },
             });
-            toast("Added to cart!");
+            toast("Added to cart!", {
+
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                transition: Zoom,
+                closeOnClick: true,
+                pauseOnHover: false,
+                progress: undefined,
+            });
+            
+            
         }
     }
 
     return (
         <div>
-            {loading ? (<div>Loading ...</div>) : error ? (<div>error...</div>) : (
+            {loading ? ( 
+            <div className='flex flex-col '>
+            <h2>loading</h2>
+            <ClipLoader 
+            color={"#FFD803"} 
+            loading={loading}
+            timeout={3000}
+            position = 'fixed'
+            center
+            size={50} />
+            </div>
+            ) 
+            : 
+            error 
+            
+            ?
+            (<div>error...</div>) 
+            :
+            (
                 <div className='bgcourse custom-layout'>
                     <div className='font-medium flex'>
                         <NavLink to={'/'} className='text-accent-500 hover:text-white'>{capitalize(course?.category.title)} </NavLink>
