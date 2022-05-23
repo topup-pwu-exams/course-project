@@ -33,7 +33,6 @@ function Login() {
             dispatch({ type: 'USER_LOGIN', payload: data });
 
             jsCookie.set('userInfo', JSON.stringify(data));
-            // localStorage.setItem('user', JSON.stringify(data));
             const { sub, given_name, family_name, picture } = data;
 
             const doc = {
