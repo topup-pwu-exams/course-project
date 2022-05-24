@@ -40,7 +40,6 @@ const CourseOverviewCard = ({ slug, title, price, image, id, onClick, buttonText
 
   const alreadyLiked = !!(likes?.filter((like) => like?._id === id))?.length;
   const alreadyPurchased = !!(purchases?.filter((p) => p?._id === id))?.length;
-  console.log(alreadyPurchased)
 
   const getUserLikes = async () => {
     try {
@@ -55,7 +54,6 @@ const CourseOverviewCard = ({ slug, title, price, image, id, onClick, buttonText
     try {
       const purchasedCourses = await client.fetch(purchaseQuery)
       setPurchases(purchasedCourses[0].purchasedCourses)
-      console.log(purchasedCourses)
     } catch (error) {
       console.log(error);
     }
@@ -86,11 +84,9 @@ const CourseOverviewCard = ({ slug, title, price, image, id, onClick, buttonText
           getUserLikes()
         });
     }
-    console.log('unlike');
   }
 
   const goToCourse = (slug)  => {
-    console.log(`going to: ${slug}`)
     navigate(`/course/${slug}/learn`)
   }
 

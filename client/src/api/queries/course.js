@@ -22,6 +22,18 @@ export const getCourse = (slug) => {
             title,
             slug
         },
+        reviews[]->{
+            review,
+            rating,
+            _id,
+            _createdAt,
+            postedBy->{
+                firstName,
+                lastName, 
+                avatar,
+                slug
+            }
+        }
     }`
     return query
 }
@@ -34,6 +46,7 @@ export const getCourses = () => {
         slug, 
         mainImage,
         courseDuration,
+        _createdAt,
         author -> {
           firstName,
           lastName,

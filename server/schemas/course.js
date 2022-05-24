@@ -32,12 +32,6 @@ export default {
         maxLength: 96,
       },
     },
-    // {
-    //   name: 'author',
-    //   title: 'Author',
-    //   type: 'reference',
-    //   to: { type: 'user' },
-    // },
     {
       name: 'author',
       title: 'Author',
@@ -73,13 +67,13 @@ export default {
       to: { type: 'category' },
     },
     // {
-      // name: 'purchasedBy',
-      // title: 'Purchased By',
-      // type: 'reference',
-      // of: [{
-      //   to: { type: 'user' },
-      //   type: 'reference',
-      // }],
+    // name: 'purchasedBy',
+    // title: 'Purchased By',
+    // type: 'reference',
+    // of: [{
+    //   to: { type: 'user' },
+    //   type: 'reference',
+    // }],
     // },
     {
       name: 'description',
@@ -92,11 +86,22 @@ export default {
       type: 'blockContent',
     },
     {
-      name: 'review',
-      title: 'Review',
+      name: 'reviews',
+      title: 'Reviews',
       type: 'array',
-      of: [{ type: 'review' }],
+      of: [
+        {
+          type: 'reference',
+          to: { type: 'review' },
+        },
+      ]
     }
+    // {
+    //   name: 'reviews',
+    //   title: 'Reviews',
+    //   type: 'reference',
+    //   to: [{ type: 'review' }],
+    // }
   ],
   preview: {
     select: {
