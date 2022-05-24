@@ -3,10 +3,6 @@ import React, { useEffect, useState } from 'react'
 import { getCourses } from '../../api/queries/course';
 import { client } from '../../utils/client';
 
-
-
-
-
 const CourseAbout = ({ title, description, authorFirstName, authorLastName, createdAt, updatedAt, tags }) => {
 
     const [state, setState] = useState({ courses: [], error: '', loading: true });
@@ -27,9 +23,7 @@ const CourseAbout = ({ title, description, authorFirstName, authorLastName, crea
         fetchCourses();
     }, []);
 
-
     return (
-
         <div>
             <div className='border-2 border-black p-3 px-10 mx-10'>
                 <h2 className='mb-4 text-center lg:text-left'>What you'll learn (static section)</h2>
