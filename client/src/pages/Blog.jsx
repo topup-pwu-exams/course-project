@@ -1,8 +1,17 @@
 import React from 'react'
+import BlogHeader from './Blog/BlogHeader'
+import BlogArticles from '../pages/Blog/BlogArticles'
+
 
 const Blog = () => {
   return (
-    <div>Blog</div>
+    <div>
+      <BlogHeader />
+      <BlogArticles />
+      <BlogArticles />
+      <BlogArticles />
+
+    </div>
   )
 }
 

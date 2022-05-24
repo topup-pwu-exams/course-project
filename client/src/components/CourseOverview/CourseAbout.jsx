@@ -57,10 +57,6 @@ const CourseAbout = ({ title, description, authorFirstName, authorLastName, crea
                     </p>
                 </div>
             </div>
-            <div className='mx-10 mt-8'>
-                <h2 className='mb-4 lg:text-left'>Similar courses</h2>
-            </div>
-
         </div>
     )
 }

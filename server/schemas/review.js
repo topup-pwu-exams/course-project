@@ -1,17 +1,17 @@
 export default {
     name: 'review',
-    title:'Review',
-    type: 'object', 
+    title: 'Review',
+    type: 'document',
     fields: [
         {
-            name: 'reviewDescription',
-            title:'Review Description',
-            type: 'string', 
+            name: 'review',
+            title: 'Review',
+            type: 'string',
         },
         {
-            name: 'reviewer',
-            title: 'Reviewer',
-            type: 'reviewer',
+            name: 'postedBy',
+            title: 'Posted By',
+            type: 'postedBy',
         },
         {
             name: 'rating',
@@ -21,7 +21,7 @@ export default {
                 list: [
                     {
                         title: '5 Stars', value: '5-stars'
-                    }, 
+                    },
                     {
                         title: '4 Stars', value: '4-stars'
                     },
@@ -33,7 +33,7 @@ export default {
                     },
                     {
                         title: '1 Stars', value: '1-stars'
-                    },           
+                    },
                 ],
                 layout: 'radio'
             }

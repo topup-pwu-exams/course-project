@@ -22,18 +22,31 @@ export const getCourse = (slug) => {
             title,
             slug
         },
+        reviews[]->{
+            review,
+            rating,
+            _id,
+            _createdAt,
+            postedBy->{
+                firstName,
+                lastName, 
+                avatar,
+                slug
+            }
+        }
     }`
     return query
 }
 
 export const getCourses = () => {
-    const query = `*[_type == "course"][0...5]{
+    const query = `*[_type == "course"][0...4]{
         _id,
         title,
         price,
         slug, 
         mainImage,
         courseDuration,
+        _createdAt,
         author -> {
           firstName,
           lastName,
