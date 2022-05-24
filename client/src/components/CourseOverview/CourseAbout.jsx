@@ -2,15 +2,14 @@ import { CheckIcon } from '@heroicons/react/outline'
 import React, { useEffect, useState } from 'react'
 import { getCourses } from '../../api/queries/course';
 import { client } from '../../utils/client';
-import StudentsAlsoBought from '../StudentsAlsoBought';
 
 
 
 
-const CourseOverviewLearn = ({ title, description, authorFirstName, authorLastName, createdAt, updatedAt, tags }) => {
+
+const CourseAbout = ({ title, description, authorFirstName, authorLastName, createdAt, updatedAt, tags }) => {
 
     const [state, setState] = useState({ courses: [], error: '', loading: true });
-    const { loading, error, courses } = state;
 
     const query = getCourses()
 
@@ -67,29 +66,9 @@ const CourseOverviewLearn = ({ title, description, authorFirstName, authorLastNa
             <div className='mx-10 mt-8'>
                 <h2 className='mb-4 lg:text-left'>Similar courses</h2>
             </div>
-            <div className='flex flex-col mx-10 '>
-                            {courses.length && courses.map(course => {
-                                return (
-                                    <StudentsAlsoBought
-                                        key={course._id}
-                                        title={course.title}
-                                        mainImage={course.mainImage}
-                                        price={course.price}
-                                        author={course.author}
-                                        duration={course.courseDuration}
-                                        lessons='445'
-                                        likes={course.likes}
-                                        users='3432'
-                                        tags={course.tags}
-                                        categories={course.categories}
-                                        slug={course.slug.current}
-                                    />
-                                )
-                            })}
-                        </div>
 
         </div>
     )
 }
 
-export default CourseOverviewLearn
+export default CourseAbout

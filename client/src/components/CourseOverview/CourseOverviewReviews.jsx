@@ -1,4 +1,4 @@
-import { DocumentSearchIcon, SearchCircleIcon, SearchIcon, UserCircleIcon } from '@heroicons/react/outline'
+import { SearchCircleIcon, UserCircleIcon } from '@heroicons/react/outline'
 import React from 'react'
 import { FaSearch } from 'react-icons/fa'
 
@@ -6,7 +6,7 @@ const CourseOverviewReviews = ({ title, author, description, authorFirstName, au
 
     return (
 
-        <div>
+        <div className='mx-10'>
             <div className='mx-10 mt-8'>
                 <h2 className='mb-4 lg:text-left'>Reviews</h2>
                 <div>

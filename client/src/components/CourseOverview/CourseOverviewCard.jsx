@@ -52,7 +52,7 @@ const CourseOverviewCard = ({ title, price, likes, image, id, onClick, buttonTex
   }
 
   return (
-    <div className='bg-white h-max rounded-md '>
+    <div className='bg-white h-max rounded-md min-w-80'>
       <img src={urlFor(image).width(350).url()} alt="Post img" className='rounded-t-md object-cover w-full h-60 group-hover:scale-105 transition-transform duration-200 ease-in-out' />
       <div className='p-5'>
 
