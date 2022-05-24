@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { HeartIcon } from '@heroicons/react/outline'
 import { HeartIcon as HeartIconSolid } from '@heroicons/react/solid'
 import { VideoCameraIcon } from '@heroicons/react/outline'
@@ -6,10 +6,10 @@ import { DocumentDuplicateIcon } from '@heroicons/react/outline'
 import { DownloadIcon } from '@heroicons/react/outline'
 import { FolderRemoveIcon } from '@heroicons/react/outline'
 import { AcademicCapIcon } from '@heroicons/react/outline'
-import { ShoppingCartIcon } from '@heroicons/react/outline'
-import { NavLink } from 'react-router-dom'
-import dayjs from 'dayjs'
-import capitalize from '../../utils/capitalize'
+// import { ShoppingCartIcon } from '@heroicons/react/outline'
+// import { NavLink } from 'react-router-dom'
+// import dayjs from 'dayjs'
+// import capitalize from '../../utils/capitalize'
 import { client, urlFor } from '../../utils/client'
 import BaseButton from '../common/BaseButton/BaseButton'
 import { FaTwitter } from 'react-icons/fa';
@@ -17,43 +17,62 @@ import { FaEnvelope } from 'react-icons/fa';
 import { FaExternalLinkAlt } from 'react-icons/fa';
 import { Store } from '../../utils/Store'
 import { v4 as uuidv4 } from 'uuid';
+import { getUserLikedCourses } from '../../api/queries/user'
 
-const CourseOverviewCard = ({ title, price, likes, image, id, onClick, buttonText, duration }) => {
+const CourseOverviewCard = ({ title, price, image, id, onClick, buttonText, duration }) => {
   const { state, dispatch } = useContext(Store);
+  const [likes, setLikes] = useState([])
 
   const { userInfo } = state;
+  const userId = userInfo.sub
+  const likeQuery = getUserLikedCourses(userId)
 
-  const alreadyLiked = !!(likes?.filter((like) => like?.postedBy?._id === userInfo?.sub))?.length;
-  console.log(alreadyLiked);
+  const getUserLikes = async () => {
+    try {
+      const likedCourses = await client.fetch(likeQuery)
+      setLikes(likedCourses[0].likedCourses)
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  useEffect(() => {
+    getUserLikes()
+  }, [userInfo])
 
-  const likeCourse = (id) => {
-    console.log(id);
+  const alreadyLiked = !!(likes?.filter((like) => like?._id === id))?.length;
+  console.log('ALREADY LIKED', alreadyLiked);
 
+  const likeCourse = (userId) => {
     if (!alreadyLiked) {
-      client.patch(id).setIfMissing({ likes: [] }).insert('after', 'likes[-1]', [{
-        _key: uuidv4(),
-        userId: userInfo?.sub,
-        postedBy: {
-          _type: 'postedBy',
-          _ref: userInfo?.sub,
-        },
+      client.patch(userId).setIfMissing({ likedCourses: [] }).append('likedCourses', [{
+          _key: uuidv4(),
+          _type: 'reference',
+          _ref: id
       }])
-        .commit()
-        .then(() => {
-          window.location.reload();
+        .commit({ autoGenerateArrayKeys: true })
+        .then((res) => {
+          console.log(res);
+          getUserLikes()
         });
     }
   };
-
-  const unLikeCourse = () => {
-    client.delete(id).then(() => {
-      window.location.reload();
-    });
+  
+  const unLikeCourse = (userId) => {
+    if (alreadyLiked) {
+      const courseToRemove = [`likedCourses[_ref == "${id}"]`]
+      client.patch(userId).unset(courseToRemove)
+        .commit({ autoGenerateArrayKeys: true })
+        .then((res) => {
+          console.log(res);
+          getUserLikes()
+        });
+    }
+    console.log('unlike');
   }
 
   return (
-    <div className='bg-white h-max rounded-md '>
-      <img src={urlFor(image).width(350).url()} alt="Post img" className='rounded-t-md object-cover w-full h-60 group-hover:scale-105 transition-transform duration-200 ease-in-out' />
+    <div className='bg-white h-max rounded-md min-w-80'>
+      <img src={urlFor(image).width(350).url()} alt="Post" className='rounded-t-md object-cover w-full h-60 group-hover:scale-105 transition-transform duration-200 ease-in-out' />
       <div className='p-5'>
 
         <h3>{title}</h3>
@@ -61,7 +80,7 @@ const CourseOverviewCard = ({ title, price, likes, image, id, onClick, buttonTex
         <div className='flex mt-5 justify-center space-x-2'>
           {/* TODO: add icon */}
           <BaseButton text={buttonText} onClick={onClick} />
-          {alreadyLiked ? <HeartIconSolid className='w-11 mb-5 text-accent-500 cursor-pointer' onClick={(e) => { e.preventDefault(); unLikeCourse(id) }} /> : <HeartIcon className='w-11 mb-5 hover:text-accent-500 cursor-pointer' onClick={(e) => { e.preventDefault(); likeCourse(id) }} />}
+          {alreadyLiked ? <HeartIconSolid className='w-11 mb-5 text-accent-500 cursor-pointer' onClick={(e) => { e.preventDefault(); unLikeCourse(userId) }} /> : <HeartIcon className='w-11 mb-5 hover:text-accent-500 cursor-pointer' onClick={(e) => { e.preventDefault(); likeCourse(userId) }} />}
         </div>
         <p className='text-center text-sm text-gray-500'>30 day money back guarantee </p>
         <div className='mt-4'>

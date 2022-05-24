@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { urlFor } from '../../utils/client'
 import fakeImage from '../../assets/Images/blank_image.png'
-import { ClockIcon, CollectionIcon, UserCircleIcon } from '@heroicons/react/outline'
+import { ClockIcon, CollectionIcon } from '@heroicons/react/outline'
 import { useNavigate } from 'react-router-dom'
 import { Store } from '../../utils/Store'
 
@@ -24,9 +24,9 @@ const CartListItem = ({ title, mainImage, author, hours, lessons, price, id, lik
     }
 
     return (
-        <div className='border group overflow-hidden w-full flex my-3 '>
-            {mainImage ? <img src={urlFor(mainImage).url()} alt="Post img" className='w-1/4 object-cover cursor-pointer ' onClick={()=>goToCourse(slug)}/> :
-                <img src={fakeImage} alt="Fake post image" className='h-30 w-1/4 object-cover cursor-pointer'/>
+        <div className='border group overflow-hidden w-full flex my-3 rounded-md'>
+            {mainImage ? <img src={urlFor(mainImage).url()} alt="Post " className='w-1/4 object-cover cursor-pointer ' onClick={()=>goToCourse(slug)}/> :
+                <img src={fakeImage} alt="Fake post " className='h-30 w-1/4 object-cover cursor-pointer'/>
             }
             <div className='flex justify-between w-full p-3 bg-primary-500'>
                 <div className='flex flex-col'>

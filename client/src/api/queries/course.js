@@ -22,13 +22,6 @@ export const getCourse = (slug) => {
             title,
             slug
         },
-        likes[]{
-            postedBy->{
-            _id, 
-            firstName,
-            lastName
-          }
-        }
     }`
     return query
 }
@@ -40,6 +33,7 @@ export const getCourses = () => {
         price,
         slug, 
         mainImage,
+        courseDuration,
         author -> {
           firstName,
           lastName,

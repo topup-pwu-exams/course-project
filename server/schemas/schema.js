@@ -14,7 +14,10 @@ import review from './review'
 import reviewer from './reviewer'
 import blog from './blog'
 import postedBy from './postedBy'
-import likes from './likes'
+import order from './order'
+import orderItem from './orderItem'
+import shippingDetails from './shippingDetails'
+import paymentResult from './paymentResult'
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -32,11 +35,14 @@ export default createSchema({
     review,
     reviewer,
     blog,
+    order,
     // When added to this list, object types can be used as
     // { type: 'typename' } in other document schemas
     blockContent,
     courseVariant,
     postedBy,
-    likes
+    orderItem,
+    shippingDetails,
+    paymentResult
   ]),
 })

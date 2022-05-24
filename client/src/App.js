@@ -47,6 +47,7 @@ function App() {
         {/* Empty layout */}
         <Route element={<EmptyLayout />} >
           <Route path="login" element={<Login />} />
+          <Route path="*" element={<NotFound />} />
         </Route>
 
         {/* main content inside app layout*/}
@@ -69,7 +70,6 @@ function App() {
             <Route path="*" element={<NotFound />} />
           </Route>
 
-          <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
     </>
