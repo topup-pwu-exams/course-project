@@ -44,14 +44,14 @@ const CheckoutSummary = () => {
                 })),
             };
 
-            const userPatch = client.patch(sub).setIfMissing({ purchasedCourses: [] }).append('purchasedCourses', 
+            const userPatch = client.patch(sub).setIfMissing({ purchasedCourses: [] }).append('purchasedCourses',
                 cartItems.map((x) => ({
                     _type: 'reference',
                     _ref: x._id,
                     _key: uuidv4(),
                 })))
 
-            const update = await client
+            await client
                 .transaction()
                 .create({
                     _type: 'order',
@@ -65,14 +65,6 @@ const CheckoutSummary = () => {
                     ...cartDetails
                 })
                 .patch(userPatch)
-                // .patch(sub).setIfMissing({ purchasedCourses: [] }).append('purchasedCourses', [{
-                //     _type: 'reference',
-                //     _ref: cartItems.map((x) => ({
-                //         ...x._id,
-                //     })),
-                //     _key: uuidv4(),
-                //     // _ref: id
-                // }])
                 .commit()
                 .then((res) => {
                     console.log(res);
@@ -81,7 +73,6 @@ const CheckoutSummary = () => {
                     console.error('Transaction failed: ', err.message)
                 })
 
-            console.log(update);
             dispatch({ type: 'CART_CLEAR' });
             jsCookie.remove('cartItems');
             setLoading(false);
