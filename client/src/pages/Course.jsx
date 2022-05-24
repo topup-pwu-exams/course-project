@@ -6,12 +6,13 @@ import CourseOverviewCard from '../components/CourseOverview/CourseOverviewCard'
 import capitalize from '../utils/capitalize';
 import { client } from '../utils/client';
 import { getCourse } from '../api/queries/course';
-import CourseOverviewLearn from '../components/CourseOverview/CourseOverviewLearn';
-import CourseOverviewReviews from '../components/CourseOverview/CourseOverviewReviews';
 import { Store } from '../utils/Store';
 import { toast, Zoom } from 'react-toastify';
 import ClipLoader from "react-spinners/ClipLoader";
 import { getUserOrdersList } from '../api/queries/user';
+import CourseAbout from '../components/CourseOverview/CourseAbout';
+import CourseFeatured from '../components/CourseOverview/CourseFeatured';
+import CourseOverviewReviews from '../components/CourseOverview/CourseOverviewReviews';
 
 const Course = () => {
     const { slug } = useParams();
@@ -23,26 +24,28 @@ const Course = () => {
     const userId = userInfo?.sub
 
     const query = getCourse(slug)
-    const userCourseQuery = getUserOrdersList(userId)
+    // const userCourseQuery = getUserOrdersList(userId)
+
+    const existItem = cart.cartItems.find((x) => x._id === course._id);
 
     
-    useEffect(() => {
-        const fetchUserCourses = async () => {
-            try {
-                const userCourses = await client.fetch(userCourseQuery)
-                console.log('User Courses', userCourses)
+    // useEffect(() => {
+    //     const fetchUserCourses = async () => {
+    //         try {
+    //             const userCourses = await client.fetch(userCourseQuery)
+    //             console.log('User Courses', userCourses)
                 
-                // setState({ loading: false});
-                setUserCourseList(userCourses);
-            } catch (err) {
-                // setState({ loading: false, error: err.message });
-                console.log(err);
-            }
-        }
-        if (userInfo !== null) {
-            fetchUserCourses();
-        }
-    }, [userInfo])
+    //             // setState({ loading: false});
+    //             setUserCourseList(userCourses);
+    //         } catch (err) {
+    //             // setState({ loading: false, error: err.message });
+    //             console.log(err);
+    //         }
+    //     }
+    //     if (userInfo !== null) {
+    //         fetchUserCourses();
+    //     }
+    // }, [userInfo])
     
     
     useEffect(() => {
@@ -60,12 +63,6 @@ const Course = () => {
         fetchCourse();
     }, []);
 
-    const existItem = cart?.cartItems.find((x) => x._id === course?._id);
-    
-    // const hasPurchased = userCourseList?.find((course => course.map(x => x._id === course?._id)))
-    const hasPurchased = userCourseList.orders
-    console.log(hasPurchased);
-    
     const addToCartHandler = () => {
         console.log(course._id);
         if (existItem) {
@@ -97,6 +94,8 @@ const Course = () => {
                 pauseOnHover: false,
                 progress: undefined,
             });
+
+
         }
     }
 
@@ -125,8 +124,10 @@ const Course = () => {
                             </div>
 
                             {/* <div className='grid grid-cols-3 sm:grid-cols-1 gap-3'> */}
-                            <div className='flex flex-row justify-between'>
-                                <div className='w-5/6'>
+                            <div className='flex flex-col'>
+                                <div className='flex flex-row'>
+
+
                                     <div className='mx-10'>
                                         <CourseOverviewHeader
                                             title={course.title}
@@ -138,33 +139,32 @@ const Course = () => {
                                             likes={course.likes}
                                         //tags={course.tags}
                                         />
+                                        <CourseAbout
+                                            description={course.description}
+                                        />
+                                        <CourseFeatured
+                                        />
                                     </div>
 
-                                    <CourseOverviewLearn
-                                        title={course.title}
-                                        description={course.description}
-                                        authorFirstName={course.author.firstName}
-                                    />
-
-                                    <CourseOverviewReviews title={course.title} />
+                                    <div>
+                                        <CourseOverviewCard
+                                            title={course.title}
+                                            image={course.mainImage}
+                                            authorFirstName={course.author.firstName}
+                                            authorLastName={course.author.lastName}
+                                            createdAt={course._createdAt}
+                                            updatedAt={course._updatedAt}
+                                            price={course.price}
+                                            likes={course.likes}
+                                            duration={course.courseDuration}
+                                            id={course._id}
+                                            onClick={addToCartHandler}
+                                            buttonText={existItem ? 'Go to cart' : 'Add to cart'}
+                                        //tags={course.tags}
+                                        />
+                                    </div>
                                 </div>
-                                <div>
-                                    <CourseOverviewCard
-                                        title={course.title}
-                                        image={course.mainImage}
-                                        authorFirstName={course.author.firstName}
-                                        authorLastName={course.author.lastName}
-                                        createdAt={course._createdAt}
-                                        updatedAt={course._updatedAt}
-                                        price={course.price}
-                                        likes={course.likes}
-                                        duration={course.courseDuration}
-                                        id={course._id}
-                                        onClick={addToCartHandler}
-                                        buttonText={existItem ? 'Go to cart' : 'Add to cart'}
-                                    //tags={course.tags}
-                                    />
-                                </div>
+                                <CourseOverviewReviews/>
                             </div>
                         </div>
                     )}

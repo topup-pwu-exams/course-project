@@ -8,13 +8,13 @@ const CourseCard = ({ title, author, mainImage, duration, lessons, price, likes,
     return (
         <NavLink to={`/course/${slug}`}>
             <div className='border rounded-lg group cursor-pointer overflow-hidden shadow-md hover:shadow-accent-500'>
-                {mainImage ? <img src={urlFor(mainImage).width(250).url()} alt="Post img" className='h-40 object-cover w-full group-hover:scale-105 transition-transform duration-200 ease-in-out' /> 
-                : <img src={fakeImage} alt="Fake post image" className='h-40 object-cover w-full group-hover:scale-105 transition-transform duration-200 ease-in-out' />}
+                {mainImage ? <img src={urlFor(mainImage).width(250).url()} alt="Post" className='h-40 object-cover w-full group-hover:scale-105 transition-transform duration-200 ease-in-out' /> 
+                : <img src={fakeImage} alt="Fake" className='h-40 object-cover w-full group-hover:scale-105 transition-transform duration-200 ease-in-out' />}
                 <div className='flex flex-col justify-between p-5 bg-primary-500 '>
                     <div className='flex  flex-row justify-between items-start mb-2'>
                         <p className='text-base text-left font-bold text-neutral-500 leading-5'>{title}</p>
-                        {author?.avatar ? <img className='ml-2 h-12 w-12 rounded-full' src={author?.avatar} alt="Author img" /> : 
-                            <UserCircleIcon className='w-10'/>
+                        {author?.avatar ? <img className='ml-2 h-12 w-12 rounded-full' src={author?.avatar} alt="Author" /> : 
+                            <UserCircleIcon className='w-12 h-12'/>
                         }
                     </div>
                     <p className='text-xs'>by <span className='text-neutral-500'> {author?.firstName} {author?.lastName} </span></p>

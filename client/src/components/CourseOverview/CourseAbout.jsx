@@ -1,12 +1,38 @@
 import { CheckIcon } from '@heroicons/react/outline'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { getCourses } from '../../api/queries/course';
+import { client } from '../../utils/client';
 
-const CourseOverviewLearn = ({ title, description, authorFirstName, authorLastName, createdAt, updatedAt, tags }) => {
+
+
+
+
+const CourseAbout = ({ title, description, authorFirstName, authorLastName, createdAt, updatedAt, tags }) => {
+
+    const [state, setState] = useState({ courses: [], error: '', loading: true });
+
+    const query = getCourses()
+
+    useEffect(() => {
+        const fetchCourses = async () => {
+            try {
+                const courses = await client.fetch(query); // TODO: change to small portion of courses, like "TOP" courses
+                console.log(courses)
+
+                setState({ courses, loading: false });
+            } catch (err) {
+                setState({ loading: false, error: err.message });
+            }
+        };
+        fetchCourses();
+    }, []);
+
+
     return (
 
         <div>
             <div className='border-2 border-black p-3 px-10 mx-10'>
-                <h2 className='mb-4 text-center lg:text-left'>What you'll learn</h2>
+                <h2 className='mb-4 text-center lg:text-left'>What you'll learn (static section)</h2>
                 <ul className=' flex flex-row flex-wrap  gap-4 justify-center lg:justify-between  '>
                     <li className='sm:max-w-xxs lg:max-w-xxs flex'> <span><CheckIcon className='w-6 mr-2' /></span> How to convert text into vectors using CountVectorizer, TF-IDF, word2vec, and GloVe</li>
                     <li className='sm:max-w-xxs lg:max-w-xxs flex'> <span><CheckIcon className='w-6 mr-2' /></span> How to convert text into vectors using CountVectorizer, TF-IDF, word2vec, and GloVe</li>
@@ -17,7 +43,7 @@ const CourseOverviewLearn = ({ title, description, authorFirstName, authorLastNa
                 </ul>
             </div>
             <div className='mx-10 mt-8'>
-                <h2 className='mb-4 lg:text-left'>Course content</h2>
+                <h2 className='mb-4 lg:text-left'>Course content (static section)</h2>
                 <div className='flex flex-row mb-4'>
                     <p className='mr-2'>22 chapters</p> <span className='mr-2'>-</span>
                     <p className='mr-2'>122 lectures</p> <span className='mr-2'>-</span>
@@ -33,23 +59,16 @@ const CourseOverviewLearn = ({ title, description, authorFirstName, authorLastNa
             <div className='mx-10 mt-8'>
                 <h2 className='mb-4 lg:text-left'>Description</h2>
                 <div className='flex flex-row mb-4'>
-                    <p className='mr-2'>Social media management training for social media managers, executives and entry-level employees from the top-rated social media training provider. Learn on your desktop, smart phone or tablet.
-                        Learn the rules of social media engagement and the disruptive impact
-                        Intro to YouTube, SoundCloud, Blogger, Google Analytics, Flickr, Ustream and more
-                        Social media strategy for leveraging Facebook, Twitter and Linkedin
-                        Best practices
+                    <p className='mr-2'>{description}
                     </p>
                 </div>
             </div>
             <div className='mx-10 mt-8'>
                 <h2 className='mb-4 lg:text-left'>Similar courses</h2>
-                <div className='flex flex-row mb-4'>
-                    <p className='mr-2'>Fetch rest of the courses</p>
-                </div>
             </div>
 
         </div>
     )
 }
 
-export default CourseOverviewLearn
+export default CourseAbout

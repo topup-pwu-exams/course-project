@@ -6,10 +6,10 @@ import { DocumentDuplicateIcon } from '@heroicons/react/outline'
 import { DownloadIcon } from '@heroicons/react/outline'
 import { FolderRemoveIcon } from '@heroicons/react/outline'
 import { AcademicCapIcon } from '@heroicons/react/outline'
-import { ShoppingCartIcon } from '@heroicons/react/outline'
-import { NavLink } from 'react-router-dom'
-import dayjs from 'dayjs'
-import capitalize from '../../utils/capitalize'
+// import { ShoppingCartIcon } from '@heroicons/react/outline'
+// import { NavLink } from 'react-router-dom'
+// import dayjs from 'dayjs'
+// import capitalize from '../../utils/capitalize'
 import { client, urlFor } from '../../utils/client'
 import BaseButton from '../common/BaseButton/BaseButton'
 import { FaTwitter } from 'react-icons/fa';
@@ -52,8 +52,8 @@ const CourseOverviewCard = ({ title, price, likes, image, id, onClick, buttonTex
   }
 
   return (
-    <div className='bg-white h-max rounded-md '>
-      <img src={urlFor(image).width(350).url()} alt="Post img" className='rounded-t-md object-cover w-full h-60 group-hover:scale-105 transition-transform duration-200 ease-in-out' />
+    <div className='bg-white h-max rounded-md min-w-80'>
+      <img src={urlFor(image).width(350).url()} alt="Post" className='rounded-t-md object-cover w-full h-60 group-hover:scale-105 transition-transform duration-200 ease-in-out' />
       <div className='p-5'>
 
         <h3>{title}</h3>

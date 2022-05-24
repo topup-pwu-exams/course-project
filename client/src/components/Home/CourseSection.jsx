@@ -24,9 +24,6 @@ function CourseSection() {
         fetchCourses();
     }, []);
 
-    // if (loading) {
-    //     return <div>Loading ...</div>;
-    // }
 
     return (
         <div className='custom-layout mb-10'>
