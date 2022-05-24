@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import BlogPreview from '../BlogPreview'
 import { client } from '../../utils/client';
 import { getBlogs } from '../../api/queries/blog';
 import Loader from '../common/Loader';
+import BlogPreview from '../Blog/BlogPreview';
 
 function BlogSection() {
 
