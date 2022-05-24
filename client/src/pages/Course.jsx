@@ -28,26 +28,6 @@ const Course = () => {
 
     const existItem = cart.cartItems.find((x) => x._id === course._id);
 
-
-    // useEffect(() => {
-    //     const fetchUserCourses = async () => {
-    //         try {
-    //             const userCourses = await client.fetch(userCourseQuery)
-    //             console.log('User Courses', userCourses)
-
-    //             // setState({ loading: false});
-    //             setUserCourseList(userCourses);
-    //         } catch (err) {
-    //             // setState({ loading: false, error: err.message });
-    //             console.log(err);
-    //         }
-    //     }
-    //     if (userInfo !== null) {
-    //         fetchUserCourses();
-    //     }
-    // }, [userInfo])
-
-
     useEffect(() => {
         const fetchCourse = async () => {
             try {
@@ -65,37 +45,40 @@ const Course = () => {
 
     const addToCartHandler = () => {
         console.log(course._id);
-        if (existItem) {
-            // toast("Item already added!");
-            navigate('/cart');
-            return
+        if (userInfo) {
+            if (existItem) {
+                // toast("Item already added!");
+                navigate('/cart');
+                return
+            } else {
+                dispatch({
+                    type: 'CART_ADD_ITEM',
+                    payload: {
+                        _id: course._id,
+                        title: course.title,
+                        category: course.category.title,
+                        slug: course.slug.current,
+                        price: course.price,
+                        mainImage: course.mainImage,
+                        lessons: course.lessons,
+                        duration: course.courseDuration,
+                        author: course.author,
+                        description: course.description
+                    },
+                });
+                toast("Added to cart!", {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    transition: Zoom,
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                    progress: undefined,
+                });
+            }
         } else {
-            dispatch({
-                type: 'CART_ADD_ITEM',
-                payload: {
-                    _id: course._id,
-                    title: course.title,
-                    category: course.category.title,
-                    slug: course.slug.current,
-                    price: course.price,
-                    mainImage: course.mainImage,
-                    lessons: course.lessons,
-                    duration: course.courseDuration,
-                    author: course.author,
-                    description: course.description
-                },
-            });
-            toast("Added to cart!", {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                transition: Zoom,
-                closeOnClick: true,
-                pauseOnHover: false,
-                progress: undefined,
-            });
-
-
+            navigate(`/login?redirect=/course/${slug}`);
+            return
         }
     }
 
@@ -146,6 +129,7 @@ const Course = () => {
                                     id={course._id}
                                     onClick={addToCartHandler}
                                     buttonText={existItem ? 'Go to cart' : 'Add to cart'}
+                                    slug={slug}
                                 //tags={course.tags}
                                 />
                             </div>

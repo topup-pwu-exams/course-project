@@ -27,6 +27,17 @@ export const getUserLikedCourses = (userId) => {
     return query;
 }
 
+export const getUserPurchasedCourses = (userId) => {
+    const query = `*[_type == "user" && _id == "${userId}"]{
+        "userId": _id,
+        purchasedCourses[]->{
+          title,
+          _id
+        }
+      }`
+    return query;
+}
+
 export const getUserLikedCoursesDetails = (userId) => {
     const query = `*[_type == "user" && _id == "${userId}"]{
         "userId": _id,

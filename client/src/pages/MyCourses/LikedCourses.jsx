@@ -13,7 +13,7 @@ const LikedCourses = () => {
     const navigate = useNavigate()
 
     const { userInfo } = state;
-    const userId = userInfo.sub
+    const userId = userInfo?.sub
     const likeQuery = getUserLikedCoursesDetails(userId)
 
     useEffect(() => {
