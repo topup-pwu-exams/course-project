@@ -1,4 +1,3 @@
-import { CheckIcon } from '@heroicons/react/outline'
 import React, { useEffect, useState } from 'react'
 import { getCourses } from '../../api/queries/course';
 import { client } from '../../utils/client';

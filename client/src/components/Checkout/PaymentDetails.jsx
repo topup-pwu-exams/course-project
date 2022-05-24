@@ -40,7 +40,7 @@ const PaymentDetails = () => {
                                     PayPal
                                 </label>
                             </div>
-                            <img src={paypal} alt="PayPal" className='w-10' />
+                            <img src={paypal} alt="PayPalimg" className='w-10' />
                         </div>
                     </fieldset>
 

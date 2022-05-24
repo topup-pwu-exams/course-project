@@ -12,7 +12,7 @@ const StudentsAlsoBought = ({ title, author, mainImage, duration, lessons, price
             <div className='flex flex-row w-175 gap-4'>
                 <div className='cursor-pointer overflow-hidden'>
                  {mainImage ? <img src={urlFor(mainImage).width(65).height(65).url()} alt="Post img" className='object-cover ' /> 
-                 : <img src={fakeImage} alt="Fake post image" />}
+                 : <img src={fakeImage} alt="Fake post" />}
                 </div>
                 <div className='flex flex-col gap-4'>
                     <p className='text-base text-left font-bold text-neutral-500 leading-4 min-w-100 max-w-xs w-full'>{title}</p>

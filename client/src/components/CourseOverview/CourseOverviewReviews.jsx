@@ -1,6 +1,5 @@
 import { SearchCircleIcon, UserCircleIcon } from '@heroicons/react/outline'
 import React from 'react'
-import { FaSearch } from 'react-icons/fa'
 
 const CourseOverviewReviews = ({ title, author, description, authorFirstName, authorLastName, createdAt, updatedAt, tags }) => {
 
@@ -18,7 +17,7 @@ const CourseOverviewReviews = ({ title, author, description, authorFirstName, au
                     </form>
                 </div>
                 <div className='flex  flex-row items-start my-5 gap-4'>
-                    {author?.avatar ? <img className='ml-2 h-12 w-12 rounded-full' src={author?.avatar} alt="Author img" /> :
+                    {author?.avatar ? <img className='ml-2 h-12 w-12 rounded-full' src={author?.avatar} alt="Author" /> :
                         <UserCircleIcon className='w-10' />
                     }
                     <div>
