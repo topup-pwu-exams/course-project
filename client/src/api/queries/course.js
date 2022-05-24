@@ -27,7 +27,7 @@ export const getCourse = (slug) => {
 }
 
 export const getCourses = () => {
-    const query = `*[_type == "course"][0...5]{
+    const query = `*[_type == "course"][0...4]{
         _id,
         title,
         price,

@@ -21,6 +21,7 @@ import LikedCourses from "./pages/MyCourses/LikedCourses";
 import Checkout from "./pages/Checkout";
 import Footer from './components/common/Footer/Footer'
 import Learn from "./pages/Learn";
+import Article from "./pages/Article";
 
 const AppLayout = () => (
   <>
@@ -61,6 +62,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:slug" element={<Article />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/categories/:slug" element={<Category />} />
           <Route path="/course/:slug" element={<Course />} />

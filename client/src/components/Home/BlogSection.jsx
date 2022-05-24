@@ -6,24 +6,24 @@ import Loader from '../common/Loader';
 
 function BlogSection() {
 
-  const [state, setState] = useState({ blogs: [], error: '', loading: true });
-
-  const { loading, error, blogs } = state;
-  const query = getBlogs()
-
-  useEffect(() => {
-      const fetchCourses = async () => {
-          try {
-              const blogs = await client.fetch(query); // TODO: change to small portion of blogs, like "TOP" courses
-              //console.log(blogs)
-
-              setState({ blogs, loading: false });
-          } catch (err) {
-              setState({ loading: false, error: err.message });
-          }
-      };
-      fetchCourses();
-  }, []);
+    const [state, setState] = useState({ blogs: [], error: '', loading: true });
+      
+    const { loading, error, blogs } = state;
+    const query = getBlogs()
+  
+    useEffect(() => {
+        const fetchBlogs = async () => {
+            try {
+                const blogs = await client.fetch(query); // TODO: change to small portion of blogs, like "TOP" blogs
+                //console.log(blogs)
+  
+                setState({ blogs, loading: false });
+            } catch (err) {
+                setState({ loading: false, error: err.message });
+            }
+        };
+        fetchBlogs();
+    }, []);
 
   return (
     <div>

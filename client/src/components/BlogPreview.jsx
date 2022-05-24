@@ -1,23 +1,20 @@
 import React from 'react'
-import { urlFor } from '../utils/client'
 
 
-function BlogPreview({mainImage, title, author, description, date}) {
+function BlogPreview({mainImage, title, author, description, category, date}) {
 
 
   return (
 
-         <div className="flex flex-wrap justify-between -mx-6">
+         <div className="flex flex-wrap justify-between">
 
-					<div className="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
-						<div className="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow-lg">
+					<div className="w-full md:w-1/3 flex flex-col flex-grow flex-shrink">
+						<div className="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow-lg py-5 ">
 							<div className="flex flex-wrap no-underline hover:no-underline">
-								<img src={urlFor(mainImage).width(250).url()} alt="blog" className="h-64 w-full rounded-t pb-6"/>
-								<p className="w-full text-gray-600 text-xs md:text-sm px-6">add date</p>
-								<p href='#' className="w-full font-bold text-xl text-gray-900 px-6 p-color">{title}</p>
-								<p className="text-gray-800 font-serif text-base px-6 mb-5">
-									{description} 
-								</p>
+								
+								<p href='#' className="w-full font-bold text-sm text-gray-900 px-6">Category here</p>
+								<p href='#' className="w-full font-bold text-xl text-gray-900 px-6 pt-3 p-color min-h-20">{title}</p>
+								
 							</div>
 						</div>
 						<div className="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow-lg p-6">

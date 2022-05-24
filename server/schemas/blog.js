@@ -37,6 +37,12 @@ export default {
             type: 'text',
         },
         {
+          name: 'category',
+          title: 'Category',
+          type: 'reference',
+          to: { type: 'category' },
+        },
+        {
             title: 'Launch Scheduled At',
             name: 'launchAt',
             type: 'datetime',

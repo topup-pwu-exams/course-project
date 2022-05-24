@@ -8,7 +8,7 @@ import InstructorSection from '../components/Home/InstructorSection'
 
 const Home = () => {
   return (
-    <div className=''>
+    <div>
       <Header/>
       <InfoSection/>
       <CategoriesSection/>
