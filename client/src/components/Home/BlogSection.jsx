@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import BlogPreview from '../BlogPreview'
 import { client } from '../../utils/client';
 import { getBlogs } from '../../api/queries/blog';
+import Loader from '../common/Loader';
 
 function BlogSection() {
 
@@ -26,7 +27,7 @@ function BlogSection() {
 
   return (
     <div>
-    {loading ? (<div>Loading ...</div>) : error ? (<div>error...</div>) : (
+    {loading ? (<Loader loading={loading} />) : error ? (<div>error...</div>) : (
         <section>
             <section className='custom-layout mb-10'>
                 <h2>Read our blogs</h2>

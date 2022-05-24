@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { getCourses } from '../../api/queries/course';
 import { client } from '../../utils/client';
+import Loader from '../common/Loader';
 import CourseCard from '../CourseCard'
 
 function CourseSection() {
@@ -27,7 +28,7 @@ function CourseSection() {
 
     return (
         <div className='custom-layout mb-10'>
-            {loading ? (<div>Loading ...</div>) : error ? (<div>error...</div>) : (
+            {loading ? (<Loader loading={loading} />) : error ? (<div>error...</div>) : (
                 <section>
                     <section className='mb-5'>
                         <h2>Explore Courses</h2>

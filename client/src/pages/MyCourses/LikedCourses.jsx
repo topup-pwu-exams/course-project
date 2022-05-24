@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { getUserLikedCoursesDetails } from '../../api/queries/user';
+import Loader from '../../components/common/Loader';
 import CourseCard from '../../components/CourseCard';
 import { client } from '../../utils/client';
 import { Store } from '../../utils/Store';
@@ -41,7 +42,7 @@ const LikedCourses = () => {
 
     return (
         <div>
-            {loading ? (<div>Loading ...</div>) : (
+            {loading ? (<Loader loading={loading} />) : (
                 <section className='mb-5'>
                     <h2>Liked Courses</h2>
                     <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6 p-2 '>
