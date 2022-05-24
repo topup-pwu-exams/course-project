@@ -35,8 +35,11 @@ export default {
     {
       name: 'likedCourses',
       title: 'Liked Courses',
-      type: 'reference',
-      to: [{ type: 'course' }],
+      type: 'array',
+      of: [{
+          type: 'reference',
+          to: [{ type: 'course' }],
+      }],
     },
   ],
   preview: {

@@ -53,12 +53,6 @@ export default {
       },
     },
     {
-      name: 'likes',
-      title: 'Liked By',
-      type: 'array',
-      of: [{ type: 'likes' }],
-    },
-    {
       title: 'Tags',
       name: 'tags',
       type: 'array',

@@ -14,7 +14,6 @@ import review from './review'
 import reviewer from './reviewer'
 import blog from './blog'
 import postedBy from './postedBy'
-import likes from './likes'
 import order from './order'
 import orderItem from './orderItem'
 import shippingDetails from './shippingDetails'
@@ -42,7 +41,6 @@ export default createSchema({
     blockContent,
     courseVariant,
     postedBy,
-    likes,
     orderItem,
     shippingDetails,
     paymentResult
