@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import Loader from 'react-spinners/ClipLoader';
 import { getBlogs } from '../../api/queries/blog';
 import { client } from '../../utils/client';
-import BlogPreview from '../../components/BlogPreview';
+import BlogPreview from '../../components/Blog/BlogPreview';
 
 
 export default function BlogArticles() {
