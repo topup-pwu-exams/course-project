@@ -27,6 +27,12 @@ const CourseOverviewCard = ({ title, price, image, id, onClick, buttonText, dura
   const userId = userInfo.sub
   const likeQuery = getUserLikedCourses(userId)
 
+  useEffect(() => {
+    getUserLikes()
+  }, [userInfo])
+
+  const alreadyLiked = !!(likes?.filter((like) => like?._id === id))?.length;
+
   const getUserLikes = async () => {
     try {
       const likedCourses = await client.fetch(likeQuery)
@@ -35,12 +41,6 @@ const CourseOverviewCard = ({ title, price, image, id, onClick, buttonText, dura
       console.log(error);
     }
   }
-  useEffect(() => {
-    getUserLikes()
-  }, [userInfo])
-
-  const alreadyLiked = !!(likes?.filter((like) => like?._id === id))?.length;
-  console.log('ALREADY LIKED', alreadyLiked);
 
   const likeCourse = (userId) => {
     if (!alreadyLiked) {
