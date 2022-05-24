@@ -105,13 +105,10 @@ const Course = () => {
                                     createdAt={course._createdAt}
                                     updatedAt={course._updatedAt}
                                     likes={course.likes}
-                                //tags={course.tags}
+                                    //tags={course.tags}
                                 />
-                                <CourseAbout
-                                    description={course.description}
-                                />
-                                <CourseFeatured
-                                />
+                                <CourseAbout description={course.description}/>
+                                <CourseFeatured/>
                             </div>
 
                             <div>
@@ -133,7 +130,9 @@ const Course = () => {
                                 />
                             </div>
                         </div>
-                        <CourseOverviewReviews />
+                        <CourseOverviewReviews 
+                            reviews={course.reviews}
+                        />
                     </div>
                 </div>
             )}

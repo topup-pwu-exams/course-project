@@ -11,7 +11,6 @@ import user from './user'
 import courseVariant from './courseVariant'
 import tags from './tags'
 import review from './review'
-import reviewer from './reviewer'
 import blog from './blog'
 import postedBy from './postedBy'
 import order from './order'
@@ -33,7 +32,6 @@ export default createSchema({
     category,
     tags,
     review,
-    reviewer,
     blog,
     order,
     // When added to this list, object types can be used as
