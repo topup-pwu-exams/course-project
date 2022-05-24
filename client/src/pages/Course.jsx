@@ -44,7 +44,6 @@ const Course = () => {
     }, []);
 
     const addToCartHandler = () => {
-        console.log(course._id);
         if (userInfo) {
             if (existItem) {
                 // toast("Item already added!");
