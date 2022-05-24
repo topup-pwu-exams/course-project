@@ -10,7 +10,7 @@ import { Store } from '../utils/Store';
 import { toast, Zoom } from 'react-toastify';
 import { getUserOrdersList } from '../api/queries/user';
 import CourseAbout from '../components/CourseOverview/CourseAbout';
-import CourseFeatured from '../components/CourseOverview/CourseFeatured';
+import CourseSimilar from '../components/CourseOverview/CourseSimilar';
 import CourseOverviewReviews from '../components/CourseOverview/CourseOverviewReviews';
 import Loader from '../components/common/Loader';
 
@@ -29,6 +29,7 @@ const Course = () => {
     const existItem = cart.cartItems.find((x) => x._id === course._id);
 
     useEffect(() => {
+        window.scrollTo(0, 0)
         const fetchCourse = async () => {
             try {
                 const course = await client.fetch(query);
@@ -41,7 +42,7 @@ const Course = () => {
             }
         };
         fetchCourse();
-    }, []);
+    }, [navigate, slug]);
 
     const addToCartHandler = () => {
         if (userInfo) {
@@ -94,8 +95,6 @@ const Course = () => {
                     {/* <div className='grid grid-cols-3 sm:grid-cols-1 gap-3'> */}
                     <div className='flex flex-col'>
                         <div className='flex flex-row'>
-
-
                             <div className='mx-10'>
                                 <CourseOverviewHeader
                                     title={course.title}
@@ -105,10 +104,11 @@ const Course = () => {
                                     createdAt={course._createdAt}
                                     updatedAt={course._updatedAt}
                                     likes={course.likes}
+                                    reviews={course.reviews?.length || 0}
                                     //tags={course.tags}
                                 />
                                 <CourseAbout description={course.description}/>
-                                <CourseFeatured/>
+                                <CourseSimilar />
                             </div>
 
                             <div>

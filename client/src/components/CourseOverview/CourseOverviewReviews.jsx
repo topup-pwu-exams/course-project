@@ -6,7 +6,7 @@ const CourseOverviewReviews = ({ reviews }) => {
         <div className='mx-10'>
             <div className='mx-10 mt-8'>
                 <h2 className='mb-4 lg:text-left'>Reviews</h2>
-                {reviews.length && reviews.map(review => {
+                {reviews ? reviews.map(review => {
                     console.log(review)
                     return (
                         <Review
@@ -17,7 +17,9 @@ const CourseOverviewReviews = ({ reviews }) => {
                             review={review.review}
                         />
                     )
-                })}
+                })
+                : <p>No reviews under this course yet</p>
+            }
             </div>
         </div>
     )

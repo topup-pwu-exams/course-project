@@ -46,6 +46,7 @@ export const getCourses = () => {
         slug, 
         mainImage,
         courseDuration,
+        _createdAt,
         author -> {
           firstName,
           lastName,
