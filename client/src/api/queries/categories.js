@@ -2,7 +2,8 @@ export const getCategories = () => {
     const query = `*[_type == "category"]{
         _id,
         title,
-        slug
+        slug,
+        iconName
     }`
     return query;
 }
@@ -12,7 +13,7 @@ export const getCategory = (slug) => {
         _id,
         title,
         description,
-        slug
+        slug,
     }`
     return query;
 }

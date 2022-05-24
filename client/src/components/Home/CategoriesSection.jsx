@@ -51,6 +51,7 @@ function CategoriesSection() {
                   <NavLink to={`categories/${category?.slug.current}`} key={category._id}>
                     <motion.div className='max-h-max p-3' key={category._id}>
                       <CategoryCard
+                        icon={category.iconName}
                         title={category.title}
                         key={category._id}
                       />

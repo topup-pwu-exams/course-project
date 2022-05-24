@@ -22,5 +22,10 @@ export default {
       title: 'Description',
       type: 'text',
     },
+    {
+      name: 'iconName',
+      title: 'Icon Name',
+      type: 'string',
+    },
   ],
 }
