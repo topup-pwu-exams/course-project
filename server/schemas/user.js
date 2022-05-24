@@ -41,6 +41,15 @@ export default {
           to: [{ type: 'course' }],
       }],
     },
+    {
+      name: 'purchasedCourses',
+      title: 'Purchased Courses',
+      type: 'array',
+      of: [{
+          type: 'reference',
+          to: [{ type: 'course' }],
+      }],
+    },
   ],
   preview: {
     select: {

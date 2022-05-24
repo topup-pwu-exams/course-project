@@ -4,6 +4,7 @@ import CategoryCard from '../CategoryCard'
 import { motion } from "framer-motion"
 import { NavLink, useNavigate } from 'react-router-dom';
 import { getCategories } from '../../api/queries/categories';
+import Loader from '../common/Loader';
 
 function CategoriesSection() {
   const [state, setState] = useState({ categories: [], error: '', loading: true });
@@ -38,7 +39,7 @@ function CategoriesSection() {
   return (
     // TODO: create skeleton loader ??
     <div className='custom-layout mb-10'>
-      {loading ? (<div>Loading ...</div>) : error ? (<div>error...</div>) : (
+      {loading ? (<Loader loading={loading} />) : error ? (<div>error...</div>) : (
         <div>
           <h2 className=''>Categories</h2>
           <motion.div ref={carousel} whileTap={{ cursor: 'grabbing' }} className='cursor-grab overflow-y-hidden'>
@@ -50,6 +51,7 @@ function CategoriesSection() {
                   <NavLink to={`categories/${category?.slug.current}`} key={category._id}>
                     <motion.div className='max-h-max p-3' key={category._id}>
                       <CategoryCard
+                        icon={category.iconName}
                         title={category.title}
                         key={category._id}
                       />

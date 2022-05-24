@@ -63,7 +63,7 @@ const Navigation = () => {
                             </button>
                         </NavLink>
 
-                        <NavLink to='/my-courses' className='mx-2'>
+                        <NavLink to='/my-courses/owned' className='mx-2'>
                             <HeartIcon className='w-10 hover:text-neutral-500 cursor-pointer ' />
                         </NavLink>
 

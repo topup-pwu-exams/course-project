@@ -6,6 +6,7 @@ import { client } from '../utils/client';
 import CourseCard from '../components/CourseCard';
 import { getCategory } from '../api/queries/categories';
 import { getCoursesByCategory } from '../api/queries/course';
+import Loader from '../components/common/Loader';
 
 
 const Category = () => {
@@ -48,7 +49,7 @@ const Category = () => {
 
     return (
         <div className='custom-layout'>
-            {loading ? (<div>Loading ...</div>) : error ? (<div>error...</div>) : (
+            {loading ? (<Loader loading={loading} />) : error ? (<div>error...</div>) : (
                 <div>
 
                     <div className='font-medium text-gray-400 flex'>

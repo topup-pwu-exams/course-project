@@ -44,19 +44,34 @@ const CheckoutSummary = () => {
                 })),
             };
 
-            await client.create({
-                _type: 'order',
-                user: {
+            const userPatch = client.patch(sub).setIfMissing({ purchasedCourses: [] }).append('purchasedCourses',
+                cartItems.map((x) => ({
                     _type: 'reference',
-                    _ref: sub
-                },
-                firstName: given_name,
-                lastName: family_name,
-                userId: sub,
-                ...cartDetails
-            }).then((res) => {
-                console.log(res);
-            });
+                    _ref: x._id,
+                    _key: uuidv4(),
+                })))
+
+            await client
+                .transaction()
+                .create({
+                    _type: 'order',
+                    user: {
+                        _type: 'reference',
+                        _ref: sub
+                    },
+                    firstName: given_name,
+                    lastName: family_name,
+                    userId: sub,
+                    ...cartDetails
+                })
+                .patch(userPatch)
+                .commit()
+                .then((res) => {
+                    console.log(res);
+                })
+                .catch((err) => {
+                    console.error('Transaction failed: ', err.message)
+                })
 
             dispatch({ type: 'CART_CLEAR' });
             jsCookie.remove('cartItems');

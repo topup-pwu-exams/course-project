@@ -19,12 +19,16 @@ import NotFound from "./pages/NotFound";
 import OwnedCourses from "./pages/MyCourses/OwnedCourses";
 import LikedCourses from "./pages/MyCourses/LikedCourses";
 import Checkout from "./pages/Checkout";
+import Footer from './components/common/Footer/Footer'
 
 const AppLayout = () => (
   <>
-    <div className='p-5 pt-0 max-w-7xl mx-auto'>
+    <div className='p-5 pt-0 max-w-7xl mx-auto '>
       <Navigation />
-      <Outlet /> {/* <-- nested routes rendered here */}
+      <div className="min-h-screen">
+        <Outlet /> {/* <-- nested routes rendered here */}
+      </div>
+      <Footer />
     </div>
 
   </>

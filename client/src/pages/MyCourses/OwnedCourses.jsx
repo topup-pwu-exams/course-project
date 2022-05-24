@@ -1,14 +1,18 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import { getMyCourses } from '../../api/queries/user';
+import { getUserPurchasedCoursesDetails } from '../../api/queries/user';
+import Loader from '../../components/common/Loader';
+import CourseCard from '../../components/CourseCard';
 import { client } from '../../utils/client';
 import { Store } from '../../utils/Store';
 
 const OwnedCourses = () => {
     const navigate = useNavigate()
+    const [purchasedCourses, setPurchasedCourses] = useState([])
+    const [loading, setLoading] = useState(true)
     const { state: { userInfo } } = useContext(Store);
     const userId = userInfo.sub
-    const query = getMyCourses(userId)
+    const courseQuery = getUserPurchasedCoursesDetails(userId)
 
     useEffect(() => {
         if (!userInfo) {
@@ -19,24 +23,47 @@ const OwnedCourses = () => {
 
     useEffect(() => {
         console.log(userId);
-        const fetchMyCourses = async () => {
+        const getPurchasedCourses = async () => {
             try {
-                const course = await client.fetch(query);
-                console.log('MY COURSES', course);
+                const purchasedCourses = await client.fetch(courseQuery)
+                setPurchasedCourses(purchasedCourses[0].purchasedCourses)
+                console.log(purchasedCourses);
+                setLoading(false)
             } catch (error) {
-                console.log(error)
+                console.log(error);
+                setLoading(false)
             }
         }
-        fetchMyCourses()
+        getPurchasedCourses()
     }, [])
-    
+
 
     return (
         <div>
-            <h1>Owned</h1>
-            <div>
-
-            </div>
+            {loading ? (<Loader loading={loading} />) : (
+                <section className='mb-5'>
+                    <h2>Owned Courses</h2>
+                    <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6 p-2 '>
+                        {purchasedCourses.length && purchasedCourses.map(course => {
+                            return (
+                                <CourseCard
+                                    key={course._id}
+                                    title={course.title}
+                                    mainImage={course.mainImage}
+                                    price={course.price}
+                                    author={course.author}
+                                    duration={course.courseDuration}
+                                    lessons='445'
+                                    likes='423'
+                                    users='3432'
+                                    tags={course.tags}
+                                    categories={course.categories}
+                                    slug={course.slug.current}
+                                />
+                            )
+                        })}
+                    </div>
+                </section>)}
         </div>
     )
 }
