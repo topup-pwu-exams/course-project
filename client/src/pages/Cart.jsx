@@ -22,7 +22,7 @@ const Cart = () => {
 
   return (
     <div className='custom-layout'>
-      <NavLink to={-1} className='mt-0'>
+      <NavLink to={'/'} className='mt-0'>
         <div className='mb-1 hover:text-neutral-500'><ArrowLeftIcon className='w-5 mb-1 inline-block' /> Go Back</div>
       </NavLink>
       <h1>Your Shopping Cart</h1>

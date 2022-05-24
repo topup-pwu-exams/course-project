@@ -52,6 +52,7 @@ const CheckoutSummary = () => {
                 },
                 firstName: given_name,
                 lastName: family_name,
+                userId: sub,
                 ...cartDetails
             }).then((res) => {
                 console.log(res);

@@ -32,6 +32,12 @@ export default {
       title: 'Description',
       type: 'blockContent',
     },
+    {
+      name: 'likedCourses',
+      title: 'Liked Courses',
+      type: 'reference',
+      to: [{ type: 'course' }],
+    },
   ],
   preview: {
     select: {

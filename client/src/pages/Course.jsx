@@ -9,6 +9,7 @@ import { getCourse } from '../api/queries/course';
 import { Store } from '../utils/Store';
 import { toast, Zoom } from 'react-toastify';
 import ClipLoader from "react-spinners/ClipLoader";
+import { getUserOrdersList } from '../api/queries/user';
 import CourseAbout from '../components/CourseOverview/CourseAbout';
 import CourseFeatured from '../components/CourseOverview/CourseFeatured';
 import CourseOverviewReviews from '../components/CourseOverview/CourseOverviewReviews';
@@ -16,20 +17,43 @@ import CourseOverviewReviews from '../components/CourseOverview/CourseOverviewRe
 const Course = () => {
     const { slug } = useParams();
     const [state, setState] = useState({ course: [], error: '', loading: true });
-    const { state: { cart }, dispatch } = useContext(Store);
+    const [userCourseList, setUserCourseList] = useState([])
+    const { state: { cart, userInfo }, dispatch } = useContext(Store);
     const navigate = useNavigate()
-
     const { loading, error, course } = state;
+    const userId = userInfo?.sub
+
     const query = getCourse(slug)
+    // const userCourseQuery = getUserOrdersList(userId)
 
     const existItem = cart.cartItems.find((x) => x._id === course._id);
 
+    
+    // useEffect(() => {
+    //     const fetchUserCourses = async () => {
+    //         try {
+    //             const userCourses = await client.fetch(userCourseQuery)
+    //             console.log('User Courses', userCourses)
+                
+    //             // setState({ loading: false});
+    //             setUserCourseList(userCourses);
+    //         } catch (err) {
+    //             // setState({ loading: false, error: err.message });
+    //             console.log(err);
+    //         }
+    //     }
+    //     if (userInfo !== null) {
+    //         fetchUserCourses();
+    //     }
+    // }, [userInfo])
+    
+    
     useEffect(() => {
         const fetchCourse = async () => {
             try {
                 const course = await client.fetch(query);
                 console.log('Course', course)
-
+                
                 setState({ course: course[0], loading: false });
             } catch (err) {
                 setState({ loading: false, error: err.message });
@@ -90,12 +114,7 @@ const Course = () => {
                 </div>
             )
                 //timeout not working
-                :
-                error
-
-                    ?
-                    (<div>error message and btn to go back</div>)
-                    :
+                : error ? (<div>error message and btn to go back</div>) :
                     (
                         <div className='bgcourse custom-layout'>
                             <div className='font-medium flex'>
