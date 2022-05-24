@@ -56,8 +56,17 @@ const CourseOverviewCard = ({ title, price, image, id, onClick, buttonText, dura
         });
     }
   };
-
-  const unLikeCourse = () => {
+  
+  const unLikeCourse = (userId) => {
+    if (alreadyLiked) {
+      const courseToRemove = [`likedCourses[_ref == "${id}"]`]
+      client.patch(userId).unset(courseToRemove)
+        .commit({ autoGenerateArrayKeys: true })
+        .then((res) => {
+          console.log(res);
+          getUserLikes()
+        });
+    }
     console.log('unlike');
   }
 
@@ -71,7 +80,7 @@ const CourseOverviewCard = ({ title, price, image, id, onClick, buttonText, dura
         <div className='flex mt-5 justify-center space-x-2'>
           {/* TODO: add icon */}
           <BaseButton text={buttonText} onClick={onClick} />
-          {alreadyLiked ? <HeartIconSolid className='w-11 mb-5 text-accent-500 cursor-pointer' onClick={(e) => { e.preventDefault(); unLikeCourse(id) }} /> : <HeartIcon className='w-11 mb-5 hover:text-accent-500 cursor-pointer' onClick={(e) => { e.preventDefault(); likeCourse(userId) }} />}
+          {alreadyLiked ? <HeartIconSolid className='w-11 mb-5 text-accent-500 cursor-pointer' onClick={(e) => { e.preventDefault(); unLikeCourse(userId) }} /> : <HeartIcon className='w-11 mb-5 hover:text-accent-500 cursor-pointer' onClick={(e) => { e.preventDefault(); likeCourse(userId) }} />}
         </div>
         <p className='text-center text-sm text-gray-500'>30 day money back guarantee </p>
         <div className='mt-4'>
