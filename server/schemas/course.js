@@ -77,13 +77,16 @@ export default {
       title: 'Category',
       type: 'reference',
       to: { type: 'category' },
-      // of: [
-        //   {
-          // to: { type: 'category' },
-          // type: 'reference',
-      //   },
-      // ],
     },
+    // {
+      // name: 'purchasedBy',
+      // title: 'Purchased By',
+      // type: 'reference',
+      // of: [{
+      //   to: { type: 'user' },
+      //   type: 'reference',
+      // }],
+    // },
     {
       name: 'description',
       title: 'Description',
@@ -95,10 +98,10 @@ export default {
       type: 'blockContent',
     },
     {
-      name:'review',
+      name: 'review',
       title: 'Review',
       type: 'array',
-      of:  [{type: 'review'}],
+      of: [{ type: 'review' }],
     }
   ],
   preview: {
