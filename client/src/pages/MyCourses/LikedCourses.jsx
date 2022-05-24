@@ -44,7 +44,7 @@ const LikedCourses = () => {
         <div>
             {loading ? (<Loader loading={loading} />) : (
                 <section className='mb-5'>
-                    <h2>Liked Courses</h2>
+                    <h2>Liked Courses:</h2>
                     <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6 p-2 '>
                         {likedCourses.length && likedCourses.map(course => {
                             return (
