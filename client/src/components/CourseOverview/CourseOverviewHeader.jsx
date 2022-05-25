@@ -3,6 +3,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 const CourseOverviewHeader = ({ title, description, authorFirstName, authorLastName, createdAt, updatedAt, reviews, tags }) => {
+    console.log('TAGS', tags)
     return (
         <div className='mb-28'>
             <div className='mt-10 flex flex-col gap-1 text-white'>
@@ -28,17 +29,14 @@ const CourseOverviewHeader = ({ title, description, authorFirstName, authorLastN
                 <p>Created at: {dayjs(createdAt).format('MMM D, YYYY')}</p>
                 <p>Last updated at: {dayjs(updatedAt).format('MMM D, YYYY')}</p>
                 <div className='flex flex-wrap mt-4'>
-                    <Link
-                        to='/'
-                        className='px-5 py-1 mr-2 rounded-full border border-gray-300 text-gray-500 font-semibold text-sm flex align-center w-max cursor-pointer active:bg-gray-300 transition duration-300 ease'>
-                        Tags
-                    </Link>
-                    <Link
-                        to='/'
-                        className='px-5 py-1 mr-2 rounded-full border border-gray-300 text-gray-500 font-semibold text-sm flex align-center w-max cursor-pointer active:bg-gray-300 transition duration-300 ease'>
-                        Tags
-                    </Link>
-
+                {tags && tags.map(tag => {
+                    return (
+                        <div key={tag._id}>
+                            <Link to='#' className='px-5 py-1 mr-2 rounded-full border border-gray-300 text-yellow-500 font-semibold text-sm flex align-center w-max cursor-pointer ease'>
+                                <p>{tag.name}</p>
+                            </Link>
+                        </div>)
+                    })}
                 </div>
             </div>
         </div>
