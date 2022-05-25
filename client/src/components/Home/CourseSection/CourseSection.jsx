@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { getCourses } from '../../api/queries/course';
-import { client } from '../../utils/client';
-import Loader from '../common/Loader';
-import CourseCard from '../CourseCard'
+import { getCourses } from '../../../api/queries/course';
+import { client } from '../../../utils/client';
+import Loader from '../../common/Loader';
+import CourseCard from '../../CourseCard'
 
 function CourseSection() {
 
@@ -33,23 +33,25 @@ function CourseSection() {
                     <section className='mb-5'>
                         <h2>Explore Courses</h2>
                         <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6 p-2 '>
-                            {courses.length && courses.map(course => {
+                            {courses.length && courses.map((course, index) => {
                                 // console.log('Course', course);
                                 return (
-                                    <CourseCard
-                                        key={course._id}
-                                        title={course.title}
-                                        mainImage={course.mainImage}
-                                        price={course.price}
-                                        author={course.author}
-                                        duration={course.courseDuration}
-                                        lessons='445'
-                                        likes='423'
-                                        users='3432'
-                                        tags={course.tags}
-                                        categories={course.categories}
-                                        slug={course.slug.current}
-                                    />
+                                    <div data-testid={`course-card-${index}`} key={course._id}>
+                                        <CourseCard
+                                            key={course._id}
+                                            title={course.title}
+                                            mainImage={course.mainImage}
+                                            price={course.price}
+                                            author={course.author}
+                                            duration={course.courseDuration}
+                                            lessons='445'
+                                            likes='423'
+                                            users='3432'
+                                            tags={course.tags}
+                                            categories={course.categories}
+                                            slug={course.slug.current}
+                                        />
+                                    </div>
                                 )
                             })}
                         </div>
@@ -58,7 +60,7 @@ function CourseSection() {
                     <section>
                         <h2>Top 10 Latest Courses</h2>
                         <div className='grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6 p-2 '>
-                        {courses.length && courses.map(course => {
+                            {courses.length && courses.map(course => {
                                 // console.log('Course', course);
                                 return (
                                     <CourseCard
