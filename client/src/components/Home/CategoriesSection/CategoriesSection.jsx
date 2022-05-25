@@ -50,7 +50,7 @@ function CategoriesSection() {
                 return (
                   <div data-testid={`category-item-${index}`} key={category._id}>
                     <NavLink to={`categories/${category?.slug.current}`} key={category._id}>
-                      <motion.div className='max-h-max p-3' key={category._id}>
+                      <motion.div className='p-3' key={category._id}>
                         <CategoryCard
                           icon={category.iconName}
                           title={category.title}

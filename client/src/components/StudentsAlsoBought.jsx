@@ -1,5 +1,5 @@
 import React from 'react'
-import { HeartIcon, UsersIcon, } from '@heroicons/react/outline'
+import { UsersIcon } from '@heroicons/react/outline'
 import { urlFor } from '../utils/client'
 import { NavLink } from 'react-router-dom'
 import fakeImage from '../assets/Images/blank_image.png'

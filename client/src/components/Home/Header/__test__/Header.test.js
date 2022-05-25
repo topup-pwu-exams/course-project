@@ -12,7 +12,7 @@ describe("Header", () => {
         expect(textElement).toBeInTheDocument();
     });
 
-    it('should have text colored', () => {
+    it('should have text own', () => {
         render(
             <Header />
         );

@@ -18,5 +18,6 @@ describe("CategoryCard", () => {
 
         const courseDivElement = await screen.findByTestId("course-card-1")
         expect(courseDivElement).toBeInTheDocument();
+
     });
 })

@@ -16,7 +16,7 @@ describe("BlogCard", () => {
         render(
             <MockBlogSection />
         );
-        const divDivElement = await screen.findByTestId("blog-preview-1")
+        const divDivElement = await screen.findByTestId("blog-preview-0")
         expect(divDivElement).toBeInTheDocument();
     });
 })

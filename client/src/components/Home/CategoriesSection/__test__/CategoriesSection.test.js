@@ -11,12 +11,13 @@ const MockCategorySection = () => {
 }
 
 describe("CategoryCard", () => {
-    it('should render category with a dynamic name', async () => {
+    it('should render all 12 categories', async () => {
         render(
             <MockCategorySection />
         );
 
-        const categoryDivElement = await screen.findByTestId("category-item-1")
+        const categoryDivElement = await screen.findByTestId("category-item-11")
         expect(categoryDivElement).toBeInTheDocument();
     });
+
 })
