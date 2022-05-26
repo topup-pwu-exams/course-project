@@ -17,6 +17,7 @@ import order from './order'
 import orderItem from './orderItem'
 import shippingDetails from './shippingDetails'
 import paymentResult from './paymentResult'
+import blogCategory from './blogCategory'
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -34,6 +35,7 @@ export default createSchema({
     review,
     blog,
     order,
+    blogCategory,
     // When added to this list, object types can be used as
     // { type: 'typename' } in other document schemas
     blockContent,
