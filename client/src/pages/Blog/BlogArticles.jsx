@@ -42,6 +42,7 @@ export default function BlogArticles({blogsection}) {
                                       mainImage={blog.mainImage}
                                       description={(blog.description).slice(0,100)}
                                       author={blog.author}
+                                      blogcategory={blog.blogcategory}
                                       date='unknown'
                                   />
                               )

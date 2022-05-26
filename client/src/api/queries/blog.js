@@ -5,6 +5,10 @@ export const getBlogs = () => {
         slug, 
         mainImage,
         description,
+        blogcategory->{
+            title,
+            slug
+        },
         author -> {
           firstName,
           lastName,

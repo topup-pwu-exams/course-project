@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 
-function BlogPreview({ mainImage, title, author, description, category, date }) {
+function BlogPreview({ mainImage, title, author, description, blogcategory, date }) {
 
 
 	return (
@@ -13,7 +13,7 @@ function BlogPreview({ mainImage, title, author, description, category, date }) 
 				<div className="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow-lg py-5 ">
 					<div className="flex flex-wrap no-underline hover:no-underline">
 						{/* make dynamic id=..*/}
-						<p id="development" className="w-full font-bold text-sm text-gray-900 px-6">Category here</p>
+						<p id="development" className="w-full font-bold text-sm text-gray-900 px-6">{blogcategory?.title}</p>
 						{/* make dynamic link to that article..*/}
 						<Link to='article'>
 							<p className="w-full font-bold hover:underline text-xl text-gray-900 px-6 pt-3 p-color min-h-20">{title}</p>
@@ -22,12 +22,9 @@ function BlogPreview({ mainImage, title, author, description, category, date }) 
 				</div>
 				<div className="flex-none mt-auto bg-white overflow-hidden shadow-lg p-6">
 					<div className="flex items-center justify-between">
-						<Link to="authorpage">
 						<img className="w-8 h-8 rounded-full mr-4" data-tippy-content="Author Name" src={author?.avatar} alt="Avatar" />
-						</Link>
-						<Link to='authorpage'>
-							<p className="hover:underline text-sm md:text-sm p-color">{author?.firstName} {author?.lastName}</p>
-						</Link>
+						<p className=" text-sm md:text-sm font-normal">{author?.firstName} {author?.lastName}</p>
+
 					</div>
 				</div>
 			</div>
