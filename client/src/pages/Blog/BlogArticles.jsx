@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import Loader from 'react-spinners/ClipLoader';
 import { getBlogs } from '../../api/queries/blog';
 import { client } from '../../utils/client';
 import BlogPreview from '../../components/Blog/BlogPreview';
+import Loader from '../../components/common/Loader';
 
 
 export default function BlogArticles({blogSection}) {
