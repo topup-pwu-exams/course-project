@@ -104,7 +104,7 @@ const Course = () => {
                                     createdAt={course._createdAt}
                                     updatedAt={course._updatedAt}
                                     likes={course.likes}
-                                    reviews={course.reviews?.length || 0}
+                                    reviewCount={course.reviews?.length || 0}
                                     tags={course.tags}
                                 />
                                 <CourseAbout description={course.description}/>

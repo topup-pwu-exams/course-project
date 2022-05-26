@@ -5,8 +5,8 @@ import dayjs from 'dayjs'
 const Review = ({review, rating, author, createdAt}) => {
     return (
         <div className='flex flex-row items-start my-5 gap-4'>
-            {author.avatar ? <img className='ml-2 h-12 w-12 rounded-full' src={author.avatar} alt="Author" /> :
-                <UserCircleIcon className='w-10' />
+            {author?.avatar ? <img className='ml-2 h-12 w-12 rounded-full' src={author?.avatar} alt="Author" /> :
+                <UserCircleIcon className='w-12 ml-2 h-12 min-w-14 min-h-14' />
             }
             <div>
                 <p className='text-base text-left font-bold text-neutral-500 leading-5'>{author.firstName} {author.lastName}</p>

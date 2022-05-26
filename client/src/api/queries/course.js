@@ -59,6 +59,11 @@ export const getCourses = () => {
         category->{
             title,
             slug
+        },
+        reviews[]->{
+            review,
+            rating,
+            _id,
         }
     }`
     return query

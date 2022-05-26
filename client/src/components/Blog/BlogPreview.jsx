@@ -1,3 +1,4 @@
+import { UserCircleIcon } from '@heroicons/react/outline'
 import React from 'react'
 import { Link } from 'react-router-dom'
 
@@ -18,7 +19,11 @@ function BlogPreview({ slug, mainImage, title, author, description, blogCategory
 				</div>
 				<div className="flex-none mt-auto bg-white overflow-hidden shadow-lg p-6">
 					<div className="flex items-center justify-between">
-						<img className="w-8 h-8 rounded-full mr-4" data-tippy-content="Author Name" src={author?.avatar} alt="Avatar" />
+						{author?.avatar ? <img className='w-8 h-8 rounded-full mr-4' src={author?.avatar} alt="Author" /> :
+							<UserCircleIcon className='w-12 h-12 min-w-12 min-h-12' />
+						}
+
+						{/* <img className="w-8 h-8 rounded-full mr-4" data-tippy-content="Author Name" src={author?.avatar} alt="Avatar" /> */}
 						<p className=" text-sm md:text-sm font-normal">{author?.firstName} {author?.lastName}</p>
 
 					</div>

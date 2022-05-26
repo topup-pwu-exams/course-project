@@ -15,7 +15,7 @@ function CourseSection() {
         const fetchCourses = async () => {
             try {
                 const courses = await client.fetch(query); // TODO: change to small portion of courses, like "TOP" courses
-                console.log(courses)
+                console.log('COURSESSS,', courses)
 
                 setState({ courses, loading: false });
             } catch (err) {
@@ -49,6 +49,7 @@ function CourseSection() {
                                         tags={course.tags}
                                         categories={course.categories}
                                         slug={course.slug.current}
+                                        reviewCount={course.reviews?.length || 0}
                                     />
                                 )
                             })}
@@ -56,7 +57,7 @@ function CourseSection() {
                     </section>
 
                     <section>
-                        <h2>Top 10 Latest Courses</h2>
+                        <h2>Top Courses</h2>
                         <div className='grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6 p-2 '>
                         {courses.length && courses.map(course => {
                                 // console.log('Course', course);
@@ -74,6 +75,7 @@ function CourseSection() {
                                         tags={course.tags}
                                         categories={course.categories}
                                         slug={course.slug.current}
+                                        reviewCount={course.reviews?.length || 0}
                                     />
                                 )
                             })}
