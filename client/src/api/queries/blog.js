@@ -1,5 +1,5 @@
 export const getBlogs = () => {
-    const query = `*[_type == "blog"]{
+    const query = `*[_type == "blog"][0...4]{
         _id,
         title,
         slug, 
@@ -14,6 +14,17 @@ export const getBlogs = () => {
           lastName,
           avatar,
        },
+    }`
+    return query
+}
+
+export const getBlogCategories = () => {
+    const query = `*[_type == "blogCategory"]{
+        _id,
+        blogcategory->{
+            title,
+            slug
+        },
     }`
     return query
 }
