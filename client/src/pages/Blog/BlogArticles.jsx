@@ -7,7 +7,6 @@ import BlogPreview from '../../components/Blog/BlogPreview';
 
 export default function BlogArticles({blogSection}) {
     {
-
         const [state, setState] = useState({ blogs: [], error: '', loading: true });
       
         const { loading, error, blogs } = state;
@@ -39,10 +38,11 @@ export default function BlogArticles({blogSection}) {
                                   <BlogPreview
                                       key={blog._id}
                                       title={blog.title}
+                                      slug={blog.slug}
                                       mainImage={blog.mainImage}
                                       description={(blog.description).slice(0,100)}
                                       author={blog.author}
-                                      blogcategory={blog.blogcategory}
+                                      blogCategory={blog.blogCategory}
                                       date='unknown'
                                   />
                               )

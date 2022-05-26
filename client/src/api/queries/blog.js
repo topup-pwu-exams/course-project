@@ -5,7 +5,7 @@ export const getBlogs = () => {
         slug, 
         mainImage,
         description,
-        blogcategory->{
+        blogCategory->{
             title,
             slug
         },
@@ -20,11 +20,33 @@ export const getBlogs = () => {
 
 export const getBlogCategories = () => {
     const query = `*[_type == "blogCategory"]{
+            _id,
+            title,
+            slug{
+                current
+            }
+    }`
+    return query
+}
+
+export const getBlogArticle = (slug) => {
+    const query = `*[_type == "blog" && slug.current == "${slug}"]{
         _id,
-        blogcategory->{
+        _createdAt,
+        _updatedAt,
+        title,
+        slug, 
+        mainImage,
+        description,
+        blogCategory->{
             title,
             slug
         },
+        author -> {
+          firstName,
+          lastName,
+          avatar,
+       },
     }`
     return query
 }

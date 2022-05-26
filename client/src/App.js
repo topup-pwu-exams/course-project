@@ -69,7 +69,7 @@ function App() {
           <Route path="/course/:slug/learn" element={<Learn />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<Checkout />} />
-          {/* <Route path="/my-courses" element={<MyCourses />} /> */}
+          
           <Route path="my-courses" element={<MyCourses />}>
             {/* TODO: set link active on page load */}
             <Route index element={<OwnedCourses />} />
