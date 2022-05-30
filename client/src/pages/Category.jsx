@@ -3,10 +3,10 @@ import { NavLink, useParams } from 'react-router-dom';
 import capitalize from '../utils/capitalize'
 import { ChevronRightIcon } from '@heroicons/react/outline'
 import { client } from '../utils/client';
-import CourseCard from '../components/CourseCard';
 import { getCategory } from '../api/queries/categories';
 import { getCoursesByCategory } from '../api/queries/course';
 import Loader from '../components/common/Loader';
+import CourseCard from '../components/CourseCard';
 
 
 const Category = () => {
