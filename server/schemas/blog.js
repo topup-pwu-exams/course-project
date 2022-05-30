@@ -37,10 +37,10 @@ export default {
             type: 'text',
         },
         {
-          name: 'blogcategory',
-          title: 'BlogCategory',
+          name: 'blogCategory',
+          title: 'Blog Category',
           type: 'reference',
-          to: { type: 'blogcategory' },
+          to: { type: 'blogCategory' },
         },
         {
             title: 'Launch Scheduled At',

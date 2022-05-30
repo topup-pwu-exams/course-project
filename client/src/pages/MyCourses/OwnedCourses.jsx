@@ -59,6 +59,7 @@ const OwnedCourses = () => {
                                     tags={course.tags}
                                     categories={course.categories}
                                     slug={course.slug.current}
+                                    reviewCount={course.reviews?.length || 0}
                                 />
                             )
                         })}
