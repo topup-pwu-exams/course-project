@@ -35,3 +35,4 @@ jobs:
     - name: docker push
       run: |
         docker push viktors11/client
+        
