@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { client } from '../../utils/client';
-import CategoryCard from '../CategoryCard'
+import { client } from '../../../utils/client';
+import CategoryCard from '../../CategoryCard/CategoryCard'
 import { motion } from "framer-motion"
 import { NavLink, useNavigate } from 'react-router-dom';
-import { getCategories } from '../../api/queries/categories';
-import Loader from '../common/Loader';
+import { getCategories } from '../../../api/queries/categories';
+import Loader from '../../common/Loader';
 
 function CategoriesSection() {
   const [state, setState] = useState({ categories: [], error: '', loading: true });
@@ -46,17 +46,19 @@ function CategoriesSection() {
             <motion.div drag='x' dragConstraints={{ right: 0, left: -width }} className='flex'>
 
               {/* TODO: add smth if there are no courses in this category */}
-              {categories && categories.map(category => {
+              {categories && categories.map((category, index) => {
                 return (
-                  <NavLink to={`categories/${category?.slug.current}`} key={category._id}>
-                    <motion.div className='max-h-max p-3' key={category._id}>
-                      <CategoryCard
-                        icon={category.iconName}
-                        title={category.title}
-                        key={category._id}
-                      />
-                    </motion.div>
-                  </NavLink>
+                  <div data-testid={`category-item-${index}`} key={category._id}>
+                    <NavLink to={`categories/${category?.slug.current}`} key={category._id}>
+                      <motion.div className='p-3' key={category._id}>
+                        <CategoryCard
+                          icon={category.iconName}
+                          title={category.title}
+                          key={category._id}
+                        />
+                      </motion.div>
+                    </NavLink>
+                  </div>
                 )
               })}
             </motion.div>
