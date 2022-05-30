@@ -9,8 +9,8 @@ Technology stack used in project consists of:
 - TailwindCSS
 - Sanity.io
 - Google Login
-<!-- - Docker
-- Deployed on Vercel -->
+- Docker
+- Deployed on Vercel
 
 
 ## To Initialize Project
